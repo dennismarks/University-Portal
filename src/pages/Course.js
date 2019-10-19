@@ -1,18 +1,5 @@
 import React from "react";
-import {
-  makeStyles,
-  Grid,
-  Card,
-  CardContent,
-  Typography,
-  CardActions,
-  IconButton,
-  Collapse,
-  Button
-} from "@material-ui/core";
-
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-
+import { makeStyles, Grid } from "@material-ui/core";
 
 import AsCoursesBox from "../components/AsCoursesBox";
 import CourseInfoBox from "../components/CourseInfoBox";
@@ -56,7 +43,7 @@ function Course() {
           </h1>
         </Grid>
         <Grid item justify="center" xs={6}>
-            <CourseInfoBox />
+          <CourseInfoBox />
         </Grid>
         <Grid item justify="center" xs={6}>
           <AsCoursesBox />
