@@ -25,6 +25,9 @@ const useStyles = makeStyles(theme => ({
   },
   rootButton: {
       width: '100%'
+  },
+  optionalNested: {
+    paddingLeft: theme.spacing(16)
   }
 }));
 
@@ -67,6 +70,18 @@ function AsCoursesBox() {
                 <List component="div" disablePadding>
                   <ListItem button className={classes.nested}>
                     <ListItemText primary="CSC000: The blah blah blah" />
+                  </ListItem>
+                  <ListItem button className={classes.nested}>
+                    <ListItemText primary="Select one of:" />
+                  </ListItem>
+                  <ListItem button className={classes.optionalNested}>
+                    <ListItemText primary="- CSC001: The blah blah blah" />
+                  </ListItem>
+                  <ListItem button className={classes.optionalNested}>
+                    <ListItemText primary="- CSC002: The lorem text blah" />
+                  </ListItem>
+                  <ListItem button className={classes.nested}>
+                    <ListItemText primary="CSC003: The lorem text blah" />
                   </ListItem>
                 </List>
               </Collapse>
