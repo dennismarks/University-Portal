@@ -3,6 +3,7 @@ import { makeStyles, Grid } from "@material-ui/core";
 
 import AsCoursesBox from "../components/AsCoursesBox";
 import CourseInfoBox from "../components/CourseInfoBox";
+import RedditBox from "../components/RedditBox";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -47,6 +48,12 @@ function Course() {
         </Grid>
         <Grid item justify="center" xs={6}>
           <AsCoursesBox />
+        </Grid>
+        <Grid item justify="center" xs={6}>
+          <RedditBox />
+        </Grid>
+        <Grid item justify="center" xs={6}>
+          <RedditBox />
         </Grid>
       </Grid>
     </div>
