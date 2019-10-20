@@ -43,16 +43,16 @@ function Course() {
             CSC 309: Programming on the Web
           </h1>
         </Grid>
-        <Grid item justify="center" xs={6}>
+        <Grid item xs={6}>
           <CourseInfoBox />
         </Grid>
-        <Grid item justify="center" xs={6}>
+        <Grid item xs={6}>
           <AsCoursesBox />
         </Grid>
-        <Grid item justify="center" xs={6}>
+        <Grid item  xs={6}>
           <RedditBox />
         </Grid>
-        <Grid item justify="center" xs={6}>
+        <Grid item xs={6}>
           <RedditBox />
         </Grid>
       </Grid>

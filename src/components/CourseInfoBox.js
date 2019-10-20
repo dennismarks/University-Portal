@@ -40,7 +40,7 @@ function CourseInfoBox() {
         </CardContent>
         <Collapse in={openRoot} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography variant="body" className={classes.boxTitle}>
+            <Typography variant="body1" className={classes.boxTitle}>
               An introduction to software development on the web. Concepts
               underlying the development of programs that operate on the web;
               survey of technological alternatives; greater depth on some
