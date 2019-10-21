@@ -3,6 +3,7 @@ import { makeStyles, Grid } from "@material-ui/core";
 
 import AsCoursesBox from "../components/AsCoursesBox";
 import CourseInfoBox from "../components/CourseInfoBox";
+import RedditBox from "../components/RedditBox";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -42,11 +43,17 @@ function Course() {
             CSC 309: Programming on the Web
           </h1>
         </Grid>
-        <Grid item justify="center" xs={6}>
+        <Grid item xs={6}>
           <CourseInfoBox />
         </Grid>
-        <Grid item justify="center" xs={6}>
+        <Grid item xs={6}>
           <AsCoursesBox />
+        </Grid>
+        <Grid item  xs={6}>
+          <RedditBox />
+        </Grid>
+        <Grid item xs={6}>
+          <RedditBox />
         </Grid>
       </Grid>
     </div>
