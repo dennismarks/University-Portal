@@ -1,0 +1,93 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+/* Info */
+.personalInformation {
+  padding: 1.5em;
+  background-image: linear-gradient(135deg, #f38cad, #cf6989);
+  margin: auto;
+  margin-top: 3em;
+  width: 500px;
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  border-radius: 24px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.profileImage {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin-right: 2em;
+}
+
+.userInfo h1 {
+  padding-bottom: 12px;
+  font-size: 3em;
+}
+
+.userInfo h3,
+.userInfo h4 {
+  color: rgb(255, 255, 255);
+}
+
+/* Courses */
+.courses {
+  background-image: linear-gradient(
+    135deg,
+    rgb(207, 255, 239),
+    rgb(140, 243, 209)
+  );
+  margin: 3em auto 0 auto;
+  padding: 1em;
+  border-radius: 24px;
+  width: 600px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+}
+
+.courses-inactive {
+  background-color: rgb(233, 235, 234);
+  background-image: linear-gradient(
+    135deg,
+    rgb(233, 235, 234),
+    rgb(202, 202, 202)
+  );
+}
+
+.courses h1 {
+  margin-bottom: 18px;
+}
+
+.courses ul {
+  list-style: none;
+}
+
+.courses li {
+  padding: 0 0 12px 48px;
+  font-size: 1em;
+  letter-spacing: 0.5px;
+  color: rgb(22, 22, 22);
+}
+
+.courses button {
+  font-size: 0.8em;
+  background-color: rgb(207, 255, 239);
+  margin-left: 48px;
+  padding: 3px;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 8px;
+}
+
+.courses button:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.courses button:focus {
+  outline: 0;
+}
