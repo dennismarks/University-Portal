@@ -18,7 +18,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
-          <Route path="/course/csc309" component={Course} />
+          <Route path="/course/:courseCode" component={Course} />
           <Route path="/user" component={User} />
         </Switch>
       </BrowserRouter>

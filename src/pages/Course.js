@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles, Grid } from "@material-ui/core";
+import { useParams } from "react-router-dom";
 
 import AsCoursesBox from "../components/AsCoursesBox";
 import CourseInfoBox from "../components/CourseInfoBox";
@@ -33,6 +34,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Course() {
+  const { courseCode } = useParams();
   const classes = useStyles();
 
   return (
@@ -40,7 +42,7 @@ function Course() {
       <Grid container justify="center" spacing={2}>
         <Grid item xs={12}>
           <h1 className={classes.courseCode}>
-            CSC 309: Programming on the Web
+            {courseCode}: Programming on the Web
           </h1>
         </Grid>
         <Grid item xs={6}>
@@ -49,7 +51,7 @@ function Course() {
         <Grid item xs={6}>
           <AsCoursesBox />
         </Grid>
-        <Grid item  xs={6}>
+        <Grid item xs={6}>
           <RedditBox />
         </Grid>
         <Grid item xs={6}>
