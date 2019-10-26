@@ -1,7 +1,8 @@
 import React from "react";
 
 import CourseMiniCard from "../components/CourseMiniCard";
-import SearchBar from "../components/SearchBar";
+import CourseSearchBar from "../components/CourseSearchBar";
+import CourseSearchChip from "../components/CourseSearchChip";
 
 function Home() {
   return (
@@ -17,7 +18,7 @@ function Home() {
                 Search by course code, title, or department
               </span>
             </div>
-            <SearchBar />
+            <CourseSearchBar shouldAutoFocus={true} />
           </div>
           <div className="w-1/2">
             <img
@@ -29,7 +30,7 @@ function Home() {
         </div>
       </section>
       <section className="py-16">
-        <div class="container mx-auto px-4">
+        <div class="container mx-auto px-4 mb-8">
           <h2 className="text-xl font-normal text-gray-700 mb-4">
             Top Rated Courses
           </h2>
@@ -56,15 +57,40 @@ function Home() {
             />
           </div>
         </div>
-        <div class="container mx-auto px-4">
+        <div class="container mx-auto px-4 mb-8">
           <h2 className="text-xl font-normal text-gray-700 mb-4">
             By Department
           </h2>
+          <div className="flex flex-row flex-wrap">
+            <CourseSearchChip>Computer Science</CourseSearchChip>
+            <CourseSearchChip>Statistics</CourseSearchChip>
+            <CourseSearchChip>Humanities</CourseSearchChip>
+            <CourseSearchChip>Health Sciences</CourseSearchChip>
+            <CourseSearchChip>Medical Sciences</CourseSearchChip>
+            <CourseSearchChip>Civil Engineering</CourseSearchChip>
+          </div>
         </div>
-        <div class="container mx-auto px-4">
+        <div class="container mx-auto px-4 mb-8">
           <h2 className="text-xl font-normal text-gray-700 mb-4">
             By Breadth Requirement
           </h2>
+          <div className="flex flex-row flex-wrap">
+            <CourseSearchChip color="teal" variant="light">
+              1 - Creative and Cultural Representations
+            </CourseSearchChip>
+            <CourseSearchChip color="indigo" variant="light">
+              2 - Thought, Belief, and Behaviour
+            </CourseSearchChip>
+            <CourseSearchChip color="pink" variant="light">
+              3 - Society and Its Institutions
+            </CourseSearchChip>
+            <CourseSearchChip color="yellow" variant="light">
+              4 - Living Things and Their Environment
+            </CourseSearchChip>
+            <CourseSearchChip color="orange" variant="light">
+              5 - The Physical and Mathematical Universes
+            </CourseSearchChip>
+          </div>
         </div>
       </section>
     </div>
