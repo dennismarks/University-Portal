@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 function CourseSearchChip({
   children,
+  className = "",
   color = "gray",
   onClick = null,
   variant = "dark"
@@ -11,7 +12,8 @@ function CourseSearchChip({
   const [textColorLevel, bgColorLevel] =
     variant === "light" ? [500, 100] : [100, 500];
   const chipClass = classNames(
-    "inline-block p-3 mr-3 mb-3 shadow text-base font-bold rounded cursor-pointer",
+    "block p-3 mr-3 mb-3 shadow text-base text-center font-bold rounded cursor-pointer whitespace-no-wrap",
+    className,
     {
       [`bg-${color}-${bgColorLevel}`]: true,
       [`text-${color}-${textColorLevel}`]: true
@@ -26,7 +28,7 @@ function CourseSearchChip({
 
 CourseSearchChip.propTypes = {
   children: PropTypes.node.isRequired,
-  onClick: PropTypes.func,
+  className: PropTypes.string,
   color: PropTypes.oneOf([
     "gray",
     "red",
@@ -39,6 +41,7 @@ CourseSearchChip.propTypes = {
     "purple",
     "pink"
   ]),
+  onClick: PropTypes.func,
   variant: PropTypes.oneOf(["light", "dark"])
 };
 

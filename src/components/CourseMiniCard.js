@@ -9,7 +9,7 @@ function CourseMiniCard({
   tags
 }) {
   return (
-    <div className="bg-white shadow-md rounded max-w-sm p-4">
+    <div className="bg-white shadow-md rounded max-w-sm p-4 m-2">
       <a
         href={courseLink}
         className="font-bold text-lg truncate block hover:underline"

@@ -12,7 +12,7 @@ import User from "./pages/User";
 function App() {
   return (
     <div className="App">
-      <Header></Header>
+      <Header />
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Home} />

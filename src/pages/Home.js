@@ -8,8 +8,8 @@ function Home() {
   return (
     <div>
       <section className="bg-gray-200 py-16">
-        <div class="flex container items-center mx-auto px-4">
-          <div className="w-1/2">
+        <div class="flex flex-col-reverse md:flex-row container items-center mx-auto px-1 md:px-4">
+          <div className="md:w-1/2">
             <div className="pb-8">
               <h1 className="font-light text-3xl text-gray-700">
                 Find the Courses you Need
@@ -20,7 +20,7 @@ function Home() {
             </div>
             <CourseSearchBar shouldAutoFocus={true} />
           </div>
-          <div className="w-1/2">
+          <div className="md:w-1/2 mb-8 md:mb-0">
             <img
               alt="girl searching"
               className="h-64 mx-auto"
@@ -34,7 +34,7 @@ function Home() {
           <h2 className="text-xl font-normal text-gray-700 mb-4">
             Top Rated Courses
           </h2>
-          <div className="mb-8 flex">
+          <div className="mb-8 flex overflow-x-auto">
             <CourseMiniCard
               courseCode="CSC309"
               courseLink="/course/csc309"
@@ -61,7 +61,7 @@ function Home() {
           <h2 className="text-xl font-normal text-gray-700 mb-4">
             By Department
           </h2>
-          <div className="flex flex-row flex-wrap">
+          <div className="flex flex-row overflow-x-auto">
             <CourseSearchChip>Computer Science</CourseSearchChip>
             <CourseSearchChip>Statistics</CourseSearchChip>
             <CourseSearchChip>Humanities</CourseSearchChip>
@@ -75,19 +75,39 @@ function Home() {
             By Breadth Requirement
           </h2>
           <div className="flex flex-row flex-wrap">
-            <CourseSearchChip color="teal" variant="light">
+            <CourseSearchChip
+              className="flex-auto"
+              color="teal"
+              variant="light"
+            >
               1 - Creative and Cultural Representations
             </CourseSearchChip>
-            <CourseSearchChip color="indigo" variant="light">
+            <CourseSearchChip
+              className="flex-auto"
+              color="indigo"
+              variant="light"
+            >
               2 - Thought, Belief, and Behaviour
             </CourseSearchChip>
-            <CourseSearchChip color="pink" variant="light">
+            <CourseSearchChip
+              className="flex-auto"
+              color="pink"
+              variant="light"
+            >
               3 - Society and Its Institutions
             </CourseSearchChip>
-            <CourseSearchChip color="yellow" variant="light">
+            <CourseSearchChip
+              className="flex-auto"
+              color="yellow"
+              variant="light"
+            >
               4 - Living Things and Their Environment
             </CourseSearchChip>
-            <CourseSearchChip color="orange" variant="light">
+            <CourseSearchChip
+              className="flex-auto"
+              color="orange"
+              variant="light"
+            >
               5 - The Physical and Mathematical Universes
             </CourseSearchChip>
           </div>
