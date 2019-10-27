@@ -8,8 +8,8 @@ function Home() {
   return (
     <div>
       <section className="bg-gray-200 py-16">
-        <div class="flex flex-col-reverse md:flex-row container items-center mx-auto px-1 md:px-4">
-          <div className="md:w-1/2">
+        <div class="flex flex-col lg:flex-row container items-center mx-auto px-4">
+          <div className="w-full lg:w-1/2">
             <div className="pb-8">
               <h1 className="font-light text-3xl text-gray-700">
                 Find the Courses you Need
@@ -20,7 +20,7 @@ function Home() {
             </div>
             <CourseSearchBar shouldAutoFocus={true} />
           </div>
-          <div className="md:w-1/2 mb-8 md:mb-0">
+          <div className="w-1/2 mb-0 hidden lg:block">
             <img
               alt="girl searching"
               className="h-64 mx-auto"

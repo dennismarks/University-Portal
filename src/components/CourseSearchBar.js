@@ -64,7 +64,7 @@ function SearchInput({ onSearch, shouldAutoFocus }) {
   };
 
   return (
-    <form className="flex" onSubmit={handleSubmit}>
+    <form className="flex shadow rounded-lg" onSubmit={handleSubmit}>
       <input
         autoFocus={shouldAutoFocus}
         className="block text font-light text-gray-700 placeholder-gray-400 p-3 bg-white w-full rounded-l-lg"
@@ -73,7 +73,7 @@ function SearchInput({ onSearch, shouldAutoFocus }) {
         placeholder="Ex. CSC309, Introduction to Computer Networks"
         value={query}
       />
-      <button className="text font-medium uppercase text-white bg-indigo-800 py-3 px-5 rounded-r-lg">
+      <button className="text font-medium uppercase text-white bg-blue-500 py-3 px-5 rounded-r-lg">
         Search
       </button>
     </form>
@@ -82,9 +82,9 @@ function SearchInput({ onSearch, shouldAutoFocus }) {
 
 function CourseSearchBar({ shouldAutoFocus }) {
   const initialResults = [
-    "CSC309 - Programming on the Web",
-    "CSC301 - Introduction to Software Engineering Software Engineering Software Engineering",
-    "CSC300 - Computers and Society"
+    // "CSC309 - Programming on the Web",
+    // "CSC301 - Introduction to Software Engineering Software Engineering Software Engineering",
+    // "CSC300 - Computers and Society"
   ];
   const [results, setResults] = useState(initialResults);
   const addResult = useCallback(result => setResults([result, ...results]), [
