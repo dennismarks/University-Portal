@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
+import Search from "./pages/Search";
 import Course from "./pages/Course";
 import User from "./pages/User";
 
@@ -16,6 +17,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/search" component={Search} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <Route path="/course/:courseCode" component={Course} />

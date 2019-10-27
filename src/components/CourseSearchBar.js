@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { uid } from "react-uid";
 import { escapeRegExp } from "lodash";
+import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { uid } from "react-uid";
+import { useHistory } from "react-router-dom";
 
 import useDebounce from "../utils/useDebounce";
 
@@ -71,11 +72,15 @@ function SearchResults({ query, results }) {
 }
 
 function SearchInput({ onChange, query, shouldAutoFocus }) {
+  const history = useHistory();
   const handleChange = e => {
     onChange(e.target.value);
   };
   const handleSubmit = e => {
     e.preventDefault();
+    if (query) {
+      history.push(`/search?q=${query}`);
+    }
   };
 
   return (
@@ -95,8 +100,8 @@ function SearchInput({ onChange, query, shouldAutoFocus }) {
   );
 }
 
-function CourseSearchBar({ shouldAutoFocus }) {
-  const [query, setQuery] = useState("");
+function CourseSearchBar({ initialValue, shouldAutoFocus }) {
+  const [query, setQuery] = useState(initialValue);
   const debouncedQuery = useDebounce(query, 300);
   const [results, setResults] = useState([]);
 
