@@ -1,8 +1,11 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { uid } from "react-uid";
+import { escapeRegExp } from "lodash";
 
-function SearchResults({ results }) {
+import useDebounce from "../utils/useDebounce";
+
+function SearchResults({ query, results }) {
   if (!results.length) {
     return null;
   }
@@ -12,7 +15,7 @@ function SearchResults({ results }) {
       opacity: 1,
       transition: {
         when: "beforeChildren",
-        staggerChildren: 0.1
+        staggerChildren: 0.05
       }
     },
     hidden: {
@@ -25,7 +28,7 @@ function SearchResults({ results }) {
 
   const item = {
     visible: { opacity: 1, x: 0 },
-    hidden: { opacity: 0, x: -100 }
+    hidden: { opacity: 0, x: 50 }
   };
 
   return (
@@ -36,31 +39,43 @@ function SearchResults({ results }) {
       className="w-full absolute mt-3 py-2 flex flex-col shadow-xl rounded-lg bg-white"
     >
       <ul>
-        {results.map((result, index) => (
-          <motion.li
-            variants={item}
-            className="text-base text-gray-400 font-bold px-3 py-2"
-            key={uid(result, index)}
-          >
-            <a href={`/course/${result}`}>{result}</a>
-          </motion.li>
-        ))}
+        {results.slice(0, 3).map((result, index) => {
+          const parts = result.title.split(
+            new RegExp(`(${escapeRegExp(query)})`, "gi")
+          );
+          return (
+            <motion.li
+              variants={item}
+              className="text-base text-gray-400 font-bold px-3 py-2"
+              key={uid(result, index)}
+            >
+              <a href={result.url}>
+                {parts.map((part, i) => (
+                  <span
+                    key={i}
+                    className={
+                      part.toLowerCase() === query.toLowerCase() &&
+                      "text-gray-600"
+                    }
+                  >
+                    {part}
+                  </span>
+                ))}
+              </a>
+            </motion.li>
+          );
+        })}
       </ul>
     </motion.div>
   );
 }
 
-function SearchInput({ onSearch, shouldAutoFocus }) {
-  const [query, setQuery] = useState("");
+function SearchInput({ onChange, query, shouldAutoFocus }) {
   const handleChange = e => {
-    setQuery(e.target.value);
+    onChange(e.target.value);
   };
   const handleSubmit = e => {
     e.preventDefault();
-    if (query) {
-      onSearch(query);
-      setQuery("");
-    }
   };
 
   return (
@@ -81,20 +96,37 @@ function SearchInput({ onSearch, shouldAutoFocus }) {
 }
 
 function CourseSearchBar({ shouldAutoFocus }) {
-  const initialResults = [
-    // "CSC309 - Programming on the Web",
-    // "CSC301 - Introduction to Software Engineering Software Engineering Software Engineering",
-    // "CSC300 - Computers and Society"
-  ];
-  const [results, setResults] = useState(initialResults);
-  const addResult = useCallback(result => setResults([result, ...results]), [
-    results
-  ]);
+  const [query, setQuery] = useState("");
+  const debouncedQuery = useDebounce(query, 300);
+  const [results, setResults] = useState([]);
+
+  useEffect(() => {
+    if (debouncedQuery) {
+      // Replace with real network request
+      setTimeout(() => {
+        const staticResults = [
+          { url: "/course/csc309", title: "CSC309 - Programming on the Web" },
+          {
+            url: "/course/csc301",
+            title: "CSC301 - Introduction to Software Engineering"
+          },
+          { url: "/course/csc300", title: "CSC300 - Computers and Society" }
+        ];
+        setResults(staticResults);
+      }, 750);
+    } else {
+      setResults([]);
+    }
+  }, [debouncedQuery]);
 
   return (
     <div className="relative">
-      <SearchInput onSearch={addResult} shouldAutoFocus={shouldAutoFocus} />
-      <SearchResults results={results} />
+      <SearchInput
+        onChange={setQuery}
+        query={query}
+        shouldAutoFocus={shouldAutoFocus}
+      />
+      <SearchResults query={query} results={results} />
     </div>
   );
 }
