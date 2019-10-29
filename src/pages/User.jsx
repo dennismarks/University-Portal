@@ -8,8 +8,8 @@ const User = props => {
   // the passed id from the url parameter
   // but instead this user is located inside the Context
   const usersContext = useContext(UsersContext);
-  const id = props.match.params.id;
-  const user = usersContext.users[id];
+  const id = parseInt(props.match.params.id, 10);
+  const user = usersContext.users.filter(user => user.userInfo.id === id)[0];
 
   return (
     <div>

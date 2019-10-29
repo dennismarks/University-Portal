@@ -7,7 +7,6 @@ const UserDetails = () => {
   // from an external source
   // but instead it is coming from the Users Context
   const { selectedUser, removeStudent } = useContext(UsersContext);
-  const MY_ROUTE = () => `/user/${selectedUser.userInfo.id}/`;
 
   return (
     <div className="user-details">
@@ -26,7 +25,10 @@ const UserDetails = () => {
           <p>
             User's page:
             <strong>
-              <Link className="user-link" to={MY_ROUTE}>
+              <Link
+                className="user-link"
+                to={`/user/${selectedUser.userInfo.id}/`}
+              >
                 {" "}
                 link
               </Link>
