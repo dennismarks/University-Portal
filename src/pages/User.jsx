@@ -1,7 +1,6 @@
 import React from "react";
-import { uid } from "react-uid";
 import UserInfo from "../components/UserInfo";
-import CourseList from "../components/CourseList";
+import CoursesCard from "../components/CoursesCard";
 
 class User extends React.Component {
   state = {
@@ -37,28 +36,16 @@ class User extends React.Component {
     const toTake = this.state.courses.toTakeCourses.length;
 
     cur > 3
-      ? this.setState({
-          currentRender: 3
-        })
-      : this.setState({
-          currentRender: cur
-        });
+      ? this.setState({ currentRender: 3 })
+      : this.setState({ currentRender: cur });
 
     taken > 3
-      ? this.setState({
-          takenRender: 3
-        })
-      : this.setState({
-          takenRender: taken
-        });
+      ? this.setState({ takenRender: 3 })
+      : this.setState({ takenRender: taken });
 
     toTake > 3
-      ? this.setState({
-          toTakeRender: 3
-        })
-      : this.setState({
-          toTakeRender: toTake
-        });
+      ? this.setState({ toTakeRender: 3 })
+      : this.setState({ toTakeRender: toTake });
   }
 
   showMore = name => () => {
@@ -68,54 +55,41 @@ class User extends React.Component {
 
     if (name === "◦ Current Courses") {
       this.state.currentRender === cur
-        ? this.setState({
-            currentRender: 3
-          })
-        : this.setState({
-            currentRender: cur
-          });
+        ? this.setState({ currentRender: 3 })
+        : this.setState({ currentRender: cur });
     } else if (name === "◦ Taken Courses") {
       this.state.takenRender === taken
-        ? this.setState({
-            takenRender: 3
-          })
-        : this.setState({
-            takenRender: taken
-          });
+        ? this.setState({ takenRender: 3 })
+        : this.setState({ takenRender: taken });
     } else if (name === "◦ Future course") {
       this.state.toTakeRender === toTake
-        ? this.setState({
-            toTakeRender: 3
-          })
-        : this.setState({
-            toTakeRender: toTake
-          });
+        ? this.setState({ toTakeRender: 3 })
+        : this.setState({ toTakeRender: toTake });
     }
   };
 
   render() {
     return (
       <div className="main">
-        {console.log("Here", this.state)}
         <UserInfo userInfo={this.state.userInfo}></UserInfo>
-        <CourseList
+        <CoursesCard
           courses={this.state.courses.currentCourses}
           toRender={this.state.currentRender}
           showMore={this.showMore}
           name="◦ Current Courses"
-        ></CourseList>
-        <CourseList
+        ></CoursesCard>
+        <CoursesCard
           courses={this.state.courses.takenCourses}
           toRender={this.state.takenRender}
           showMore={this.showMore}
           name="◦ Taken Courses"
-        ></CourseList>
-        <CourseList
+        ></CoursesCard>
+        <CoursesCard
           courses={this.state.courses.toTakeCourses}
           toRender={this.state.toTakeRender}
           showMore={this.showMore}
           name="◦ Future course"
-        ></CourseList>
+        ></CoursesCard>
       </div>
     );
   }
