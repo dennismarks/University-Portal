@@ -9,6 +9,7 @@ import Signup from "./pages/Signup";
 import Search from "./pages/Search";
 import Course from "./pages/Course";
 import User from "./pages/User";
+import Admin from "./pages/Admin";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/signup" component={Signup} />
           <Route path="/course/:courseCode" component={Course} />
           <Route path="/user" component={User} />
+          <Route path="/admin" component={Admin}></Route>
         </Switch>
       </BrowserRouter>
     </div>
