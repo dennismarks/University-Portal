@@ -25,6 +25,13 @@ function Course(props) {
               web-based programs. Guest lecturers from leading e-commerce firms
               will describe the architecture and operation of their web sites."
         />
+        <AsCoursesBox
+          prerequisites=" STA247H1/​ STA255H1/​ STA257H1/​ PSY201H1/​ ECO227Y1, ( MAT135H1, MAT136H1)/ MAT137Y1/​ MAT157Y1"
+          recommendedPreparation="CSC343H1"
+          distributionRequirements="Science"
+          exclusions="NOTE: Students not enrolled in the Computer Science Major or Specialist program at the UTSG, UTM, or UTSC are limited to a maximum of three 300-/400-level CSC/ECE half-courses."
+          breadthRequirements="The Physical and Mathematical Universes (5)"
+        />
       </div>
     </div>
   );

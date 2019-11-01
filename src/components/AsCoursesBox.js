@@ -1,58 +1,59 @@
 import React from "react";
-import {
-  Card,
-  CardContent,
-  ListItem,
-  ListItemText,
-  List,
-  ListItemIcon,
-  Typography,
-  makeStyles,
-  Collapse,
-  Button
-} from "@material-ui/core";
+// import {
+//   Card,
+//   CardContent,
+//   ListItem,
+//   ListItemText,
+//   List,
+//   ListItemIcon,
+//   Typography,
+//   makeStyles,
+//   Collapse,
+//   Button
+// } from "@material-ui/core";
 
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import ExpandLessIcon from "@material-ui/icons/ExpandLess";
-import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
-import NotInterestedIcon from "@material-ui/icons/NotInterested";
-import ListAltIcon from "@material-ui/icons/ListAlt";
-import AvTimerIcon from "@material-ui/icons/AvTimer";
+// import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+// import ExpandLessIcon from "@material-ui/icons/ExpandLess";
+// import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
+// import NotInterestedIcon from "@material-ui/icons/NotInterested";
+// import ListAltIcon from "@material-ui/icons/ListAlt";
+// import AvTimerIcon from "@material-ui/icons/AvTimer";
 
-const useStyles = makeStyles(theme => ({
-  nested: {
-    paddingLeft: theme.spacing(12)
-  },
-  rootButton: {
-      width: '100%'
-  },
-  optionalNested: {
-    paddingLeft: theme.spacing(16)
-  }
-}));
+// const useStyles = makeStyles(theme => ({
+//   nested: {
+//     paddingLeft: theme.spacing(12)
+//   },
+//   rootButton: {
+//       width: '100%'
+//   },
+//   optionalNested: {
+//     paddingLeft: theme.spacing(16)
+//   }
+// }));
 
 function AsCoursesBox() {
-  const classes = useStyles();
-  const [openPrerequisite, setOpenPrerequisite] = React.useState(true);
-  const handlePrerequisiteClick = () => {
-    setOpenPrerequisite(!openPrerequisite);
-  };
-  const [openExclusion, setOpenExclusion] = React.useState(true);
-  const handleExclusionClick = () => {
-    setOpenExclusion(!openExclusion);
-  };
-  const [openPreparation, setOpenPreparation] = React.useState(true);
-  const handlePreparationClick = () => {
-    setOpenPreparation(!openPreparation);
-  };
-  const [openRoot, setOpenRoot] = React.useState(true);
-  const handleRootClick = () => {
-    setOpenRoot(!openRoot);
-  };
+  // const classes = useStyles();
+  // const [openPrerequisite, setOpenPrerequisite] = React.useState(true);
+  // const handlePrerequisiteClick = () => {
+  //   setOpenPrerequisite(!openPrerequisite);
+  // };
+  // const [openExclusion, setOpenExclusion] = React.useState(true);
+  // const handleExclusionClick = () => {
+  //   setOpenExclusion(!openExclusion);
+  // };
+  // const [openPreparation, setOpenPreparation] = React.useState(true);
+  // const handlePreparationClick = () => {
+  //   setOpenPreparation(!openPreparation);
+  // };
+  // const [openRoot, setOpenRoot] = React.useState(true);
+  // const handleRootClick = () => {
+  //   setOpenRoot(!openRoot);
+  // };
 
   return (
     <div>
-      <Card>
+      
+      {/* <Card>
         <CardContent>
           <Typography variant="h6" className={classes.boxTitles}>
             Associated Courses
@@ -125,7 +126,7 @@ function AsCoursesBox() {
             {openRoot ? <ExpandLessIcon /> : <ExpandMoreIcon />}
           </Button>
         </CardContent>
-      </Card>
+      </Card> */}
     </div>
   );
 }
