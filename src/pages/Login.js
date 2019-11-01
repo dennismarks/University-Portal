@@ -41,8 +41,8 @@ function Login() {
         >
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2">
-              Username{" "}
-            </label>{" "}
+              Username
+            </label>
             <input
               class="shadow appearance-none border roded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
               un
@@ -51,12 +51,12 @@ function Login() {
               placeholder="username"
               value={id}
               onChange={updateID}
-            />{" "}
-          </div>{" "}
+            />
+          </div>
           <div class="mb-6">
             <label class="block text-gray-700 text-sm font-bold mb-2">
-              Password{" "}
-            </label>{" "}
+              Password
+            </label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 focus:outline-none focus:shadow-outline"
               type="password"
@@ -64,30 +64,30 @@ function Login() {
               placeholder="*****************"
               value={password}
               onChange={updatePassword}
-            />{" "}
-          </div>{" "}
+            />
+          </div>
           <div class="flex items-center justify-between">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-              Sign In{" "}
-            </button>{" "}
+              Sign In
+            </button>
             <a
               class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
               href="/forgot"
             >
               Forgot Password ?
-            </a>{" "}
+            </a>
             <a
               class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
               href="/signup"
             >
-              Create Account{" "}
-            </a>{" "}
-          </div>{" "}
-        </form>{" "}
+              Create Account
+            </a>
+          </div>
+        </form>
         <p class="text-center text-gray-500 text-xs">
-          & copy; 2019 Portal.All rights reserved.{" "}
-        </p>{" "}
-      </div>{" "}
+          &copy; 2019 Portal.All rights reserved.
+        </p>
+      </div>
     </div>
   );
 }
