@@ -1,38 +1,27 @@
 import React from "react";
-import {
-  Card,
-  CardContent,
-  Typography,
-  Collapse,
-  Button,
-  makeStyles
-} from "@material-ui/core";
+// import {
+//   Card,
+//   CardContent,
+//   Typography,
+//   Collapse,
+//   Button,
+//   makeStyles
+// } from "@material-ui/core";
 
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 
-const useStyles = makeStyles(theme => ({
-  boxTitle: {
-    // marginBottom: "0px",
-    marginTop: "0px"
-    // textAlign: "center"
-  },
-  rootButton: {
-    width: "100%",
-    marginBottom: "8px"
-  }
-}));
-
-function CourseInfoBox() {
-  const classes = useStyles();
-  const [openRoot, setOpenRoot] = React.useState(true);
-  const handleRootClick = () => {
-    setOpenRoot(!openRoot);
-  };
+function CourseInfoBox(props) {
+  // const [openRoot, setOpenRoot] = React.useState(true);
+  // const handleRootClick = () => {
+  //   setOpenRoot(!openRoot);
+  // };
 
   return (
-    <div>
-      <Card>
+    <div className="w-5/12 mx-20">
+      <h3 className="text-2xl font-medium my-6"> Course Info</h3>
+      <h5 className="text-small"> {props.courseDescription} </h5>
+      {/* <Card>
         <CardContent>
           <Typography variant="h6" className={classes.boxTitle}>
             Course Info
@@ -56,7 +45,7 @@ function CourseInfoBox() {
         <Button className={classes.rootButton} onClick={handleRootClick}>
           {openRoot ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </Button>
-      </Card>
+      </Card> */}
     </div>
   );
 }

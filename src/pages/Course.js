@@ -1,6 +1,4 @@
 import React from "react";
-import { makeStyles, Grid } from "@material-ui/core";
-import { useParams } from "react-router-dom";
 
 import AsCoursesBox from "../components/AsCoursesBox";
 import CourseInfoBox from "../components/CourseInfoBox";
@@ -8,63 +6,27 @@ import RedditBox from "../components/RedditBox";
 
 import Header from "../components/Header";
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    marginLeft: "10%",
-    marginRight: "10%",
-    display: "flex"
-  },
-  courseCode: {
-    // position: 'relative',
-    marginBottom: "20px",
-    marginTop: "40px",
-    textAlign: "center"
-  },
-  expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest
-    })
-  },
-  expandOpen: {
-    transform: "rotate(180deg)"
-  },
-  nested: {
-    paddingLeft: theme.spacing(12)
-  }
-}));
-
-function Course() {
-  const { courseCode } = useParams();
-  const classes = useStyles();
-
+function Course(props) {
   return (
     <div>
       <Header />
-      <div className={classes.root}>
-        
-        <Grid container justify="center" spacing={2}>
-          <Grid item xs={12}>
-            <h1 className={classes.courseCode}>
-              {courseCode}: Programming on the Web
-            </h1>
-          </Grid>
-          <Grid item xs={6}>
-            <CourseInfoBox />
-          </Grid>
-          <Grid item xs={6}>
-            <AsCoursesBox />
-          </Grid>
-          <Grid item xs={6}>
-            <RedditBox />
-          </Grid>
-          <Grid item xs={6}>
-            <RedditBox />
-          </Grid>
-        </Grid>
+      <div className="">
+        <h1 className="text-4xl font-medium  align-middle text-center my-12">
+          CSC309: Programming on the Web
+        </h1>
+        <CourseInfoBox
+          courseDescription="An introduction to software development on the web. Concepts
+              underlying the development of programs that operate on the web;
+              survey of technological alternatives; greater depth on some
+              technologies. Operational concepts of the internet and the web,
+              static client content, dynamic client content, dynamically served
+              content, n-tiered architectures, web development processes, and
+              security on the web. Assignments involve increasingly more complex
+              web-based programs. Guest lecturers from leading e-commerce firms
+              will describe the architecture and operation of their web sites."
+        />
       </div>
-  </div>
+    </div>
   );
 }
 
