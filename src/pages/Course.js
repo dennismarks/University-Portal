@@ -6,6 +6,10 @@ import AsCoursesBox from "../components/AsCoursesBox";
 import CourseInfoBox from "../components/CourseInfoBox";
 import RedditBox from "../components/RedditBox";
 
+import Header from "../components/Header";
+import HeaderAdmin from "../components/HeaderAdmin";
+import HeaderStudent from "../components/HeaderStudent";
+
 const useStyles = makeStyles(theme => ({
   root: {
     marginLeft: "10%",
@@ -38,27 +42,31 @@ function Course() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <Grid container justify="center" spacing={2}>
-        <Grid item xs={12}>
-          <h1 className={classes.courseCode}>
-            {courseCode}: Programming on the Web
-          </h1>
+    <div>
+      <Header />
+      <div className={classes.root}>
+        
+        <Grid container justify="center" spacing={2}>
+          <Grid item xs={12}>
+            <h1 className={classes.courseCode}>
+              {courseCode}: Programming on the Web
+            </h1>
+          </Grid>
+          <Grid item xs={6}>
+            <CourseInfoBox />
+          </Grid>
+          <Grid item xs={6}>
+            <AsCoursesBox />
+          </Grid>
+          <Grid item xs={6}>
+            <RedditBox />
+          </Grid>
+          <Grid item xs={6}>
+            <RedditBox />
+          </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <CourseInfoBox />
-        </Grid>
-        <Grid item xs={6}>
-          <AsCoursesBox />
-        </Grid>
-        <Grid item xs={6}>
-          <RedditBox />
-        </Grid>
-        <Grid item xs={6}>
-          <RedditBox />
-        </Grid>
-      </Grid>
-    </div>
+      </div>
+  </div>
   );
 }
 

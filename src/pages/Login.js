@@ -1,8 +1,32 @@
 import React from "react";
 
+import Header from "../components/Header";
+import HeaderAdmin from "../components/HeaderAdmin";
+import HeaderStudent from "../components/HeaderStudent";
+
+function checkCredentials() {
+	const id = document.getElementById("username");
+	const password = document.getElementById("password");
+
+	//admin
+	if (id.value === "admin" && password.value === "admin"){
+		// BACKEND
+		window.location = "/"
+	}
+	
+	//student
+	if (id.value === "student" && password.value === "student"){
+		window.location = "/"
+	}
+}	
+
+
 function Login() {
 	return (
+		<div>
+		<Header />
     	<div class="w-full mx-auto py-10 max-w-md">
+			
 			<form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mx-auto">
 				<div class="mb-4">
 					<label class="block text-gray-700 text-sm font-bold mb-2">
@@ -25,12 +49,12 @@ function Login() {
 						placeholder="*****************" />
 				</div>
 				<div class="flex items-center justify-between">
-					<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+					<button type="button" onClick={checkCredentials} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
 						Sign In
 					</button>
 					<a 
 						class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-						href="/login">
+						href="/forgot">
 						Forgot Password?
 					</a>
 					<a 
@@ -44,6 +68,7 @@ function Login() {
 				&copy;2019 Portal. All rights reserved.
 			</p>
 	  </div>
+	</div>
   );
 }
 
