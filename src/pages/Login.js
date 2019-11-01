@@ -11,13 +11,13 @@ function checkCredentials() {
 	//admin
 	if (id.value === "admin" && password.value === "admin"){
 		// BACKEND
-		window.location = "/"
+		window.location = "/admin/home"
 	}
 	
 	//student
-	if (id.value === "student" && password.value === "student"){
-		window.location = "/"
-	}
+	else if (id.value === "student" && password.value === "student"){
+		window.location = "/student/home"
+	} else {alert("Wrong Credentials")}
 }	
 
 

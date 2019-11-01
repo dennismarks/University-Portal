@@ -1,6 +1,10 @@
 import React from "react";
 import UserInfo from "../components/UserInfo";
 
+import Header from "../components/Header";
+import HeaderAdmin from "../components/HeaderAdmin";
+import HeaderStudent from "../components/HeaderStudent";
+
 class Admin extends React.Component {
   state = {
     adminInfo: {
@@ -11,8 +15,11 @@ class Admin extends React.Component {
 
   render() {
     return (
-      <div className="main">
-        <UserInfo userInfo={this.state.adminInfo}></UserInfo>
+      <div>
+        <HeaderAdmin/>
+        <div className="main">
+          <UserInfo userInfo={this.state.adminInfo}></UserInfo>
+        </div>
       </div>
     );
   }

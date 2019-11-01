@@ -7,7 +7,7 @@ function Header() {
         Portal
       </span>
       <div class="flex flex-grow items-center w-auto mx-4">
-        <a href="/" class="block text-sm text-white hover:text-blue-200 mr-4">
+        <a href="/admin/home" class="block text-sm text-white hover:text-blue-200 mr-4">
           Explore Courses
         </a>
       </div>
@@ -22,3 +22,4 @@ function Header() {
 }
 
 export default Header;
+ 

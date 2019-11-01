@@ -2,6 +2,10 @@ import React from "react";
 import UserInfo from "../components/UserInfo";
 import CoursesCard from "../components/CoursesCard";
 
+import Header from "../components/Header";
+import HeaderAdmin from "../components/HeaderAdmin";
+import HeaderStudent from "../components/HeaderStudent";
+
 class User extends React.Component {
   state = {
     userInfo: {
@@ -70,26 +74,29 @@ class User extends React.Component {
 
   render() {
     return (
-      <div className="main">
-        <UserInfo userInfo={this.state.userInfo}></UserInfo>
-        <CoursesCard
-          courses={this.state.courses.currentCourses}
-          toRender={this.state.currentRender}
-          showMore={this.showMore}
-          name="◦ Current Courses"
-        ></CoursesCard>
-        <CoursesCard
-          courses={this.state.courses.takenCourses}
-          toRender={this.state.takenRender}
-          showMore={this.showMore}
-          name="◦ Taken Courses"
-        ></CoursesCard>
-        <CoursesCard
-          courses={this.state.courses.toTakeCourses}
-          toRender={this.state.toTakeRender}
-          showMore={this.showMore}
-          name="◦ Future course"
-        ></CoursesCard>
+      <div>
+        <Header/>
+        <div className="main">
+          <UserInfo userInfo={this.state.userInfo}></UserInfo>
+          <CoursesCard
+            courses={this.state.courses.currentCourses}
+            toRender={this.state.currentRender}
+            showMore={this.showMore}
+            name="◦ Current Courses"
+          ></CoursesCard>
+          <CoursesCard
+            courses={this.state.courses.takenCourses}
+            toRender={this.state.takenRender}
+            showMore={this.showMore}
+            name="◦ Taken Courses"
+          ></CoursesCard>
+          <CoursesCard
+            courses={this.state.courses.toTakeCourses}
+            toRender={this.state.toTakeRender}
+            showMore={this.showMore}
+            name="◦ Future course"
+          ></CoursesCard>
+        </div>
       </div>
     );
   }
