@@ -9,6 +9,7 @@ import Signup from "./pages/Signup";
 import Search from "./pages/Search";
 import Course from "./pages/Course";
 import User from "./pages/User";
+import ForgotPW from "./pages/ForgotPassword";
 
 function App() {
   return (
@@ -20,8 +21,10 @@ function App() {
           <Route path="/search" component={Search} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
+          <Route path="/forgot" component={ForgotPW} />
           <Route path="/course/:courseCode" component={Course} />
           <Route path="/user" component={User} />
+          
         </Switch>
       </BrowserRouter>
     </div>
