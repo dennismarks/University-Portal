@@ -12,7 +12,7 @@ function Search() {
   return (
     <div>
       <section className="bg-gray-200 py-8">
-        <div class="container mx-auto px-4">
+        <div className="container mx-auto px-4">
           <div className="w-full">
             <CourseSearchBar
               initialValue={searchQuery}
@@ -22,7 +22,7 @@ function Search() {
         </div>
       </section>
       <section className="py-16">
-        <div class="container mx-auto px-4 mb-8">
+        <div className="container mx-auto px-4 mb-8">
           <h2 className="text-xl font-normal text-gray-700 mb-4">
             Search Results
           </h2>
