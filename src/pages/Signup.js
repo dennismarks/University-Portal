@@ -1,11 +1,8 @@
 import React from "react";
 
-import Header from "../components/Header";
-
 function Signup() {
   return (
 	<div>
-	<Header />
     <div class="w-full mx-auto py-10 max-w-md">
 	
 		<form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mx-auto">

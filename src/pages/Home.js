@@ -4,12 +4,9 @@ import CourseMiniCard from "../components/CourseMiniCard";
 import CourseSearchBar from "../components/CourseSearchBar";
 import CourseSearchChip from "../components/CourseSearchChip";
 
-import Header from "../components/Header";
-
 function Home() {
   return (
     <div>
-      <Header />
       <section className="bg-gray-200 py-16">
         <div class="flex flex-col lg:flex-row container items-center mx-auto px-4">
           <div className="w-full lg:w-1/2">

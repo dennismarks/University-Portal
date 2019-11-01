@@ -4,8 +4,6 @@ import CourseMiniCard from "../components/CourseMiniCard";
 import CourseSearchBar from "../components/CourseSearchBar";
 import useQueryParams from "../utils/useQueryParams";
 
-import Header from "../components/Header";
-
 function Search() {
   const queryParams = useQueryParams();
 
@@ -13,7 +11,6 @@ function Search() {
 
   return (
     <div>
-      <Header />
       <section className="bg-gray-200 py-8">
         <div class="container mx-auto px-4">
           <div className="w-full">

@@ -6,8 +6,6 @@ import AsCoursesBox from "../components/AsCoursesBox";
 import CourseInfoBox from "../components/CourseInfoBox";
 import RedditBox from "../components/RedditBox";
 
-import Header from "../components/Header";
-
 const useStyles = makeStyles(theme => ({
   root: {
     marginLeft: "10%",
@@ -41,7 +39,6 @@ function Course() {
 
   return (
     <div>
-      <Header />
       <div className={classes.root}>
         
         <Grid container justify="center" spacing={2}>

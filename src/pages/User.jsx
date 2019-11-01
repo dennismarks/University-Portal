@@ -2,8 +2,6 @@ import React from "react";
 import UserInfo from "../components/UserInfo";
 import CoursesCard from "../components/CoursesCard";
 
-import Header from "../components/Header";
-
 class User extends React.Component {
   state = {
     userInfo: {
@@ -73,7 +71,7 @@ class User extends React.Component {
   render() {
     return (
       <div>
-        <Header/>
+
         <div className="main">
           <UserInfo userInfo={this.state.userInfo}></UserInfo>
           <CoursesCard
