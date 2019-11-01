@@ -4,9 +4,7 @@ import CourseMiniCard from "../../components/CourseMiniCard";
 import CourseSearchBar from "../../components/CourseSearchBar";
 import useQueryParams from "../../utils/useQueryParams";
 
-import Header from "../../components/Header";
 import HeaderAdmin from "../../components/HeaderAdmin";
-import HeaderStudent from "../../components/HeaderStudent";
 
 function Search() {
   const queryParams = useQueryParams();

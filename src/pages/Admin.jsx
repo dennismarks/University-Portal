@@ -1,9 +1,7 @@
 import React from "react";
 import UserInfo from "../components/UserInfo";
 
-import Header from "../components/Header";
 import HeaderAdmin from "../components/HeaderAdmin";
-import HeaderStudent from "../components/HeaderStudent";
 
 class Admin extends React.Component {
   state = {

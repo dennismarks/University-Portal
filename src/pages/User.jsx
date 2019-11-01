@@ -3,8 +3,6 @@ import UserInfo from "../components/UserInfo";
 import CoursesCard from "../components/CoursesCard";
 
 import Header from "../components/Header";
-import HeaderAdmin from "../components/HeaderAdmin";
-import HeaderStudent from "../components/HeaderStudent";
 
 class User extends React.Component {
   state = {

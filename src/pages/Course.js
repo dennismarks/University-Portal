@@ -7,8 +7,6 @@ import CourseInfoBox from "../components/CourseInfoBox";
 import RedditBox from "../components/RedditBox";
 
 import Header from "../components/Header";
-import HeaderAdmin from "../components/HeaderAdmin";
-import HeaderStudent from "../components/HeaderStudent";
 
 const useStyles = makeStyles(theme => ({
   root: {

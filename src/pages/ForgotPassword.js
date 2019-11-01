@@ -1,8 +1,6 @@
 import React from "react";
 
 import Header from "../components/Header";
-import HeaderAdmin from "../components/HeaderAdmin";
-import HeaderStudent from "../components/HeaderStudent";
 
 function Login() {
 	return (

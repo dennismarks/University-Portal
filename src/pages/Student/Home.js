@@ -4,8 +4,6 @@ import CourseMiniCard from "../../components/CourseMiniCard";
 import CourseSearchBar from "../../components/CourseSearchBar";
 import CourseSearchChip from "../../components/CourseSearchChip";
 
-import Header from "../../components/Header";
-import HeaderAdmin from "../../components/HeaderAdmin";
 import HeaderStudent from "../../components/HeaderStudent";
 
 function Home() {
