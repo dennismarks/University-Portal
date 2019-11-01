@@ -79,6 +79,7 @@ function Home() {
               className="flex-auto"
               color="teal"
               variant="light"
+              value="Creative and Cultural Representations"
             >
               1 - Creative and Cultural Representations
             </CourseSearchChip>
@@ -86,6 +87,7 @@ function Home() {
               className="flex-auto"
               color="indigo"
               variant="light"
+              value="Thought, Belief, and Behaviour"
             >
               2 - Thought, Belief, and Behaviour
             </CourseSearchChip>
@@ -93,6 +95,7 @@ function Home() {
               className="flex-auto"
               color="pink"
               variant="light"
+              value="Society and Its Institutions"
             >
               3 - Society and Its Institutions
             </CourseSearchChip>
@@ -100,6 +103,7 @@ function Home() {
               className="flex-auto"
               color="yellow"
               variant="light"
+              value="Living Things and Their Environment"
             >
               4 - Living Things and Their Environment
             </CourseSearchChip>
@@ -107,6 +111,7 @@ function Home() {
               className="flex-auto"
               color="orange"
               variant="light"
+              value="The Physical and Mathematical Universes"
             >
               5 - The Physical and Mathematical Universes
             </CourseSearchChip>
