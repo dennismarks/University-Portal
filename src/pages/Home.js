@@ -4,14 +4,11 @@ import CourseMiniCard from "../components/CourseMiniCard";
 import CourseSearchBar from "../components/CourseSearchBar";
 import CourseSearchChip from "../components/CourseSearchChip";
 
-import Header from "../components/Header";
-
 function Home() {
   return (
     <div>
-      <Header />
       <section className="bg-gray-200 py-16">
-        <div class="flex flex-col lg:flex-row container items-center mx-auto px-4">
+        <div className="flex flex-col lg:flex-row container items-center mx-auto px-4">
           <div className="w-full lg:w-1/2">
             <div className="pb-8">
               <h1 className="font-light text-3xl text-gray-700">
@@ -33,7 +30,7 @@ function Home() {
         </div>
       </section>
       <section className="py-16">
-        <div class="container mx-auto px-4 mb-8">
+        <div className="container mx-auto px-4 mb-8">
           <h2 className="text-xl font-normal text-gray-700 mb-4">
             Top Rated Courses
           </h2>
@@ -60,7 +57,7 @@ function Home() {
             />
           </div>
         </div>
-        <div class="container mx-auto px-4 mb-8">
+        <div className="container mx-auto px-4 mb-8">
           <h2 className="text-xl font-normal text-gray-700 mb-4">
             By Department
           </h2>
@@ -73,7 +70,7 @@ function Home() {
             <CourseSearchChip>Civil Engineering</CourseSearchChip>
           </div>
         </div>
-        <div class="container mx-auto px-4 mb-8">
+        <div className="container mx-auto px-4 mb-8">
           <h2 className="text-xl font-normal text-gray-700 mb-4">
             By Breadth Requirement
           </h2>
@@ -82,6 +79,7 @@ function Home() {
               className="flex-auto"
               color="teal"
               variant="light"
+              value="Creative and Cultural Representations"
             >
               1 - Creative and Cultural Representations
             </CourseSearchChip>
@@ -89,6 +87,7 @@ function Home() {
               className="flex-auto"
               color="indigo"
               variant="light"
+              value="Thought, Belief, and Behaviour"
             >
               2 - Thought, Belief, and Behaviour
             </CourseSearchChip>
@@ -96,6 +95,7 @@ function Home() {
               className="flex-auto"
               color="pink"
               variant="light"
+              value="Society and Its Institutions"
             >
               3 - Society and Its Institutions
             </CourseSearchChip>
@@ -103,6 +103,7 @@ function Home() {
               className="flex-auto"
               color="yellow"
               variant="light"
+              value="Living Things and Their Environment"
             >
               4 - Living Things and Their Environment
             </CourseSearchChip>
@@ -110,6 +111,7 @@ function Home() {
               className="flex-auto"
               color="orange"
               variant="light"
+              value="The Physical and Mathematical Universes"
             >
               5 - The Physical and Mathematical Universes
             </CourseSearchChip>

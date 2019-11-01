@@ -11,20 +11,16 @@ import User from "./pages/User";
 import ForgotPW from "./pages/ForgotPassword";
 import Admin from "./pages/Admin";
 
-/* ADMIN */
-import HomeAdmin from "./pages/Admin/Home";
-import SearchAdmin from "./pages/Admin/Search";
-import CourseAdmin from "./pages/Admin/Course";
-
-/* STUDENT */
-import HomeStudent from "./pages/Student/Home";
-import SearchStudent from "./pages/Student/Search";
-import CourseStudent from "./pages/Student/Course";
+import Header from "./components/Header";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <Route
+          path="/"
+          render={() => <Header role={localStorage.getItem("role")} />}
+        />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/search" component={Search} />
@@ -34,14 +30,6 @@ function App() {
           <Route path="/course/:courseCode" component={Course} />
           <Route path="/user" component={User} />
           <Route exact path="/admin" component={Admin} />
-          
-          <Route path="/admin/home" component={HomeAdmin} />
-          <Route path="/admin/search" component={SearchAdmin} />
-          <Route path="/admin/course/:courseCode" component={CourseAdmin} />
-
-          <Route path="/student/home" component={HomeStudent} />
-          <Route path="/student/search" component={SearchStudent} />
-          <Route path="/student/course/:courseCode" component={CourseStudent} />
         </Switch>
       </BrowserRouter>
     </div>

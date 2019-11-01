@@ -6,8 +6,8 @@ import { useHistory } from "react-router-dom";
 
 import useDebounce from "../utils/useDebounce";
 
-function SearchResults({ query, results }) {
-  if (!results.length) {
+function SearchResults({ query, results, visible }) {
+  if (!results.length || !visible) {
     return null;
   }
 
@@ -36,6 +36,7 @@ function SearchResults({ query, results }) {
     <motion.div
       initial="hidden"
       animate="visible"
+      exit="hidden"
       variants={list}
       className="w-full absolute mt-3 py-2 flex flex-col shadow-xl rounded-lg bg-white"
     >
@@ -55,8 +56,9 @@ function SearchResults({ query, results }) {
                   <span
                     key={i}
                     className={
-                      part.toLowerCase() === query.toLowerCase() &&
-                      "text-gray-600"
+                      part.toLowerCase() === query.toLowerCase()
+                        ? "text-gray-600"
+                        : undefined
                     }
                   >
                     {part}
@@ -71,17 +73,27 @@ function SearchResults({ query, results }) {
   );
 }
 
-function SearchInput({ onChange, query, shouldAutoFocus }) {
+function SearchInput({ onFocusChange, onChange, query, shouldAutoFocus }) {
   const history = useHistory();
-  const handleChange = e => {
+
+  function handleChange(e) {
     onChange(e.target.value);
-  };
-  const handleSubmit = e => {
+  }
+
+  function handleSubmit(e) {
     e.preventDefault();
     if (query) {
       history.push(`/search?q=${query}`);
     }
-  };
+  }
+
+  function handleBlur() {
+    onFocusChange(false);
+  }
+
+  function handleFocus() {
+    onFocusChange(true);
+  }
 
   return (
     <form className="flex shadow rounded-lg" onSubmit={handleSubmit}>
@@ -89,6 +101,8 @@ function SearchInput({ onChange, query, shouldAutoFocus }) {
         autoFocus={shouldAutoFocus}
         className="block text font-light text-gray-700 placeholder-gray-400 p-3 bg-white w-full rounded-l-lg"
         type="search"
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         onChange={handleChange}
         placeholder="Ex. CSC309, Introduction to Computer Networks"
         value={query}
@@ -101,6 +115,7 @@ function SearchInput({ onChange, query, shouldAutoFocus }) {
 }
 
 function CourseSearchBar({ initialValue, shouldAutoFocus }) {
+  const [hasFocus, setHasFocus] = useState(shouldAutoFocus);
   const [query, setQuery] = useState(initialValue);
   const debouncedQuery = useDebounce(query, 300);
   const [results, setResults] = useState([]);
@@ -127,11 +142,12 @@ function CourseSearchBar({ initialValue, shouldAutoFocus }) {
   return (
     <div className="relative">
       <SearchInput
+        onFocusChange={setHasFocus}
         onChange={setQuery}
         query={query}
         shouldAutoFocus={shouldAutoFocus}
       />
-      <SearchResults query={query} results={results} />
+      <SearchResults visible={hasFocus} query={query} results={results} />
     </div>
   );
 }
