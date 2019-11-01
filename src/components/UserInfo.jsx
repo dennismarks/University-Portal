@@ -1,4 +1,5 @@
 import React from "react";
+import "../stylesheets/userInfo.css";
 
 class UserInfo extends React.Component {
   render() {

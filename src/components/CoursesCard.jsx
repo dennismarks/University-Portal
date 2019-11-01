@@ -1,7 +1,8 @@
 import React from "react";
 import { uid } from "react-uid";
+import "../stylesheets/coursesCard.css";
 
-class CourseList extends React.Component {
+class CoursesCard extends React.Component {
   render() {
     const { courses, toRender, showMore, name } = this.props;
     if (toRender >= 3) {
@@ -41,4 +42,4 @@ class CourseList extends React.Component {
   }
 }
 
-export default CourseList;
+export default CoursesCard;
