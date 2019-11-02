@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 import { useHistory } from "react-router-dom";
 
@@ -70,18 +71,18 @@ function Login() {
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
               Sign In
             </button>
-            <a
+            <Link
               className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-              href="/forgot"
+              to="/forgot"
             >
               Forgot Password ?
-            </a>
-            <a
+            </Link>
+            <Link
               className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-              href="/signup"
+              to="/signup"
             >
               Create Account
-            </a>
+            </Link>
           </div>
         </form>
         <p className="text-center text-gray-500 text-xs">
