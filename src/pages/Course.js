@@ -3,8 +3,7 @@ import React from "react";
 import AsCoursesBox from "../components/AsCoursesBox";
 import CourseInfoBox from "../components/CourseInfoBox";
 import RedditBox from "../components/RedditBox";
-
-import Header from "../components/Header";
+const redditCommentData = require('../utils/reddit.json').data.children;
 
 function Course() {
   return (
@@ -34,8 +33,7 @@ function Course() {
           />
         </div>
         <div className="flex">
-          <RedditBox />
-          <RedditBox />
+          <RedditBox redditData={redditCommentData} />
         </div>
       </div>
     </div>
