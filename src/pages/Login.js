@@ -1,12 +1,23 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 
-import { useHistory } from "react-router-dom";
+import { ROLES } from "../constants/auth";
+import AuthContext from "../context/AuthContext";
 
 function Login() {
+  const {
+    auth: { isLoggedIn },
+    setAuth
+  } = useContext(AuthContext);
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      history.push("/");
+    }
+  });
 
   function updateID(e) {
     setId(e.target.value);
@@ -21,13 +32,13 @@ function Login() {
 
     //admin
     if (id === "admin" && password === "admin") {
-      localStorage.setItem("role", "admin");
+      setAuth({ isLoggedIn: true, userId: 0, role: ROLES.ADMIN });
       history.push("/");
     }
 
     //student
     else if (id === "student" && password === "student") {
-      localStorage.setItem("role", "student");
+      setAuth({ isLoggedIn: true, userId: 1, role: ROLES.STUDENT });
       history.push("/");
     } else {
       alert("Wrong Credentials");

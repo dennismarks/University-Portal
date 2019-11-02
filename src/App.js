@@ -1,8 +1,9 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Redirect, Route } from "react-router-dom";
 
 /* Route components */
 import Login from "./pages/Login";
+import Logout from "./pages/Logout";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Search from "./pages/Search";
@@ -12,6 +13,8 @@ import ForgotPW from "./pages/ForgotPassword";
 import Admin from "./pages/Admin";
 import Header from "./components/Header";
 
+import ProtectedRoute from "./components/ProtectedRoute";
+import { AuthProvider } from "./context/AuthContext";
 import { UsersContextProvider } from "./context/UsersContext";
 import { CoursesContextProvider } from "./context/CoursesContext";
 
@@ -93,26 +96,32 @@ function App() {
 
   return (
     <div className="App">
-      <CoursesContextProvider courses={courses}>
-        <UsersContextProvider users={users}>
-          <BrowserRouter>
-            <Route
-              path="/"
-              render={() => <Header role={localStorage.getItem("role")} />}
-            />
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/search" component={Search} />
-              <Route path="/login" component={Login} />
-              <Route path="/signup" component={Signup} />
-              <Route path="/forgot" component={ForgotPW} />
-              <Route path="/course/:courseCode" component={Course} />
-              <Route path="/user/:id" component={User} />
-              <Route path="/admin" component={Admin} />
-            </Switch>
-          </BrowserRouter>
-        </UsersContextProvider>
-      </CoursesContextProvider>
+      <AuthProvider>
+        <CoursesContextProvider courses={courses}>
+          <UsersContextProvider users={users}>
+            <BrowserRouter>
+              <Header />
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/search" component={Search} />
+                <Route path="/login" component={Login} />
+                <Route path="/signup" component={Signup} />
+                <Route path="/forgot" component={ForgotPW} />
+                <Route path="/course/:courseCode" component={Course} />
+                <Route path="/user/:id" component={User} />
+                <Route path="/logout" component={Logout} />
+                <ProtectedRoute
+                  requiredRole="admin"
+                  redirectTo="/"
+                  path="/admin"
+                  component={Admin}
+                />
+                <Redirect to="/" />
+              </Switch>
+            </BrowserRouter>
+          </UsersContextProvider>
+        </CoursesContextProvider>
+      </AuthProvider>
     </div>
   );
 }
