@@ -37,7 +37,7 @@ function Login() {
     }
 
     //student
-    else if (id === "student" && password === "student") {
+    else if (id === "user" && password === "user") {
       setAuth({ isLoggedIn: true, userId: 1, role: ROLES.STUDENT });
       history.push("/");
     } else {
