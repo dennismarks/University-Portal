@@ -12,7 +12,7 @@ const UsersList = p => {
 
   return (
     <div className="user-list">
-      <h1>Users:</h1>
+      <h1>Users</h1>
       {users.map(user => {
         // compose class name
         const userItemClassNames = clsx("user-item", {

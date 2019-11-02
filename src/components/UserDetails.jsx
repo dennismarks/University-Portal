@@ -6,7 +6,7 @@ const UserDetails = () => {
 
   return (
     <div className="user-details">
-      <h1>User Details: </h1>
+      <h1>User Details </h1>
       {selectedUser.userInfo ? (
         <>
           <p>

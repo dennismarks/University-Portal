@@ -16,7 +16,7 @@ const AddCourseForm = p => {
 
   return (
     <div className="add-course-form">
-      <h1>Add New Course:</h1>
+      <h1>Add New Course</h1>
       <input
         className="name-input"
         name="courseName"
@@ -33,7 +33,7 @@ const AddCourseForm = p => {
         onChange={chooseDepartment}
       >
         <option value="" disabled>
-          Choose Department
+          Choose department
         </option>
         <option value="Computer Science">Computer Science</option>
         <option value="Statistics">Statistics</option>

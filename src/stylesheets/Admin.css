@@ -1,14 +1,20 @@
+.dashboard,
+.add-course-form {
+  width: 500px;
+  margin: 3em auto 0 auto;
+  padding: 16px;
+}
+
 .dashboard {
   background-image: linear-gradient(135deg, #f4f7f8, #edf4f8);
   border-radius: 24px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
-.dashboard,
-.add-course-form {
-  width: 500px;
-  margin: 3em auto 0 auto;
-  padding: 10px;
+.add-course-form,
+.users-container {
+  border-radius: 24px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.02), 0 6px 20px 0 rgba(0, 0, 0, 0.04);
 }
 
 .add-course-form .name-input {
@@ -33,7 +39,7 @@
 .users-container {
   margin: 3em auto 0 auto;
   padding: 10px;
-  width: 500px;
+  width: 550px;
   display: grid;
   grid-template-columns: 200px 1fr;
   grid-column-gap: 18px;
@@ -79,6 +85,14 @@
 }
 
 .add-course-form button {
-  background-color: #398eddec;
+  background-color: rgba(57, 142, 221, 1);
   color: white;
+}
+
+.user-details button:hover {
+  background-color: rgba(255, 182, 193, 0.8);
+}
+
+.add-course-form button:hover {
+  background-color: rgba(57, 142, 221, 0.8);
 }

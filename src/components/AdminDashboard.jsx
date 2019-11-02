@@ -11,7 +11,7 @@ const AddminDashboard = p => {
 
   return (
     <div className="dashboard">
-      <h1>Dashboard:</h1>
+      <h1>Dashboard</h1>
       <p>
         Number of users: <strong>{users.length}</strong>
         <br />
