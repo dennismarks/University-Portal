@@ -1,4 +1,5 @@
 import { escapeRegExp } from "lodash";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import React, { useState, useEffect } from "react";
 import { uid } from "react-uid";
@@ -51,7 +52,7 @@ function SearchResults({ query, results, visible }) {
               className="text-base text-gray-400 font-bold px-3 py-2"
               key={uid(result, index)}
             >
-              <a href={result.url}>
+              <Link to={result.url}>
                 {parts.map((part, i) => (
                   <span
                     key={i}
@@ -64,7 +65,7 @@ function SearchResults({ query, results, visible }) {
                     {part}
                   </span>
                 ))}
-              </a>
+              </Link>
             </motion.li>
           );
         })}

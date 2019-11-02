@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Header(props) {
   const role = props.role;
@@ -8,12 +9,12 @@ function Header(props) {
         Portal
       </span>
       <div className="flex flex-grow items-center w-auto mx-4">
-        <a
-          href="/"
+        <Link
+          to="/"
           className="block text-sm text-white hover:text-blue-200 mr-4"
         >
           Explore Courses
-        </a>
+        </Link>
       </div>
       <RoleDisplay role={role} />
     </nav>
@@ -25,30 +26,30 @@ function RoleDisplay(props) {
   switch (role) {
     case "admin":
       return (
-        <a
-          href="/admin"
+        <Link
+          to="/admin"
           className="block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue-500 hover:bg-white"
         >
           Admin
-        </a>
+        </Link>
       );
     case "student":
       return (
-        <a
-          href="/user"
+        <Link
+          to="/user"
           className="block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue-500 hover:bg-white"
         >
           Student
-        </a>
+        </Link>
       );
     default:
       return (
-        <a
-          href="/login"
+        <Link
+          to="/login"
           className="block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue-500 hover:bg-white"
         >
           Login
-        </a>
+        </Link>
       );
   }
 }

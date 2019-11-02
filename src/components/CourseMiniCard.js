@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React from "react";
 import { uid } from "react-uid";
 
@@ -10,24 +11,24 @@ function CourseMiniCard({
 }) {
   return (
     <div className="bg-white shadow-md rounded max-w-sm p-4 m-2">
-      <a
-        href={courseLink}
+      <Link
+        to={courseLink}
         className="font-bold text-lg truncate block hover:underline"
       >
         {courseCode} - {courseName}
-      </a>
+      </Link>
       <p className="font-normal text-base text-gray-500 truncate mb-4">
         {description}
       </p>
       <div className="flex ">
         {tags.map(tag => (
-          <a
+          <Link
             className="bg-blue-100 py-1 px-2 mr-2 rounded-full text-blue-500 font-medium text-xs hover:underline"
-            href={tag.link}
+            to={tag.link}
             key={uid(tag)}
           >
             {tag.name}
-          </a>
+          </Link>
         ))}
       </div>
     </div>
