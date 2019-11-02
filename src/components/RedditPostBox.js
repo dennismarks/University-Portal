@@ -1,5 +1,6 @@
 import React from "react";
 
+
 function RedditPostBox(props) {
   return (
     <div className="w=9/12 bg-gray-200 mb-8 py-4 px-4">

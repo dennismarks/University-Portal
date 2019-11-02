@@ -3,14 +3,15 @@ import React from "react";
 import AsCoursesBox from "../components/AsCoursesBox";
 import CourseInfoBox from "../components/CourseInfoBox";
 import RedditBox from "../components/RedditBox";
+import CourseFilesBox from "../components/CourseFilesBox"
 const redditCommentData = require('../utils/reddit.json').data.children;
 
 function Course() {
   return (
     <div>
-      <div className="">
+      <div className="mb-12">
         <h1 className="text-4xl font-medium  align-middle text-center my-12">
-          CSC309: Programming on the Web
+          CSC309: Programming on the Web 
         </h1>
         <div className="flex">
           <CourseInfoBox
@@ -34,6 +35,7 @@ function Course() {
         </div>
         <div className="flex">
           <RedditBox redditData={redditCommentData} />
+          <CourseFilesBox />
         </div>
       </div>
     </div>
