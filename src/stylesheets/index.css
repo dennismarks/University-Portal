@@ -12,6 +12,7 @@ code {
     monospace;
 }
 
+*:focus,
 button:focus {
   outline: 0;
 }
