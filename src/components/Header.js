@@ -3,12 +3,13 @@ import React, { useContext, useState, useRef } from "react";
 
 import useOnClickOutside from "../utils/useOnClickOutside";
 import AuthContext from "../context/AuthContext";
+import { ROLES } from "../constants/auth";
 
 function Header() {
   const ref = useRef();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const {
-    auth: { isLoggedIn, userId }
+    auth: { isLoggedIn, role, userId }
   } = useContext(AuthContext);
 
   useOnClickOutside(ref, () => setIsMenuOpen(false));
@@ -16,6 +17,12 @@ function Header() {
   function handleAvatarClick() {
     setIsMenuOpen(true);
   }
+
+  const menuLinks = [
+    ["Profile", `/user/${userId}`],
+    role === ROLES.ADMIN && ["Admin", "/admin"],
+    ["Logout", "/logout"]
+  ].filter(Boolean);
 
   return (
     <nav className="flex items-center justify-between flex-wrap bg-blue-500 p-4">
@@ -47,17 +54,15 @@ function Header() {
               ref={ref}
               className="absolute right-0 overflow-hidden mt-2 py-2 w-24 bg-white rounded-lg shadow-xl"
             >
-              {[["Profile", `/user/${userId}`], ["Logout", "/logout"]].map(
-                ([label, url]) => (
-                  <Link
-                    className="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"
-                    to={url}
-                    key={url}
-                  >
-                    {label}
-                  </Link>
-                )
-              )}
+              {menuLinks.map(([label, url]) => (
+                <Link
+                  className="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"
+                  to={url}
+                  key={url}
+                >
+                  {label}
+                </Link>
+              ))}
             </div>
           )}
         </div>
