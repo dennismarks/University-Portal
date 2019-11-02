@@ -1,4 +1,5 @@
 import React from "react";
+import AdminDashboard from "../components/AdminDashboard.jsx";
 import AddCourseForm from "../components/AddCourseForm";
 import UserInfo from "../components/UserInfo";
 import UsersList from "../components/UsersList";
@@ -12,6 +13,7 @@ const Admin = () => {
   return (
     <div className="main">
       <UserInfo userInfo={adminInfo}></UserInfo>
+      <AdminDashboard></AdminDashboard>
       <AddCourseForm></AddCourseForm>
       <div className="users-container">
         <UsersList></UsersList>

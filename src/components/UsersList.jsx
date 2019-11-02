@@ -5,7 +5,7 @@ import "../stylesheets/coursesCard.css";
 import "../stylesheets/Admin.css";
 
 const UsersList = p => {
-  const MY_ROUTE = userId => `/user/${userId}/`;
+  // const MY_ROUTE = userId => `/user/${userId}/`;
 
   const usersContext = useContext(UsersContext);
   const { users, selectedUser, setSelectedUser } = usersContext;

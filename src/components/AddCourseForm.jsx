@@ -8,7 +8,8 @@ const AddCourseForm = p => {
     addCourse,
     updateCourseName,
     chooseDepartment,
-    curCourseName
+    curCourseName,
+    curChosenDepartment
   } = coursesContext;
 
   console.log(courses);
@@ -28,7 +29,7 @@ const AddCourseForm = p => {
       <select
         className="select-dep"
         name="option"
-        defaultValue=""
+        value={curChosenDepartment}
         onChange={chooseDepartment}
       >
         <option value="" disabled>

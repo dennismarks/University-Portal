@@ -8,23 +8,23 @@ export const Provider = props => {
   const { courses: initialCourses, children } = props;
 
   // Use State to keep the values
-  let [courses] = useState(initialCourses);
-  let [curCourseName] = useState();
-  let [curChosenDepartment] = useState();
+  let [courses, setCourses] = useState(initialCourses);
+  let [curCourseName, setCurCourseName] = useState("");
+  let [curChosenDepartment, setCurChosenDepartment] = useState("");
 
   const addCourse = p => {
     console.log(curCourseName);
     console.log(curChosenDepartment);
-    courses.push(curCourseName);
-    curCourseName = "";
+    setCourses(courses.concat([curCourseName]));
+    setCurCourseName("");
   };
 
   const updateCourseName = p => {
-    curCourseName = p.target.value;
+    setCurCourseName(p.target.value);
   };
 
   const chooseDepartment = p => {
-    curChosenDepartment = p.target.value;
+    setCurChosenDepartment(p.target.value);
   };
 
   // Make the context object:

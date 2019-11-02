@@ -1,6 +1,14 @@
+.dashboard {
+  background-image: linear-gradient(135deg, #f4f7f8, #edf4f8);
+  border-radius: 24px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+.dashboard,
 .add-course-form {
   width: 500px;
-  margin: 4em auto 0 auto;
+  margin: 3em auto 0 auto;
+  padding: 10px;
 }
 
 .add-course-form .name-input {
@@ -23,11 +31,12 @@
 }
 
 .users-container {
-  margin: 4em auto 0 auto;
+  margin: 3em auto 0 auto;
+  padding: 10px;
   width: 500px;
   display: grid;
   grid-template-columns: 200px 1fr;
-  grid-column-gap: 2em;
+  grid-column-gap: 18px;
 }
 
 .user-item {
@@ -52,8 +61,9 @@
 
 .user-list h1,
 .user-details h1,
-.add-course-form h1 {
-  margin-bottom: 12px;
+.add-course-form h1,
+.dashboard h1 {
+  margin-bottom: 10px;
   font-size: 1.7em;
   font-weight: bold;
 }
