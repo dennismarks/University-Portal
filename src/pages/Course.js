@@ -4,6 +4,7 @@ import AsCoursesBox from "../components/AsCoursesBox";
 import CourseInfoBox from "../components/CourseInfoBox";
 import RedditBox from "../components/RedditBox";
 import CourseFilesBox from "../components/CourseFilesBox"
+import CourseCommentsBox from "../components/CourseCommentsBox"
 const redditCommentData = require('../utils/reddit.json').data.children;
 
 function Course() {
@@ -37,6 +38,7 @@ function Course() {
           <RedditBox redditData={redditCommentData} />
           <CourseFilesBox />
         </div>
+        <CourseCommentsBox />
       </div>
     </div>
   );
