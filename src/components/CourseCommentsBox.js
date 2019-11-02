@@ -49,7 +49,7 @@ function CourseCommentsBox(props) {
         </div>
       </div>
       <div className="flex justify-center">
-        <div onClick={() => { count < 1 ? setCount(count) : setCount( count - 1)} } className="h-12 w-12 font-medium text-4xl rounded cursor-pointer active:bg-gray-200  bg-white shadow-md hover:bg-gray-100 pb-4 pt-0 px-5 mt-6">
+        <div onClick={() => { count <= 0 ? setCount(count) : setCount( count - 1)} } className="h-12 w-12 font-medium text-4xl rounded cursor-pointer active:bg-gray-200  bg-white shadow-md hover:bg-gray-100 pb-4 pt-0 px-5 mt-6">
           -
         </div>
         <div
@@ -58,7 +58,7 @@ function CourseCommentsBox(props) {
         >
           {count}
         </div>
-        <div onClick={() => { count > 4 ? setCount(count) : setCount( count + 1)} } className="h-12 w-12 font-medium text-2xl rounded cursor-pointer bg-white shadow-md hover:bg-gray-100 py-2 px-4 mt-6 mr-6">
+        <div onClick={() => { count >= 5 ? setCount(count) : setCount( count + 1)} } className="h-12 w-12 font-medium text-2xl rounded cursor-pointer bg-white shadow-md hover:bg-gray-100 py-2 px-4 mt-6 mr-6">
           +
         </div>
         <input
