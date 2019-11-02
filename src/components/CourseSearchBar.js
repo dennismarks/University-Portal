@@ -1,11 +1,12 @@
 import { escapeRegExp } from "lodash";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { uid } from "react-uid";
 import { useHistory } from "react-router-dom";
 
 import useDebounce from "../utils/useDebounce";
+import useOnClickOutside from "../utils/useOnClickOutside";
 
 function SearchResults({ query, results, visible }) {
   if (!results.length || !visible) {
@@ -88,10 +89,6 @@ function SearchInput({ onFocusChange, onChange, query, shouldAutoFocus }) {
     }
   }
 
-  function handleBlur() {
-    onFocusChange(false);
-  }
-
   function handleFocus() {
     onFocusChange(true);
   }
@@ -103,7 +100,6 @@ function SearchInput({ onFocusChange, onChange, query, shouldAutoFocus }) {
         className="block text font-light text-gray-700 placeholder-gray-400 p-3 bg-white w-full rounded-l-lg"
         type="search"
         onFocus={handleFocus}
-        onBlur={handleBlur}
         onChange={handleChange}
         placeholder="Ex. CSC309, Introduction to Computer Networks"
         value={query}
@@ -116,10 +112,13 @@ function SearchInput({ onFocusChange, onChange, query, shouldAutoFocus }) {
 }
 
 function CourseSearchBar({ initialValue, shouldAutoFocus }) {
+  const ref = useRef();
   const [hasFocus, setHasFocus] = useState(shouldAutoFocus);
   const [query, setQuery] = useState(initialValue);
   const debouncedQuery = useDebounce(query, 300);
   const [results, setResults] = useState([]);
+
+  useOnClickOutside(ref, () => setHasFocus(false));
 
   useEffect(() => {
     if (debouncedQuery) {
@@ -141,7 +140,7 @@ function CourseSearchBar({ initialValue, shouldAutoFocus }) {
   }, [debouncedQuery]);
 
   return (
-    <div className="relative">
+    <div className="relative" ref={ref}>
       <SearchInput
         onFocusChange={setHasFocus}
         onChange={setQuery}
