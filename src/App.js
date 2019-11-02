@@ -13,6 +13,7 @@ import Admin from "./pages/Admin";
 import Header from "./components/Header";
 
 import { UsersContextProvider } from "./context/UsersContext";
+import { CoursesContextProvider } from "./context/CoursesContext";
 
 function App() {
   const users = [
@@ -85,26 +86,33 @@ function App() {
     }
   ];
 
+  const courses = [
+    "CSC108H1: Introduction to Computer Programming",
+    "CSC148H1: Introduction to Computer Science"
+  ];
+
   return (
     <div className="App">
-      <UsersContextProvider users={users}>
-        <BrowserRouter>
-          <Route
-            path="/"
-            render={() => <Header role={localStorage.getItem("role")} />}
-          />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/search" component={Search} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/forgot" component={ForgotPW} />
-            <Route path="/course/:courseCode" component={Course} />
-            <Route path="/user/:id" component={User} />
-            <Route path="/admin" component={Admin} />
-          </Switch>
-        </BrowserRouter>
-      </UsersContextProvider>
+      <CoursesContextProvider courses={courses}>
+        <UsersContextProvider users={users}>
+          <BrowserRouter>
+            <Route
+              path="/"
+              render={() => <Header role={localStorage.getItem("role")} />}
+            />
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/search" component={Search} />
+              <Route path="/login" component={Login} />
+              <Route path="/signup" component={Signup} />
+              <Route path="/forgot" component={ForgotPW} />
+              <Route path="/course/:courseCode" component={Course} />
+              <Route path="/user/:id" component={User} />
+              <Route path="/admin" component={Admin} />
+            </Switch>
+          </BrowserRouter>
+        </UsersContextProvider>
+      </CoursesContextProvider>
     </div>
   );
 }
