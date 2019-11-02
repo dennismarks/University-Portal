@@ -6,7 +6,8 @@ function CourseCommentsBox(props) {
 
   return (
     <div className="w-auto ml-10 mr-10 px-10 pb-10 my-5 bg-white shadow-md ">
-      <h3 className="text-2xl font-medium my-6"> User Comments </h3>
+      <h3 className="text-2xl font-medium mt-6 mb-2"> User Comments </h3>
+      <h4 className="mb-4 text-1xl font-medium">Average Rating: 4.5 / 5 </h4>
       <div className="overflow-auto h-64 pr-2">
         <div>
           <UserCommentBox
