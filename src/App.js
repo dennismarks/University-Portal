@@ -22,11 +22,32 @@ function App() {
   const users = [
     {
       userInfo: {
+        img: "avatar.png",
+        name: "Adam Prinkin",
+        id: 0
+      },
+      courses: {
+        currentCourses: [],
+        takenCourses: [
+          "CSC301 - Introduction to Software Engineering",
+          "CSC309 - Programming on the Web",
+          "CSC373 - Algorithm Design, Analysis & Complexity",
+          "CSC428 - Human-Computer Interaction",
+          "CSC236 - Introduction to the Theory of Computation",
+          "CSC236 - Introduction to the Theory of Computation",
+          "CSC258 - Computer Organization",
+          "CSC369 - Operating Systems"
+        ],
+        toTakeCourses: []
+      }
+    },
+    {
+      userInfo: {
         img: "avatar0.png",
         name: "Alex Liskov",
         university: "University of Toronto",
         program: "Computer Science, 2021",
-        id: 0
+        id: 1
       },
       courses: {
         currentCourses: [
@@ -40,7 +61,7 @@ function App() {
           "CSC236 - Introduction to the Theory of Computation",
           "CSC258 - Computer Organization"
         ],
-        toTakeCourses: ["CSC369H1: Operating Systems"]
+        toTakeCourses: ["CSC369 - Operating Systems"]
       }
     },
     {
@@ -49,7 +70,7 @@ function App() {
         name: "Wayne Spon",
         university: "University of Toronto",
         program: "Computer Science, 2023",
-        id: 1
+        id: 2
       },
       courses: {
         currentCourses: [
@@ -70,7 +91,7 @@ function App() {
         name: "Katie Xuo",
         university: "University of Toronto",
         program: "Statistics, 2023",
-        id: 2
+        id: 3
       },
       courses: {
         currentCourses: [
