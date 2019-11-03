@@ -30,13 +30,11 @@ Students at UofT today have to do a lot of research themselves on multiple sites
 
 As students ourselves, we believe that a site like Portal would massively change the game of choosing courses. Through our website, students will be **more informed** about their course selection and make sure that their **time and money are spent well** during their post-secondary journey.
 
-## Resources
-
-- [Project Proposal](https://docs.google.com/document/d/1v7ISPD15b0lTbYbttDvvka7RXBrwPtEX82-_Glzvj3E/edit)
-- [High-fidelity Mockups](https://www.figma.com/file/Y44QUUYGFdbpySf7wmUh9Q/Course-Portal?node-id=2988%3A540)
-- [Create React App](https://github.com/facebook/create-react-app)
-
 ## Login Credentials
+
+<details>
+ <summary>Admin</summary>
+ <p>
 
 ```
 Adam Prinkin
@@ -44,11 +42,24 @@ Username: admin
 Pass: admin
 ```
 
+</details>
+
+<details>
+ <summary>Student</summary>
+ <p>
+  
 ```
 Alex Liskov
 Username: user
 Pass: user
 ```
+
+  </p>
+</details>
+
+<details>
+ <summary>Student 2</summary>
+ <p>
 
 ```
 Wayne Spon
@@ -56,12 +67,29 @@ Username: user2
 Pass: user2
 ```
 
+  </p>
+</details>
+
+<details>
+ <summary>Student 3</summary>
+ <p>
+
 ```
 Katie Xuo
 Username: user3
 Pass: user3
 ```
 
-## Users Instructions
+  </p>
+</details>
 
-## Admin Instructions
+## TA Instructions
+
+Start by following the instructions in the 
+
+
+## Resources
+
+- [Project Proposal](https://docs.google.com/document/d/1v7ISPD15b0lTbYbttDvvka7RXBrwPtEX82-_Glzvj3E/edit)
+- [High-fidelity Mockups](https://www.figma.com/file/Y44QUUYGFdbpySf7wmUh9Q/Course-Portal?node-id=2988%3A540)
+- [Create React App](https://github.com/facebook/create-react-app)
