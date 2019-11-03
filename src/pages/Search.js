@@ -25,7 +25,7 @@ function Search() {
           <h2 className="text-xl font-normal text-gray-700 mb-4">
             Search Results
           </h2>
-          <div className="mb-8 flex overflow-x-auto">
+          <div className="mb-8 flex flex-wrap">
             {/* Results will come from search response from server */}
             <CourseMiniCard
               courseCode="CSC309"
