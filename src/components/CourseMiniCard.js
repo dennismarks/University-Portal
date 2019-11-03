@@ -10,10 +10,10 @@ function CourseMiniCard({
   tags
 }) {
   return (
-    <div className="bg-white shadow-md rounded max-w-sm p-4 m-2">
+    <div className="bg-white shadow-md rounded max-w-sm p-4 m-1 mr-3">
       <Link
         to={courseLink}
-        className="font-bold text-lg truncate block hover:underline"
+        className="font-semibold text-gray-800 text-lg truncate block hover:underline"
       >
         {courseCode} - {courseName}
       </Link>
@@ -25,13 +25,13 @@ function CourseMiniCard({
           const encoded = encodeURIComponent(tag.value || "");
           const query = `/search?q=${encoded}`;
           return (
-            <a
+            <Link
               className="bg-blue-100 py-1 px-2 mr-2 rounded-full text-blue-500 font-medium text-xs hover:underline"
-              href={query}
+              to={query}
               key={uid(tag)}
             >
               {tag.name}
-            </a>
+            </Link>
           );
         })}
       </div>

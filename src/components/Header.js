@@ -43,7 +43,7 @@ function Header() {
       {isLoggedIn ? (
         <div className="relative">
           <button
-            className="block h-10 w-10 rounded-full overflow-hidden border-2 border-gray-600 focus:outline-none focus:border-white"
+            className="block h-10 w-10 rounded-full overflow-hidden focus:outline-none focus:border-white"
             onClick={handleAvatarClick}
           >
             <img

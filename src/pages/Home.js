@@ -11,10 +11,10 @@ function Home() {
         <div className="flex flex-col lg:flex-row container items-center mx-auto px-4">
           <div className="w-full lg:w-1/2">
             <div className="pb-8">
-              <h1 className="font-light text-3xl text-gray-700">
+              <h1 className="font-semibold text-4xl text-gray-700">
                 Find the Courses you Need
               </h1>
-              <span className="font-normal text-sm text-gray-500">
+              <span className="font-normal text-base text-gray-500">
                 Search by course code, title, or department
               </span>
             </div>
@@ -31,7 +31,7 @@ function Home() {
       </section>
       <section className="py-16">
         <div className="container mx-auto px-4 mb-8">
-          <h2 className="text-xl font-normal text-gray-700 mb-4">
+          <h2 className="text-2xl font-semibold text-gray-700 mb-4">
             Top Rated Courses
           </h2>
           <div className="mb-8 flex overflow-x-auto">
@@ -58,7 +58,7 @@ function Home() {
           </div>
         </div>
         <div className="container mx-auto px-4 mb-8">
-          <h2 className="text-xl font-normal text-gray-700 mb-4">
+          <h2 className="text-2xl font-semibold text-gray-700 mb-4">
             By Department
           </h2>
           <div className="flex flex-row overflow-x-auto">
@@ -71,7 +71,7 @@ function Home() {
           </div>
         </div>
         <div className="container mx-auto px-4 mb-8">
-          <h2 className="text-xl font-normal text-gray-700 mb-4">
+          <h2 className="text-2xl font-semibold text-gray-700 mb-4">
             By Breadth Requirement
           </h2>
           <div className="flex flex-row flex-wrap">
