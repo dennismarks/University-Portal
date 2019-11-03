@@ -74,6 +74,10 @@
   font-weight: bold;
 }
 
+.user-details .user-link {
+  color: rgba(57, 142, 221, 1);
+}
+
 .user-details button,
 .add-course-form button {
   font-size: 0.9em;
