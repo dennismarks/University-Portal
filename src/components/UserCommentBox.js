@@ -17,6 +17,11 @@ function UserCommentBox(props) {
           Rating: {props.rating} / 5
       </h4>
       <h5 className="mb-2">{props.comment}</h5>
+      {true ? (
+        <button onClick={props.removeFunc.bind(this, props.userId)} className="btn bg-red-500 hover:bg-red-600 text-white rounded py-1 px-1 mt-0">
+          Remove Comment
+        </button>
+      ) : null }
     </div>
   );
 }

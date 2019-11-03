@@ -2,6 +2,7 @@ import React from "react";
 import CourseRYearBox from "./CourseRYearBox";
 
 function CourseFilesBox() {
+
   return (
     <div className="w-6/12 mt-5 mr-10 ml-5 px-10 pb-5 bg-white shadow-md">
       <h3 className="text-2xl font-medium my-4"> Course Resources</h3>

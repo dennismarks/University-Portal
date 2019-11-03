@@ -3,17 +3,28 @@ import React from "react";
 import AsCoursesBox from "../components/AsCoursesBox";
 import CourseInfoBox from "../components/CourseInfoBox";
 import RedditBox from "../components/RedditBox";
-import CourseFilesBox from "../components/CourseFilesBox"
-import CourseCommentsBox from "../components/CourseCommentsBox"
-const redditCommentData = require('../utils/reddit.json').data.children;
+import CourseFilesBox from "../components/CourseFilesBox";
+import CourseCommentsBox from "../components/CourseCommentsBox";
+const redditCommentData = require("../utils/reddit.json").data.children;
 
 function Course() {
   return (
     <div>
       <div className="mb-12">
         <h1 className="text-4xl font-medium  align-middle text-center my-6">
-          CSC309: Programming on the Web 
+          CSC309: Programming on the Web
         </h1>
+        <div className="flex justify-center">
+          <button className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-2">
+            Add To Current Courses
+          </button>
+          <button className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-2">
+            Add To Taken Courses
+          </button>
+          <button className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-2">
+            Add To Planned Courses
+          </button>
+        </div>
         <div className="flex">
           <CourseInfoBox
             courseDescription="An introduction to software development on the web. Concepts

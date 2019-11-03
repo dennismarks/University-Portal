@@ -1,10 +1,9 @@
 import React from "react";
 
 import RedditPostBox from "./RedditPostBox";
-// console.log(redditCommentData)
 
 function RedditBox(props) {
-  // const classes = useStyles();
+  
   const redditThreads = [];
   for (let i = 0; i < props.redditData.length; i++) {
     const thread = props.redditData[i].data;
