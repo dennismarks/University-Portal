@@ -11,6 +11,7 @@ import Course from "./pages/Course";
 import User from "./pages/User";
 import ForgotPW from "./pages/ForgotPassword";
 import Admin from "./pages/Admin";
+import ModRequest from "./pages/ModifyRequest";
 import Header from "./components/Header";
 
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -131,6 +132,7 @@ function App() {
                 <Route path="/course/:courseCode" component={Course} />
                 <Route path="/user/:id" component={User} />
                 <Route path="/logout" component={Logout} />
+                <Route path="/request" component={ModRequest} />
                 <ProtectedRoute
                   requiredRole="admin"
                   redirectTo="/"
