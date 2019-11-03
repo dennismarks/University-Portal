@@ -14,12 +14,12 @@ function RedditPostBox(props) {
         href={props.threadLink}
         target="_blank"
         rel="noopener noreferrer"
-        className="mb-2 block text-blue-600 hover:text-blue-800"
+        className="mb-2 w-20 block text-blue-600 hover:text-blue-800"
       >
         reddit link
       </a>
       {true ? (
-        <button className="btn bg-red-500 hover:bg-red-600 text-white rounded py-1 px-1 mt-0">
+        <button onClick={props.removeFunc.bind(this, props.id)} className="btn bg-red-500 hover:bg-red-600 text-white rounded py-1 px-1 mt-0">
           Remove Thread
         </button>
       ) : null }

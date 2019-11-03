@@ -1,29 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 
 import RedditPostBox from "./RedditPostBox";
 
 function RedditBox(props) {
-  
-  const redditThreads = [];
-  for (let i = 0; i < props.redditData.length; i++) {
-    const thread = props.redditData[i].data;
-    redditThreads.push(
-      <RedditPostBox
-        key={thread.id}
-        threadTitle={thread.title}
-        threadText={thread.selftext}
-        threadLink={"https://reddit.com" + thread.permalink}
-      />
-    );
-  }
+  const [threads, setThreads] = useState(props.redditData);
 
-  console.log(props.redditData);
+  const removeThread = removingThreadId => {
+    setThreads(
+      threads.filter(filterThread => {
+        return filterThread.data.id !== removingThreadId;
+      })
+    );
+  };
 
   return (
     <div className="w-6/12 mt-5 ml-10 mr-5 px-10 pb-5 bg-white shadow-md">
       <h3 className="text-2xl font-medium my-4"> Reddit Threads</h3>
       <div className="overflow-auto h-64 pr-2">
-        <div>{redditThreads}</div>
+        <div>
+          {threads.map(threadInfo => (
+            <RedditPostBox
+              key={threadInfo.data.id}
+              id={threadInfo.data.id}
+              threadTitle={threadInfo.data.title}
+              threadText={threadInfo.data.selftext}
+              threadLink={"https://reddit.com" + threadInfo.data.permalink}
+              removeFunc={removeThread}
+            />
+          ))}
+        </div>
       </div>
       <div className="flex justify-center">
         <a
