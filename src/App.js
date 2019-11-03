@@ -22,7 +22,7 @@ function App() {
   const users = [
     {
       userInfo: {
-        img: "avatar.png",
+        img: "/img/avatar.png",
         name: "Adam Prinkin",
         id: 0
       },
@@ -43,7 +43,7 @@ function App() {
     },
     {
       userInfo: {
-        img: "avatar0.png",
+        img: "/img/avatar0.png",
         name: "Alex Liskov",
         university: "University of Toronto",
         program: "Computer Science, 2021",
@@ -66,7 +66,7 @@ function App() {
     },
     {
       userInfo: {
-        img: "avatar1.png",
+        img: "/img/avatar1.png",
         name: "Wayne Spon",
         university: "University of Toronto",
         program: "Computer Science, 2023",
@@ -87,7 +87,7 @@ function App() {
     },
     {
       userInfo: {
-        img: "avatar2.png",
+        img: "/img/avatar2.png",
         name: "Katie Xuo",
         university: "University of Toronto",
         program: "Statistics, 2023",
