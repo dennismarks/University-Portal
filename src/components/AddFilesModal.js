@@ -40,14 +40,14 @@ function AddFilesModal(props) {
         <div className="flex justify-center">
           <button
             onClick={props.cancelFunc}
-            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none"
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none"
             type="button"
           >
             Submit
           </button>
           <button
             onClick={props.cancelFunc}
-            class="ml-6 inline-block align-baseline font-bold text-sm text-blue-600 hover:text-blue-800"
+            className="ml-6 inline-block align-baseline font-bold text-sm text-blue-600 hover:text-blue-800"
           >
             Cancel
           </button>
