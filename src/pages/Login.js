@@ -40,6 +40,12 @@ function Login() {
     else if (id === "user" && password === "user") {
       setAuth({ isLoggedIn: true, userId: 1, role: ROLES.STUDENT });
       history.push("/");
+    } else if (id === "user2" && password === "user2") {
+      setAuth({ isLoggedIn: true, userId: 2, role: ROLES.STUDENT });
+      history.push("/");
+    } else if (id === "user3" && password === "user3") {
+      setAuth({ isLoggedIn: true, userId: 3, role: ROLES.STUDENT });
+      history.push("/");
     } else {
       alert("Wrong Credentials");
     }
