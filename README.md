@@ -32,3 +32,33 @@ As students ourselves, we believe that a site like Portal would massively change
 - [Project Proposal](https://docs.google.com/document/d/1v7ISPD15b0lTbYbttDvvka7RXBrwPtEX82-_Glzvj3E/edit)
 - [High-fidelity Mockups](https://www.figma.com/file/Y44QUUYGFdbpySf7wmUh9Q/Course-Portal?node-id=2988%3A540)
 - [Create React App](https://github.com/facebook/create-react-app)
+
+## Login Credentials
+
+```
+Adam Prinkin
+Username: admin
+Pass: admin
+```
+
+```
+Alex Liskov
+Username: user
+Pass: user
+```
+
+```
+Wayne Spon
+Username: user2
+Pass: user2
+```
+
+```
+Katie Xuo
+Username: user3
+Pass: user3
+```
+
+## Users Instructions
+
+## Admin Instructions
