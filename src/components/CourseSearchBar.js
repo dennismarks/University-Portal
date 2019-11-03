@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { escapeRegExp } from "lodash";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -111,7 +112,7 @@ function SearchInput({ onFocusChange, onChange, query, shouldAutoFocus }) {
   );
 }
 
-function CourseSearchBar({ initialValue, shouldAutoFocus }) {
+function CourseSearchBar({ initialValue = "", shouldAutoFocus = false }) {
   const ref = useRef();
   const [hasFocus, setHasFocus] = useState(shouldAutoFocus);
   const [query, setQuery] = useState(initialValue);
@@ -151,5 +152,10 @@ function CourseSearchBar({ initialValue, shouldAutoFocus }) {
     </div>
   );
 }
+
+CourseSearchBar.propTypes = {
+  shouldAutoFocus: PropTypes.bool,
+  initialValue: PropTypes.string
+};
 
 export default CourseSearchBar;
