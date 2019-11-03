@@ -1,6 +1,9 @@
-## PORTAL - Course Search Made Easy
-
-Portal is a website that compiles every piece of information about a course. From course descriptions to syllabi and professors to forum/reddit conversations about them. We will utilize and gather information from go-to sites that students often refer to when they start their research, such as the course calendar, Reddit, and course websites, and syndicate this information in a way that is digestible and easy to access.
+<p align="center">
+<img alt="Portal Banner" src="docs/banner.png">
+<br/>
+<br/>
+<strong>Portal</strong> is a website that compiles every piece of information about a course. From course descriptions to syllabi and professors to forum/reddit conversations about them. We utilize and gather information from go-to sites that students often refer to when they start their research, such as the <a href="https://fas.calendar.utoronto.ca/">course calendar</a>, <a href="https://www.reddit.com/r/uoft">Reddit</a>, and course websites, and syndicate this information in a way that is <strong>digestible</strong> and <strong>easy to access</strong>.
+</p>
 
 ## Getting Started
 
