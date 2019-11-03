@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 
+import AuthContext from "../context/AuthContext";
 import AsCoursesBox from "../components/AsCoursesBox";
 import CourseInfoBox from "../components/CourseInfoBox";
 import RedditBox from "../components/RedditBox";
 import CourseFilesBox from "../components/CourseFilesBox";
 import CourseCommentsBox from "../components/CourseCommentsBox";
+import { ROLES } from "../constants/auth";
 // raw reddit api call acting as a json file
 const redditCommentData = require("../utils/reddit.json").data;
 
 function Course() {
+  const {
+    auth: { role }
+  } = useContext(AuthContext);
+
+  const canUserMakeEdits = role === ROLES.STUDENT || role === ROLES.ADMIN;
+
   // make api call to get course data
   const course = {
     courseDescription: "Programming on the Web",
@@ -35,17 +43,19 @@ function Course() {
         <h1 className="text-4xl font-medium  align-middle text-center my-6">
           {course.courseCode}: {course.courseDescription}
         </h1>
-        <div className="flex justify-center">
-          <button className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-2">
-            Add To Current Courses
-          </button>
-          <button className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-2">
-            Add To Taken Courses
-          </button>
-          <button className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-2">
-            Add To Planned Courses
-          </button>
-        </div>
+        {canUserMakeEdits && (
+          <div className="flex justify-center">
+            <button className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-2">
+              Add To Current Courses
+            </button>
+            <button className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-2">
+              Add To Taken Courses
+            </button>
+            <button className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-2">
+              Add To Planned Courses
+            </button>
+          </div>
+        )}
         <div className="flex">
           <CourseInfoBox
             courseDescription={course.courseInfo.courseDescription}
@@ -66,7 +76,7 @@ function Course() {
         </div>
         <div className="flex">
           <RedditBox redditData={course.redditDetails} />
-          <CourseFilesBox />
+          <CourseFilesBox canSubmitFiles={canUserMakeEdits} />
         </div>
         <CourseCommentsBox />
       </div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CourseRYearBox from "./CourseRYearBox";
 import AddFilesModal from "./AddFilesModal";
 
-function CourseFilesBox() {
+function CourseFilesBox({ canSubmitFiles = false }) {
   const courseResourcesList = [
     {
       semester: "Fall 2014",
@@ -75,14 +75,16 @@ function CourseFilesBox() {
           />
         ))}
       </div>
-      <div className="flex justify-center">
-        <button
-          onClick={cancelAddDisplay}
-          className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mt-6"
-        >
-          Submit Resources For Approval
-        </button>
-      </div>
+      {canSubmitFiles && (
+        <div className="flex justify-center">
+          <button
+            onClick={cancelAddDisplay}
+            className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mt-6"
+          >
+            Submit Resources For Approval
+          </button>
+        </div>
+      )}
     </div>
   );
 }
