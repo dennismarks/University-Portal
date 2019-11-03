@@ -21,15 +21,19 @@ function CourseMiniCard({
         {description}
       </p>
       <div className="flex ">
-        {tags.map(tag => (
-          <Link
-            className="bg-blue-100 py-1 px-2 mr-2 rounded-full text-blue-500 font-medium text-xs hover:underline"
-            to={tag.link}
-            key={uid(tag)}
-          >
-            {tag.name}
-          </Link>
-        ))}
+        {tags.map(tag => {
+          const encoded = encodeURIComponent(tag.value || "");
+          const query = `/search?q=${encoded}`;
+          return (
+            <a
+              className="bg-blue-100 py-1 px-2 mr-2 rounded-full text-blue-500 font-medium text-xs hover:underline"
+              href={query}
+              key={uid(tag)}
+            >
+              {tag.name}
+            </a>
+          );
+        })}
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import React, { useContext, useState, useRef } from "react";
 import useOnClickOutside from "../utils/useOnClickOutside";
 import AuthContext from "../context/AuthContext";
 import { ROLES } from "../constants/auth";
+import { UsersContext } from "../context/UsersContext";
 
 function Header() {
   const ref = useRef();
@@ -11,6 +12,8 @@ function Header() {
   const {
     auth: { isLoggedIn, role, userId }
   } = useContext(AuthContext);
+  const usersContext = useContext(UsersContext);
+  const user = usersContext.users[userId];
 
   useOnClickOutside(ref, () => setIsMenuOpen(false));
 
@@ -44,9 +47,9 @@ function Header() {
             onClick={handleAvatarClick}
           >
             <img
-              alt="avatar"
+              alt={user.userInfo.name || ""}
               className="h-full w-fill object-cover"
-              src="https://picsum.photos/id/237/100"
+              src={user.userInfo.img || "/img/avatar-default.png"}
             />
           </button>
           {isMenuOpen && (

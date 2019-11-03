@@ -5,11 +5,14 @@ class UserInfo extends React.Component {
   render() {
     const { userInfo } = this.props;
 
-    console.log(userInfo.img);
     return (
       <div className="personalInformation">
         <div>
-          <img className="profileImage" src={"/img/" + userInfo.img} alt="" />
+          <img
+            className="profileImage"
+            src={userInfo.img || "/img/avatar-default.png"}
+            alt={userInfo.name || ""}
+          />
         </div>
         <div className="userInfo">
           <h1>{userInfo.name}</h1>

@@ -11,6 +11,7 @@ import Course from "./pages/Course";
 import User from "./pages/User";
 import ForgotPW from "./pages/ForgotPassword";
 import Admin from "./pages/Admin";
+import ModRequest from "./pages/ModifyRequest";
 import Header from "./components/Header";
 
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -22,7 +23,7 @@ function App() {
   const users = [
     {
       userInfo: {
-        img: "avatar.png",
+        img: "/img/avatar.png",
         name: "Adam Prinkin",
         id: 0
       },
@@ -43,7 +44,7 @@ function App() {
     },
     {
       userInfo: {
-        img: "avatar0.png",
+        img: "/img/avatar0.png",
         name: "Alex Liskov",
         university: "University of Toronto",
         program: "Computer Science, 2021",
@@ -66,7 +67,7 @@ function App() {
     },
     {
       userInfo: {
-        img: "avatar1.png",
+        img: "/img/avatar1.png",
         name: "Wayne Spon",
         university: "University of Toronto",
         program: "Computer Science, 2023",
@@ -87,7 +88,7 @@ function App() {
     },
     {
       userInfo: {
-        img: "avatar2.png",
+        img: "/img/avatar2.png",
         name: "Katie Xuo",
         university: "University of Toronto",
         program: "Statistics, 2023",
@@ -131,6 +132,7 @@ function App() {
                 <Route path="/course/:courseCode" component={Course} />
                 <Route path="/user/:id" component={User} />
                 <Route path="/logout" component={Logout} />
+                <Route path="/request" component={ModRequest} />
                 <ProtectedRoute
                   requiredRole="admin"
                   redirectTo="/"
