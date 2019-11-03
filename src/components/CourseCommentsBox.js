@@ -5,8 +5,9 @@ import AuthContext from "../context/AuthContext";
 function CourseCommentsBox(props) {
   const [count, setCount] = useState(5);
   const {
-    auth: { isLoggedIn, role, userId }
+    auth: { isLoggedIn, userId }
   } = useContext(AuthContext);
+
   // api call here to get comment data here
   let commentData = [
     {
@@ -86,7 +87,7 @@ function CourseCommentsBox(props) {
           ))}
         </div>
       </div>
-      {true ? (
+      { isLoggedIn ? (
         <div className="flex justify-center">
           <div
             onClick={() => {
