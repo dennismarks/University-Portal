@@ -4,6 +4,9 @@ import UserInfo from "../components/UserInfo";
 import CoursesCard from "../components/CoursesCard";
 
 const User = props => {
+  // this user would have been obtained from an external source using
+  // the passed id from the url parameter
+  // but instead this user is located inside the Context
   const usersContext = useContext(UsersContext);
   const id = props.match.params.id;
   const user = usersContext.users[id];
@@ -14,17 +17,14 @@ const User = props => {
         <UserInfo userInfo={user.userInfo}></UserInfo>
         <CoursesCard
           courses={user.courses.currentCourses}
-          toRender={user.courses.currentCourses.length}
           name="Current Courses"
         ></CoursesCard>
         <CoursesCard
           courses={user.courses.takenCourses}
-          toRender={user.courses.takenCourses.length}
           name="Taken Courses"
         ></CoursesCard>
         <CoursesCard
           courses={user.courses.toTakeCourses}
-          toRender={user.courses.toTakeCourses.length}
           name="Future course"
         ></CoursesCard>
       </div>

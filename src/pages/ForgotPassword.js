@@ -1,6 +1,6 @@
 import React from "react";
 
-function Login() {
+function ForgotPassword() {
   return (
     <div>
       <div className="w-full mx-auto py-10 max-w-md">
@@ -31,4 +31,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default ForgotPassword;

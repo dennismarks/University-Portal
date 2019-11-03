@@ -20,6 +20,8 @@ import { UsersContextProvider } from "./context/UsersContext";
 import { CoursesContextProvider } from "./context/CoursesContext";
 
 function App() {
+  // users data for Users Context
+  // requires a server call
   const users = [
     {
       userInfo: {
@@ -34,7 +36,6 @@ function App() {
           "CSC309 - Programming on the Web",
           "CSC373 - Algorithm Design, Analysis & Complexity",
           "CSC428 - Human-Computer Interaction",
-          "CSC236 - Introduction to the Theory of Computation",
           "CSC236 - Introduction to the Theory of Computation",
           "CSC258 - Computer Organization",
           "CSC369 - Operating Systems"
@@ -82,7 +83,10 @@ function App() {
         takenCourses: [],
         toTakeCourses: [
           "CSC148H1: Introduction to Computer Science",
-          "CSC207H1: Software Design"
+          "CSC207H1: Software Design",
+          "CSC236 - Introduction to the Theory of Computation",
+          "CSC258 - Computer Organization",
+          "CSC369 - Operating Systems"
         ]
       }
     },
@@ -105,12 +109,17 @@ function App() {
         ],
         toTakeCourses: [
           "CSC165H1: Mathematical Expression and Reasoning",
-          "CSC207H1: Software Design"
+          "CSC207H1: Software Design",
+          "CSC236 - Introduction to the Theory of Computation",
+          "CSC258 - Computer Organization",
+          "CSC369 - Operating Systems"
         ]
       }
     }
   ];
 
+  // users data for Courses Context
+  // requires a server call
   const courses = [
     "CSC108H1: Introduction to Computer Programming",
     "CSC148H1: Introduction to Computer Science"

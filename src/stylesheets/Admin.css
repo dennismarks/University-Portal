@@ -1,7 +1,8 @@
 .dashboard,
-.add-course-form {
+.add-course-form,
+.users-container {
   width: 500px;
-  margin: 3em auto 0 auto;
+  margin: 1em auto 0 auto;
   padding: 16px;
 }
 
@@ -37,7 +38,7 @@
 }
 
 .users-container {
-  margin: 3em auto 0 auto;
+  margin-bottom: 3em;
   padding: 10px;
   width: 550px;
   display: grid;

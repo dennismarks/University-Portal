@@ -3,6 +3,9 @@ import { UsersContext } from "../context/UsersContext";
 import { Link } from "react-router-dom";
 
 const UserDetails = () => {
+  // information about one particular user (selectedUser) would have been obtained
+  // from an external source
+  // but instead it is coming from the Users Context
   const { selectedUser, removeStudent } = useContext(UsersContext);
   const MY_ROUTE = () => `/user/${selectedUser.userInfo.id}/`;
 

@@ -7,7 +7,11 @@ import UsersList from "../components/UsersList";
 import UserDetails from "../components/UserDetails";
 
 const Admin = () => {
+  // admin information would have been obtained from an external source
+  // using the passed id from the url parameter
+  // but instead this user is located inside the Context
   const usersContext = useContext(UsersContext);
+  // admin will be located at id=0
   const user = usersContext.users[0];
 
   return (

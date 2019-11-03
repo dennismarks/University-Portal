@@ -5,6 +5,8 @@ import "../stylesheets/coursesCard.css";
 import "../stylesheets/Admin.css";
 
 const UsersList = () => {
+  // users would have been obtained from an external source
+  // but instead they are hardcoded using Context
   const usersContext = useContext(UsersContext);
   const { users, selectedUser, setSelectedUser } = usersContext;
 
@@ -16,7 +18,6 @@ const UsersList = () => {
         const userItemClassNames = clsx("user-item", {
           "user-item-selected": user.userInfo === selectedUser.userInfo
         });
-
         return (
           <div
             className={userItemClassNames}

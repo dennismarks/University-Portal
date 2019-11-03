@@ -1,27 +1,25 @@
 import React from "react";
 import "../stylesheets/userInfo.css";
 
-class UserInfo extends React.Component {
-  render() {
-    const { userInfo } = this.props;
+const UserInfo = props => {
+  const { img, name, university, program } = props.userInfo;
 
-    return (
-      <div className="personalInformation">
-        <div>
-          <img
-            className="profileImage"
-            src={userInfo.img || "/img/avatar-default.png"}
-            alt={userInfo.name || ""}
-          />
-        </div>
-        <div className="userInfo">
-          <h1>{userInfo.name}</h1>
-          <h3>{userInfo.university}</h3>
-          <h4>{userInfo.program}</h4>
-        </div>
+  return (
+    <div className="personalInformation">
+      <div>
+        <img
+          className="profileImage"
+          src={img || "/img/avatar-default.png"}
+          alt={name || ""}
+        />
       </div>
-    );
-  }
-}
+      <div className="userInfo">
+        <h1>{name}</h1>
+        <h3>{university}</h3>
+        <h4>{program}</h4>
+      </div>
+    </div>
+  );
+};
 
 export default UserInfo;
