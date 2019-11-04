@@ -103,6 +103,8 @@ In the `Course Resources` section of the course details page, you will now see t
 
 **NOTE:** Resources need to approved by an admin for them to show up on the course details page for other users.
 
+![](docs/images/7_admin_requests.png)
+
 #### Add Comments
 
 As a student, you also have the ability to add your own comments on a course on the course details page. You can provide a rating between 1 and 5, as well as some text comments:
@@ -132,6 +134,8 @@ As an admin, on any course page, you have the ability to delete Reddit threads, 
 Admin users also have access to an Admin page. You can access this page by cliking on your avatar in the top right corner and clicking on the `Admin` menu item in the dropdown.
 
 On the admin page, you can see how many courses and users there are in the app. You can also add new courses, review/remove users, and approve/reject course resource submissions:
+
+![](docs/images/8_admin_page.png)
 
 ## Login Credentials
 
