@@ -1,9 +1,30 @@
+.row-1,
+.row-2 {
+  margin: 1em auto;
+  width: 900px;
+  display: flex;
+  align-items: center;
+}
+
 .dashboard,
 .add-course-form,
-.users-container {
-  width: 500px;
+.users-container,
+.requests {
+  width: 400px;
   margin: 1em auto 0 auto;
   padding: 16px;
+}
+
+.dashboard {
+  height: 150px;
+}
+
+.users-container {
+  height: 225px;
+}
+
+.requests {
+  width: 300px;
 }
 
 .dashboard {
@@ -13,7 +34,8 @@
 }
 
 .add-course-form,
-.users-container {
+.users-container,
+.requests {
   border-radius: 24px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.02), 0 6px 20px 0 rgba(0, 0, 0, 0.04);
 }
@@ -69,35 +91,47 @@
 .user-list h1,
 .user-details h1,
 .add-course-form h1,
-.dashboard h1 {
+.dashboard h1,
+.requests h1 {
   margin-bottom: 10px;
   font-size: 1.7em;
   font-weight: bold;
 }
 
-.user-details .user-link {
+.user-details .user-link,
+.requests .request-link {
   color: rgba(57, 142, 221, 1);
 }
 
 .user-details button,
-.add-course-form button {
-  font-size: 0.9em;
+.add-course-form button,
+.request .remove-button,
+.request .add-button {
+  font-size: 0.95em;
   margin-top: 12px;
   padding: 3px 6px;
   background-color: lightpink;
-  color: #333;
+  color: white;
   border-radius: 8px;
 }
 
-.add-course-form button {
+.add-course-form button,
+.request .add-button {
   background-color: rgba(57, 142, 221, 1);
   color: white;
 }
 
-.user-details button:hover {
+.user-details button:hover,
+.request .remove-button:hover {
   background-color: rgba(255, 182, 193, 0.8);
 }
 
-.add-course-form button:hover {
+.add-course-form button:hover,
+.request .add-button:hover {
   background-color: rgba(57, 142, 221, 0.8);
+}
+
+.request .add-button {
+  margin-right: 8px;
+  margin-bottom: 32px;
 }

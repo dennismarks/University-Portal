@@ -5,6 +5,7 @@ import AddCourseForm from "../components/AddCourseForm";
 import UserInfo from "../components/UserInfo";
 import UsersList from "../components/UsersList";
 import UserDetails from "../components/UserDetails";
+import ResourceApproval from "../components/ResourceApproval";
 
 const Admin = () => {
   // admin information would have been obtained from an external source
@@ -17,11 +18,16 @@ const Admin = () => {
   return (
     <div className="main">
       <UserInfo userInfo={user.userInfo}></UserInfo>
-      <AdminDashboard></AdminDashboard>
-      <AddCourseForm></AddCourseForm>
-      <div className="users-container">
-        <UsersList></UsersList>
-        <UserDetails></UserDetails>
+      <div className="row-1">
+        <AdminDashboard></AdminDashboard>
+        <AddCourseForm></AddCourseForm>
+      </div>
+      <div className="row-2">
+        <ResourceApproval></ResourceApproval>
+        <div className="users-container">
+          <UsersList></UsersList>
+          <UserDetails></UserDetails>
+        </div>
       </div>
     </div>
   );
