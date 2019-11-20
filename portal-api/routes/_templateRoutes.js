@@ -18,9 +18,9 @@ router.get("/:id", userController.show);
 router.post("/", userController.create);
 
 /*
- * PUT
+ * PATCH
  */
-router.put("/:id", userController.update);
+router.patch("/:id", userController.update);
 
 /*
  * DELETE
