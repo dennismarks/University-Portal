@@ -1,5 +1,8 @@
 const CourseResource = require("../models/courseResourceModel");
 
+// to validate object IDs
+const { ObjectID } = require("mongodb");
+
 /**
  * User Controller
  *
@@ -25,7 +28,16 @@ function create(req, res) {
 }
 
 // (read) all objects -- GET /
-function list(req, res) {}
+function list(req, res) {
+  CourseResource.find().then(
+    courseResources => {
+      res.send({ courseResources }); // can wrap in object if want to add more properties
+    },
+    error => {
+      res.status(500).send(error); // server error
+    }
+  );
+}
 
 // (read) one single object -- GET /:id
 function show(req, res) {}
@@ -34,7 +46,27 @@ function show(req, res) {}
 function update(req, res) {}
 
 // (destroy) one single object DELETE /:id
-function destroy(req, res) {}
+function destroy(req, res) {
+  const id = req.params.id;
+
+  // Validate id
+  if (!ObjectID.isValid(id)) {
+    res.status(404).send();
+  }
+
+  // Delete a course resource by their id
+  CourseResource.findByIdAndRemove(id)
+    .then(courseResource => {
+      if (!courseResource) {
+        res.status(404).send();
+      } else {
+        res.send(courseResource);
+      }
+    })
+    .catch(error => {
+      res.status(500).send(); // server error, could not delete.
+    });
+}
 
 module.exports = {
   create,
