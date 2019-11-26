@@ -13,7 +13,27 @@ function create(req, res) {}
 function list(req, res) {}
 
 // (read) one single object -- GET /:id
-function show(req, res) {}
+function show(req, res) {
+  const id = req.params.id;
+
+  // Good practise: Validate id immediately.
+  if (!ObjectID.isValid(id)) {
+    res.status(404).send(); // if invalid id, definitely can't find resource, 404.
+  }
+
+  // Otherwise, findById
+  CourseResource.findById(id)
+    .then(courseResource => {
+      if (!courseResource) {
+        res.status(404).send(); // could not find this student
+      } else {
+        res.send(courseResource);
+      }
+    })
+    .catch(error => {
+      res.status(500).send(); // server error
+    });
+}
 
 // (update) one single object PATH /:id
 function update(req, res) {}

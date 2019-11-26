@@ -23,6 +23,6 @@ router.patch("/:id", courseResourceController.update);
 /*
  * DELETE
  */
-router.delete("/:id", courseResourceController.destroy);
+router.delete("/:id", courseResourceController.destroy); // should we use /:courseid/:id, what is faster
 
 module.exports = router;

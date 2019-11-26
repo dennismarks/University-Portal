@@ -40,7 +40,22 @@ function list(req, res) {
 }
 
 // (read) one single object -- GET /:id
-function show(req, res) {}
+function show(req, res) {
+  const course = req.params.course;
+
+  // Otherwise, findById
+  CourseResource.find({ course:  })
+    .then(courseResource => {
+      if (!courseResource) {
+        res.status(404).send(); // could not find this student
+      } else {
+        res.send(courseResource);
+      }
+    })
+    .catch(error => {
+      res.status(500).send(); // server error
+    });
+}
 
 // (update) one single object PATH /:id
 function update(req, res) {}
