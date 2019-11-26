@@ -6,23 +6,23 @@ const courseResourceController = require("../controllers/courseResourceControlle
 /*
  * GET
  */
-router.get("/:course/", courseResourceController.list);
+router.get("/", courseResourceController.list);
 
 
 /*
  * POST
  */
-router.post("/:course/", courseResourceController.create);
+router.post("/", courseResourceController.create);
 
 
 /*
  * PATCH
  */
-router.patch("/:course/:id", courseResourceController.update);
+router.patch("/:id", courseResourceController.update);
 
 /*
  * DELETE
  */
-router.delete("/:id", courseResourceController.destroy); // should we use /:courseid/:id, what is faster
+router.delete("/:id", courseResourceController.destroy);
 
 module.exports = router;

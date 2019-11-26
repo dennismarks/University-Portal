@@ -19,20 +19,20 @@ const userRoutes = require("./routes/user");
 
 app.use(bodyParser.json());
 
+
 app.use(express.static("../frontend/build"));
-// app.use("/api/v1", router);
 app.get("/*", (req, res) => {
   res.sendFile(__dirname + "/frontend/build/index.html");
 });
 
-/* app object routes */
-app.use("/api/v1/course-resources", courseResources);
+/* Server Resource Routes */
+app.use("/api/v1/:course/course-resources", courseResources);
 app.use("/api/v1/user", userRoutes);
-/* app object routes end */
+/* Server Resource Routes End */
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
   log(
-    `Listening on port ${port}... \n For development use http://localhost:3001`
+    `Listening on port ${port}... \n For development use http://localhost:${port}`
   );
 });
