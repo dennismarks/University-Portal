@@ -35,4 +35,4 @@ const CourseResourceSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model("courseResource", CourseResourceSchema);
+module.exports = CourseResourceSchema;

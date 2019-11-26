@@ -2,16 +2,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const CourseInfoSchema = new Schema({
-  code: {
-    type: String,
-    required: true,
-    minlength: 5
-  },
-  title: {
-    type: String,
-    required: true,
-    minlength: 1
-  },
   hours: {
     type: Number,
     require: true

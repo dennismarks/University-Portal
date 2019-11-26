@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const redditCommentSchema = new Schema({
+const RedditCommentSchema = new Schema({
   pubishDate: {
     type: String, // change to datetime?
     required: true,
@@ -53,4 +53,4 @@ const redditCommentSchema = new Schema({
   }
 });
 
-module.exports = redditCommentSchema;
+module.exports = RedditCommentSchema;

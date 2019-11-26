@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 
 app.use(express.static("../frontend/build"));
 // app.use("/api/v1", router);
-app.get("/", (req, res) => {
+app.get("/*", (req, res) => {
   res.sendFile(__dirname + "/frontend/build/index.html");
 });
 

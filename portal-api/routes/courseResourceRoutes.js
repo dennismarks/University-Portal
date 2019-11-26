@@ -6,19 +6,19 @@ const courseResourceController = require("../controllers/courseResourceControlle
 /*
  * GET
  */
-router.get("/", courseResourceController.list);
+router.get("/:course/", courseResourceController.list);
 
 
 /*
  * POST
  */
-router.post("/", courseResourceController.create);
+router.post("/:course/", courseResourceController.create);
 
 
 /*
  * PATCH
  */
-router.patch("/:id", courseResourceController.update);
+router.patch("/:course/:id", courseResourceController.update);
 
 /*
  * DELETE
