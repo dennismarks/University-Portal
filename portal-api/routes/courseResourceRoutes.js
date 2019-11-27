@@ -1,18 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const courseController = require("../controllers/courseController");
-
+const courseResourceController = require("../controllers/courseResourceController");
 
 /*
  * GET
  */
-router.get("/course-resource/:course", courseController.list);
-
+router.get("/:course/pending", courseResourceController.listPending);
 
 /*
  * POST
  */
-router.post("/course-resource/:course", courseController.create);
+router.post("/:course", courseResourceController.create);
 
 /*
  * DELETE
