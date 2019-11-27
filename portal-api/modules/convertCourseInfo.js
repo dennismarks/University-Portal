@@ -8,6 +8,7 @@ async function createUofTCourseObject(code, courseResource) {
   try {
     course_info_ax = await calendar_server.get(`/${code}`);
     course_info = course_info_ax.data;
+    // confrom the course calandar data to our Course Info schema for portal
     courseResource.info = {
       title: course_info.title,
       hours: course_info.hours,
@@ -16,10 +17,43 @@ async function createUofTCourseObject(code, courseResource) {
       department: course_info.program
     };
   } catch {
-    return 400;
+    return "Cannot find course in UofT FAS database";
+  }
+}
+
+async function createRedditComments(code, courseResource) {
+  const reddit_server = axios.create({
+    baseURL: "https://www.reddit.com",
+    timeout: 2000
+  });
+  try {
+    const simple_code = code.replace(/H(1|5)$/i, "");
+    const comments_info_ax = await reddit_server.get(
+      "/r/uoft/search/.json?q=" + simple_code
+    );
+    const comments_info = comments_info_ax.data.data;
+    // confrom the reddit data to our Reddit Comment schema for portal
+    const redditCommentsObjects = comments_info.children.map(redditComment => { 
+      const commentData = redditComment.data;
+      const portalRedditComment = {
+        publishDate: commentData.created_utc,
+        title: commentData.title,
+        content: commentData.selftext,
+        link: commentData.url,
+        subreddit: commentData.subreddit_name_prefixed,
+        upvotes: commentData.ups,
+        downvotes: commentData.downs
+      };
+      return portalRedditComment;
+    });
+    console.log(redditCommentsObjects);
+    courseResource.redditComments = redditCommentsObjects;
+  } catch {
+    return "Cannot connect to reddit properly"; // cant find course in reddit server
   }
 }
 
 module.exports = {
-  createUofTCourseObject
+  createUofTCourseObject,
+  createRedditComments
 };

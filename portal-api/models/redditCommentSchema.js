@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const RedditCommentSchema = new Schema({
-  pubishDate: {
+  publishDate: {
     type: String, // change to datetime?
     required: true,
     minlength: 1
@@ -13,9 +13,7 @@ const RedditCommentSchema = new Schema({
     minlength: 1
   },
   content: {
-    type: String,
-    required: true,
-    minlength: 1
+    type: String
   },
   link: {
     type: String,

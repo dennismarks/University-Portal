@@ -1,5 +1,5 @@
 const Course = require("../models/courseModel");
-const { createUofTCourseObject } = require("../modules/convertCourseInfo");
+const { createUofTCourseObject, createRedditComments } = require("../modules/convertCourseInfo");
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -7,12 +7,12 @@ const { ObjectID } = require("mongodb");
 /**
  * User Controller
  *
- * @description :: Server-side logic for managing users.
+ * @description :: Server-side logic for managing coursers.
  */
 
 async function create(req, res) {
   const { code, school } = req.body;
-  if (!code || !school) {
+  if (!code || !school) { // check request sends both a course code and a school
     res.status(400).send();
   }
   try {
@@ -21,14 +21,18 @@ async function create(req, res) {
       school
     });
     
-    if (school === "UofT") {
-      const courseErr = await createUofTCourseObject(code, courseResource);
-      console.log(courseErr)
+    if (school === "UofT") { // if the school is UofT then run the following
+      const courseErr = await createUofTCourseObject(code, courseResource); // create an object for the course info schema
       if (courseErr) {
         res.status(400).send(courseErr); // cant find course in Max's database
       }
+      console.log(courseErr)
+      const redditErr = await createRedditComments(code, courseResource); // create an object for the course reddit comment schema
+      if (redditErr){
+        res.status(500).send(redditErr); // cant connect to reddit api
+      }
     }
-    courseResource.save().then(
+    courseResource.save().then( // save course to db
       result => {
         res.send(result);
       },
