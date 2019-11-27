@@ -12,13 +12,11 @@ const app = express();
 setupAuth(app);
 
 /* Routes from router */
-// const templates = require("./routes/_templateRoutes");
-const courseResources = require("./routes/courseResourceRoutes");
+const courseRoutes = require("./routes/courseRoutes");
 const userRoutes = require("./routes/user");
 /* Routes from router end */
 
 app.use(bodyParser.json());
-
 
 app.use(express.static("../frontend/build"));
 app.get("/*", (req, res) => {
@@ -26,7 +24,7 @@ app.get("/*", (req, res) => {
 });
 
 /* Server Resource Routes */
-app.use("/api/v1/:course/course-resources", courseResources);
+app.use("/api/v1/courses/:course", courseRoutes);
 app.use("/api/v1/user", userRoutes);
 /* Server Resource Routes End */
 

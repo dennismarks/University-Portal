@@ -2,14 +2,22 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const CourseInfoSchema = new Schema({
+  title: {
+    type: String,
+    required: true,
+    minlength: 1
+  },
   hours: {
-    type: Number,
+    type: String,
     require: true
   },
   description: {
     type: String,
     required: true,
     minlength: 1
+  },
+  prerequisites: {
+    type: [String]
   },
   recPrep: {
     type: [String]

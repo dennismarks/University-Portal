@@ -13,10 +13,9 @@ const CourseSchema = new Schema({
     required: true,
     minlength: 5
   },
-  title: {
+  school: {
     type: String,
-    required: true,
-    minlength: 1
+    require: true
   },
   info: CourseInfoSchema,
   redditComments: [RedditCommentSchema],
