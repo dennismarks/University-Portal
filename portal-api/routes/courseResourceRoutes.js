@@ -3,7 +3,7 @@ const router = express.Router();
 const courseResourceController = require("../controllers/courseResourceController");
 
 /*
- * GET
+ * GET the listing on pending course resources for this course
  */
 router.get("/:course/pending", courseResourceController.listPending);
 
