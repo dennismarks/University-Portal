@@ -19,12 +19,12 @@ const userRoutes = require("./routes/user");
 app.use(bodyParser.json());
 
 app.use(express.static("../frontend/build"));
-app.get("/*", (req, res) => {
-  res.sendFile(__dirname + "/frontend/build/index.html");
-});
+// app.get("/*", (req, res) => {
+//   res.sendFile(__dirname + "/frontend/build/index.html");
+// });
 
 /* Server Resource Routes */
-app.use("/api/v1/courses/:course", courseRoutes);
+app.use("/api/v1/courses", courseRoutes);
 app.use("/api/v1/user", userRoutes);
 /* Server Resource Routes End */
 

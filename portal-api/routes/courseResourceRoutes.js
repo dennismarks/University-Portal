@@ -6,13 +6,13 @@ const courseController = require("../controllers/courseController");
 /*
  * GET
  */
-router.get("/", courseController.list);
+router.get("/course-resource/:course", courseController.list);
 
 
 /*
  * POST
  */
-router.post("/", courseController.create);
+router.post("/course-resource/:course", courseController.create);
 
 /*
  * DELETE
