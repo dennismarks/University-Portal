@@ -8,6 +8,7 @@ const CourseResourceSchema = require("./courseResourceSchema");
 /* End Model for Embedded Document */
 
 const CourseSchema = new Schema({
+  // TODO ask if values combined can be unique
   code: {
     type: String,
     required: true,

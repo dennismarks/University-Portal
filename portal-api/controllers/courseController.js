@@ -69,6 +69,7 @@ function list(req, res) {
 function show(req, res) {
   Course.findOne({ school: req.params.school, code: req.params.code }).then(
     course => {
+      // TODO show all courses if admin
       course.courseResources = course.courseResources.filter( // only send a list of approved courses
         resource => resource.status === "Approved"
       );
