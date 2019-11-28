@@ -15,6 +15,8 @@ setupAuth(app);
 
 const courseRoutes = require("./routes/courseRoutes");
 const courseResourceRoutes = require("./routes/courseResourceRoutes");
+const courseReviewRoutes = require("./routes/courseReviewRoutes");
+const redditCommentRoutes = require("./routes/redditCommentRoutes");
 const userRoutes = require("./routes/user");
 /* Routes from router end */
 
@@ -28,6 +30,8 @@ app.use(express.static("../frontend/build"));
 /* Server Resource Routes */
 app.use("/api/v1/courses", courseRoutes);
 app.use("/api/v1/courses/course-resource", courseResourceRoutes);
+app.use("/api/v1/courses/course-review", courseReviewRoutes);
+app.use("/api/v1/courses/reddit-comments", redditCommentRoutes);
 app.use("/api/v1/user", userRoutes);
 /* Server Resource Routes End */
 

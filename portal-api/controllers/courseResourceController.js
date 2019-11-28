@@ -1,7 +1,7 @@
 const Course = require("../models/courseModel");
 
 /**
- * User Controller
+ * Course Resource Controller
  *
  * @description :: Server-side logic for managing course resources.
  */
