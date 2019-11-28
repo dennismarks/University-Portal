@@ -10,7 +10,7 @@ const { ObjectID } = require("mongodb");
 /**
  * User Controller
  *
- * @description :: Server-side logic for managing coursers.
+ * @description :: Server-side logic for managing courses.
  */
 
 async function create(req, res) {
@@ -51,7 +51,11 @@ async function create(req, res) {
   }
 }
 
+/* Get a list of all the course (for admin only)
+ */
+
 function list(req, res) {
+  // TODO admin acess only
   Course.find()
     .then(courses => {
       res.send({ courses });
@@ -61,7 +65,23 @@ function list(req, res) {
     ]);
 }
 
+/* a a single course */
+function show(req, res) {
+  Course.findOne({ school: req.params.school, code: req.params.code }).then(
+    course => {
+      course.courseResources = course.courseResources.filter( // only send a list of approved courses
+        resource => resource.status === "Approved"
+      );
+      res.send(course);
+    },
+    error => {
+      res.status(404).send(error);
+    }
+  );
+}
+
 module.exports = {
   create,
-  list
+  list,
+  show
 };
