@@ -30,11 +30,12 @@ async function create(req, res) {
       const courseErr = await createUofTCourseObject(code, courseResource); // create an object for the course info schema
       if (courseErr) {
         res.status(400).send(courseErr); // cant find course in Max's database
+        return;
       }
-      console.log(courseErr);
       const redditErr = await createRedditComments(code, courseResource); // create an object for the course reddit comment schema
       if (redditErr) {
         res.status(500).send(redditErr); // cant connect to reddit api
+        return;
       }
     }
     courseResource.save().then(

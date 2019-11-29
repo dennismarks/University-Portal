@@ -13,6 +13,11 @@ router.get("/:school/:course/pending", courseResourceController.listPending);
 router.post("/:school/:course", courseResourceController.create);
 
 /*
+ * PATCH
+ */
+router.patch("/:school/:course", courseResourceController.update);
+
+/*
  * DELETE
  */
 router.delete("/:school/:course/:id", courseResourceController.destroy);

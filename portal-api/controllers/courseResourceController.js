@@ -128,5 +128,6 @@ function destroy(req, res) {
 module.exports = {
   create,
   listPending,
-  destroy
+  destroy,
+  update
 };
