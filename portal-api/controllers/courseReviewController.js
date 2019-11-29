@@ -7,7 +7,9 @@ const Course = require("../models/courseModel");
  */
 
 // (create) on signle object -- POST /
-function create(req, res) {}
+function create(req, res) {
+  
+}
 
 // (read) all objects -- GET /
 function list(req, res) {}
@@ -44,7 +46,6 @@ function destroy(req, res) {}
 module.exports = {
   create,
   list,
-  show,
   update,
   destroy
 };

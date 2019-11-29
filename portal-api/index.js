@@ -3,6 +3,7 @@ require("dotenv").config();
 const log = console.log;
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require("path")
 
 const { setupAuth } = require("./auth");
 const { mongoose } = require("./db/mongoose");
@@ -23,9 +24,9 @@ const userRoutes = require("./routes/user");
 app.use(bodyParser.json());
 
 app.use(express.static("../frontend/build"));
-// app.get("/*", (req, res) => {
-//   res.sendFile(__dirname + "/frontend/build/index.html");
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, '../') + "frontend/build/index.html")
+});
 
 /* Server Resource Routes */
 app.use("/api/v1/courses", courseRoutes);

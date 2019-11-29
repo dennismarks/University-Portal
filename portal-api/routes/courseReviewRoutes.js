@@ -8,11 +8,6 @@ const courseReviewController = require("../controllers/courseReviewController");
 router.get("/", courseReviewController.list);
 
 /*
- * GET
- */
-router.get("/:id", courseReviewController.show);
-
-/*
  * POST
  */
 router.post("/", courseReviewController.create);
