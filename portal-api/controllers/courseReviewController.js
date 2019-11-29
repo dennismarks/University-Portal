@@ -46,7 +46,11 @@ function destroy(req, res) {
     return;
   }
   Course.findOne({ school: school, code: course }).then(course => {
-    if (!course.courseReviews.includes(id)) {
+    if (!course) {
+      res.status(404).send("Course does not exist");
+      return;
+    }
+    if (!course.courseReviews.id({ _id: id })) {
       res.status(404).send("Id not in course reviews");
       return;
     }
@@ -56,7 +60,7 @@ function destroy(req, res) {
         res.send(result);
       },
       err => {
-        res.status(400).send(err); // 400 for bad request -- could not save
+        res.status(500).send(err); // server error -- could not save
       }
     );
   });

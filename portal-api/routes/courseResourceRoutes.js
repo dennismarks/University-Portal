@@ -5,16 +5,16 @@ const courseResourceController = require("../controllers/courseResourceControlle
 /*
  * GET the listing on pending course resources for this course
  */
-router.get("/:course/pending", courseResourceController.listPending);
+router.get("/:school/:course/pending", courseResourceController.listPending);
 
 /*
  * POST
  */
-router.post("/:course", courseResourceController.create);
+router.post("/:school/:course", courseResourceController.create);
 
 /*
  * DELETE
  */
-// router.delete("/:id", courseController.destroy);
+router.delete("/:school/:course/:id", courseResourceController.destroy);
 
 module.exports = router;

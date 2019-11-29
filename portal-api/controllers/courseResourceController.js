@@ -1,4 +1,5 @@
 const Course = require("../models/courseModel");
+const { ObjectID } = require("mongodb");
 
 /**
  * Course Resource Controller
@@ -15,6 +16,7 @@ function create(req, res) {
     link: req.body.link
   };
   const courseCode = req.params.course;
+  const school = req.params.school;
   if (
     !courseResource.status ||
     !courseResource.semester ||
@@ -23,7 +25,7 @@ function create(req, res) {
   ) {
     res.status(400).send("Invalid parameters on body");
   } else {
-    Course.findOne({ code: courseCode }).then(courseObj => {
+    Course.findOne({ school: school, code: courseCode }).then(courseObj => {
       // find course object
       if (!courseObj) {
         res.status(404).send("No Course Object found");
@@ -71,8 +73,8 @@ function create(req, res) {
 // (read) all pending course resources needed for approval -- GET /
 function listPending(req, res) {
   // TODO check if user is an admin here
-  const courseCode = req.params.course;
-  Course.findOne({ code: courseCode }).then(
+  const { school, course } = req.params;
+  Course.findOne({ school: school, code: course }).then(
     courseObj => {
       const pendingResources = courseObj.courseResources.filter(resource => {
         return resource.status === "Pending";
@@ -85,13 +87,17 @@ function listPending(req, res) {
   );
 }
 
+function update(req, res){
+  
+}
+
 // TODO: add update and destroy for admin only
 // // (update) one single object PATH /:id
 // function update(req, res) {}
 
 // // (destroy) one single object DELETE /:id
 function destroy(req, res) {
-  const id = req.params.id;
+  const { school, course, id } = req.params;
 
   // Validate id
   if (!ObjectID.isValid(id)) {
@@ -99,21 +105,24 @@ function destroy(req, res) {
     return;
   }
   Course.findOne({ school: school, code: course }).then(course => {
-    if (!course.courseReviews.includes(id)) {
-      res.status(404).send("Id not in course reviews");
+    if (!course) {
+      res.status(404).send("Course does not exist");
       return;
     }
-    course.courseReviews.pull(id);
+    if (!course.courseResources.id({ _id: id })) {
+      res.status(404).send("Id not in course resources");
+      return;
+    }
+    course.courseResources.pull(id);
     course.save().then(
       result => {
         res.send(result);
       },
       err => {
-        res.status(400).send(err); // 400 for bad request -- could not save
+        res.status(500).send(err); // server error -- could not save
       }
     );
-  }); 
-
+  });
 }
 
 module.exports = {
