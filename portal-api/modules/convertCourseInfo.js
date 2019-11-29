@@ -46,8 +46,8 @@ async function createRedditComments(code, courseResource) {
       };
       return portalRedditComment;
     });
-    console.log(redditCommentsObjects);
     courseResource.redditComments = redditCommentsObjects;
+    console.log(`Reddit comments updated for ${code}`);
   } catch {
     return "Cannot connect to reddit properly"; // cant find course in reddit server
   }
