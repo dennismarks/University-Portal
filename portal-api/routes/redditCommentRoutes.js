@@ -5,7 +5,7 @@ const redditCommentController = require("../controllers/redditCommentController"
 /*
  * PATCH all reddit comments for the specfic course
  */
-router.patch("/:course_id", redditCommentController.update);
+router.patch("/:school/:course", redditCommentController.update);
 
 /*
  * DELETE

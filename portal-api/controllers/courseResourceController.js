@@ -87,11 +87,8 @@ function listPending(req, res) {
   );
 }
 
-function update(req, res){
-  
-}
 
-// TODO: add update and destroy for admin only
+// TODO: add update for admin only
 // // (update) one single object PATH /:id
 // function update(req, res) {}
 
@@ -128,6 +125,5 @@ function destroy(req, res) {
 module.exports = {
   create,
   listPending,
-  destroy,
-  update
+  destroy
 };

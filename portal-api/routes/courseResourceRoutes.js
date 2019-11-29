@@ -15,7 +15,7 @@ router.post("/:school/:course", courseResourceController.create);
 /*
  * PATCH
  */
-router.patch("/:school/:course", courseResourceController.update);
+// router.patch("/:school/:course", courseResourceController.update);
 
 /*
  * DELETE
