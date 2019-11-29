@@ -8,44 +8,81 @@ const Course = require("../models/courseModel");
 
 // (create) on signle object -- POST /
 function create(req, res) {
-  
-}
-
-// (read) all objects -- GET /
-function list(req, res) {}
-
-// (read) one single object -- GET /:id
-function show(req, res) {
-  const id = req.params.id;
-
-  // Good practise: Validate id immediately.
-  if (!ObjectID.isValid(id)) {
-    res.status(404).send(); // if invalid id, definitely can't find resource, 404.
-  }
-
-  // Otherwise, findById
-  CourseResource.findById(id)
-    .then(courseResource => {
-      if (!courseResource) {
-        res.status(404).send(); // could not find this student
-      } else {
-        res.send(courseResource);
-      }
-    })
-    .catch(error => {
-      res.status(500).send(); // server error
+  const { course, school } = req.params;
+  const { rating, comment } = req.body;
+  // TODO checkk if logged in
+  if (!rating || !comment) {
+    res.status(400).send("Need rating and comment in body");
+  } else {
+    Course.findOne({ school: school, code: course }).then(course => {
+      course.courseReviews.push({ rating, comment });
+      course.averageRating = (
+        course.courseReviews.reduce((total, num) => total + num) /
+        course.courseReviews.length
+      ).toFixed(2);
+      course.save().then(
+        result => {
+          res.send(result);
+        },
+        err => {
+          res.status(400).send(err); // 400 for bad request -- could not save
+        }
+      );
     });
+  }
 }
 
 // (update) one single object PATH /:id
-function update(req, res) {}
+function update(req, res) {
+  const { course, school } = req.params;
+  const { rating, comment } = req.body;
+  // TODO checkk if logged in, ad them to request
+  if (!rating || !comment) {
+    res.status(400).send("Need rating and comment in body");
+  } else {
+    Course.findOne({ school: school, code: course }).then(course => {
+      course.courseReviews.push({ rating, comment });
+      course.averageRating = (
+        course.courseReviews.reduce((total, num) => total + num) /
+        course.courseReviews.length
+      ).toFixed(2);
+      course.save().then(
+        result => {
+          res.send(result);
+        },
+        err => {
+          res.status(400).send(err); // 400 for bad request -- could not save
+        }
+      );
+    });
+  }
+}
 
 // (destroy) one single object DELETE /:id
-function destroy(req, res) {}
+function destroy(req, res) {
+  const {  } = req.params;
+  // TODO checkk if logged in
+ 
+    Course.findOne({ school: school, code: course }).then(course => {
+      course.courseReviews.push({ rating, comment });
+      course.averageRating = (
+        course.courseReviews.reduce((total, num) => total + num) /
+        course.courseReviews.length
+      ).toFixed(2);
+      course.save().then(
+        result => {
+          res.send(result);
+        },
+        err => {
+          res.status(400).send(err); // 400 for bad request -- could not save
+        }
+      );
+    });
+  
+}
 
 module.exports = {
   create,
-  list,
   update,
   destroy
 };
