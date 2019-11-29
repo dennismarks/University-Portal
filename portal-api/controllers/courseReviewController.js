@@ -1,5 +1,5 @@
 const Course = require("../models/courseModel");
-
+const { ObjectID } = require("mongodb");
 /**
  * Course review Controller
  *
@@ -10,42 +10,21 @@ const Course = require("../models/courseModel");
 function create(req, res) {
   const { course, school } = req.params;
   const { rating, comment } = req.body;
-  // TODO checkk if logged in
+  // TODO checkk if logged in and dont let user comment on same course twice
   if (!rating || !comment) {
     res.status(400).send("Need rating and comment in body");
   } else {
     Course.findOne({ school: school, code: course }).then(course => {
       course.courseReviews.push({ rating, comment });
-      course.averageRating = (
-        course.courseReviews.reduce((total, num) => total + num) /
-        course.courseReviews.length
-      ).toFixed(2);
-      course.save().then(
-        result => {
-          res.send(result);
-        },
-        err => {
-          res.status(400).send(err); // 400 for bad request -- could not save
-        }
-      );
-    });
-  }
-}
-
-// (update) one single object PATH /:id
-function update(req, res) {
-  const { course, school } = req.params;
-  const { rating, comment } = req.body;
-  // TODO checkk if logged in, ad them to request
-  if (!rating || !comment) {
-    res.status(400).send("Need rating and comment in body");
-  } else {
-    Course.findOne({ school: school, code: course }).then(course => {
-      course.courseReviews.push({ rating, comment });
-      course.averageRating = (
-        course.courseReviews.reduce((total, num) => total + num) /
-        course.courseReviews.length
-      ).toFixed(2);
+      const averageRating = // recalculate average rating
+        course.courseReviews.reduce(
+          (accumulator, reviewObj) => accumulator + reviewObj.rating,
+          0
+        ) / course.courseReviews.length;
+      course.averageRating =
+        String(averageRating).length === 1
+          ? averageRating
+          : averageRating.toFixed(2);
       course.save().then(
         result => {
           res.send(result);
@@ -60,29 +39,30 @@ function update(req, res) {
 
 // (destroy) one single object DELETE /:id
 function destroy(req, res) {
-  const {  } = req.params;
+  const { course, school, id } = req.params;
   // TODO checkk if logged in
- 
-    Course.findOne({ school: school, code: course }).then(course => {
-      course.courseReviews.push({ rating, comment });
-      course.averageRating = (
-        course.courseReviews.reduce((total, num) => total + num) /
-        course.courseReviews.length
-      ).toFixed(2);
-      course.save().then(
-        result => {
-          res.send(result);
-        },
-        err => {
-          res.status(400).send(err); // 400 for bad request -- could not save
-        }
-      );
-    });
-  
+  if (!ObjectID.isValid(id)) {
+    res.status(404).send("Invalid Id");
+    return;
+  }
+  Course.findOne({ school: school, code: course }).then(course => {
+    if (!course.courseReviews.includes(id)) {
+      res.status(404).send("Id not in course reviews");
+      return;
+    }
+    course.courseReviews.pull(id);
+    course.save().then(
+      result => {
+        res.send(result);
+      },
+      err => {
+        res.status(400).send(err); // 400 for bad request -- could not save
+      }
+    );
+  });
 }
 
 module.exports = {
   create,
-  update,
   destroy
 };

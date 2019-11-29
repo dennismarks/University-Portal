@@ -24,9 +24,9 @@ const userRoutes = require("./routes/user");
 app.use(bodyParser.json());
 
 app.use(express.static("../frontend/build"));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, '../') + "frontend/build/index.html")
-});
+// app.get("/*", (req, res) => {
+//   res.sendFile(path.join(__dirname, '../') + "frontend/build/index.html")
+// });
 
 /* Server Resource Routes */
 app.use("/api/v1/courses", courseRoutes);

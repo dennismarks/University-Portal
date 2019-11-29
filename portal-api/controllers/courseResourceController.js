@@ -27,16 +27,16 @@ function create(req, res) {
       // find course object
       if (!courseObj) {
         res.status(404).send("No Course Object found");
+        return;
       }
       const existingResourceLink = courseObj.courseResources.find(resource => {
         return resource.link === courseResource.link;
       }); // check if the same link already exits in the database
-
-      // TODO how to avoid after saving ???????????????????????
       if (existingResourceLink) {
         res
           .status(409)
           .send("Course resource link already exists in this course"); // send what we returned
+        return;
       }
       const existingResourceSemAndTitle = courseObj.courseResources.find(
         resource => {
@@ -52,6 +52,7 @@ function create(req, res) {
           .send(
             "Course resource title already exists in this semester of course resources"
           );
+        return;
       }
 
       courseObj.courseResources.push(courseResource); // add request to course
@@ -89,29 +90,34 @@ function listPending(req, res) {
 // function update(req, res) {}
 
 // // (destroy) one single object DELETE /:id
-// function destroy(req, res) {
-//   const id = req.params.id;
+function destroy(req, res) {
+  const id = req.params.id;
 
-//   // Validate id
-//   if (!ObjectID.isValid(id)) {
-//     res.status(404).send();
-//   }
+  // Validate id
+  if (!ObjectID.isValid(id)) {
+    res.status(404).send("Invalid Id");
+    return;
+  }
+  Course.findOne({ school: school, code: course }).then(course => {
+    if (!course.courseReviews.includes(id)) {
+      res.status(404).send("Id not in course reviews");
+      return;
+    }
+    course.courseReviews.pull(id);
+    course.save().then(
+      result => {
+        res.send(result);
+      },
+      err => {
+        res.status(400).send(err); // 400 for bad request -- could not save
+      }
+    );
+  }); 
 
-//   // Delete a course resource by their id
-//   CourseResource.findByIdAndRemove(id)
-//     .then(courseResource => {
-//       if (!courseResource) {
-//         res.status(404).send();
-//       } else {
-//         res.send(courseResource);
-//       }
-//     })
-//     .catch(error => {
-//       res.status(500).send(); // server error, could not delete.
-//     });
-// }
+}
 
 module.exports = {
   create,
-  listPending
+  listPending,
+  destroy
 };

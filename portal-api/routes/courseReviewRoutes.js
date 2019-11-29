@@ -8,13 +8,8 @@ const courseReviewController = require("../controllers/courseReviewController");
 router.post("/:school/:course/", courseReviewController.create);
 
 /*
- * PATCH
- */
-router.patch("/:id", courseReviewController.update);
-
-/*
  * DELETE
  */
-router.delete("/:id", courseReviewController.destroy);
+router.delete("/:school/:course/:id", courseReviewController.destroy);
 
 module.exports = router;
