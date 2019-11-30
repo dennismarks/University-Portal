@@ -61,9 +61,32 @@ function list(req, res) {
     .then(courses => {
       res.send({ courses });
     })
-    .catch(error => [
-      res.status(500).send(error) // server error
-    ]);
+    .catch(
+      error => res.status(500).send(error) // server error
+    );
+}
+
+function listSearch(req, res) {
+  const searchQuery = req.query.q;
+  const searchStart = req.query.start;
+  const PAGE_ENTRIES = 10; // number of courses to display per page
+  if (!searchQuery || !searchStart) {
+    res.status(400).send("Invalid search");
+    return;
+  }
+
+  Course.find({ $text: { $search: searchQuery } })
+    .skip(searchStart)
+    .limit(PAGE_ENTRIES)
+    .then(courses => {
+      if (!courses) {
+        res.status(404).send("No courses found");
+      }
+      res.send({ courses });
+    })
+    .catch(error => {
+      res.status(404).send(error); // search offset to high
+    });
 }
 
 /* a a single course */
@@ -71,7 +94,8 @@ function show(req, res) {
   Course.findOne({ school: req.params.school, code: req.params.code }).then(
     course => {
       // TODO show all courses if admin
-      course.courseResources = course.courseResources.filter( // only send a list of approved courses
+      course.courseResources = course.courseResources.filter(
+        // only send a list of approved courses
         resource => resource.status === "Approved"
       );
       res.send(course);
@@ -85,5 +109,6 @@ function show(req, res) {
 module.exports = {
   create,
   list,
+  listSearch,
   show
 };

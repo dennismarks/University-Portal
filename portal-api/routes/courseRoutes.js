@@ -18,6 +18,11 @@ router.get("/:school/:code", courseController.show);
 router.post("/", courseController.create);
 
 /*
+ * GET
+ */
+router.get("/search",  courseController.listSearch)
+
+/*
  * DELETE
  */
 // router.delete("/:id", courseController.destroy);

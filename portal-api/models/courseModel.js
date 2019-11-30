@@ -24,10 +24,17 @@ const CourseSchema = new Schema({
     min: 0,
     max: 5
   },
+  fullCourseTitle: {
+    type: String,
+    required: true,
+    minlength: 1
+  },
   info: CourseInfoSchema,
   redditComments: [RedditCommentSchema],
   courseResources: [CourseResourceSchema],
   courseReviews: [CourseReviewSchema]
 });
+
+CourseSchema.index({ fullCourseTitle: 'text' });
 
 module.exports = mongoose.model("course", CourseSchema);

@@ -16,6 +16,7 @@ async function createUofTCourseObject(code, courseResource) {
       faculty: "Arts and Science",
       department: course_info.program
     };
+    course.fullCourseTitle = `${code} - ${course_info.title}`;
   } catch {
     return "Cannot find course in UofT FAS database";
   }
@@ -33,7 +34,7 @@ async function createRedditComments(code, courseResource) {
     );
     const comments_info = comments_info_ax.data.data;
     // confrom the reddit data to our Reddit Comment schema for portal
-    const redditCommentsObjects = comments_info.children.map(redditComment => { 
+    const redditCommentsObjects = comments_info.children.map(redditComment => {
       const commentData = redditComment.data;
       const portalRedditComment = {
         publishDate: commentData.created_utc,
