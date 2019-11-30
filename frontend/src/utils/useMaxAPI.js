@@ -6,9 +6,10 @@ import { useEffect, useState } from "react";
 
 function useMaxAPI(courseCode) {
   const [course, setCourse] = useState(null);
-
+  const host = window.location.hostname;
+  const port = 3001;
   useEffect(() => {
-    fetch(`http://uoft-courseapi.herokuapp.com/get/${courseCode}`)
+    fetch(`http://${host}:${port}/api/v1/courses/UofT/${courseCode}`)
       .then(res => {
         return res.json();
       })

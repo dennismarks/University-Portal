@@ -30,7 +30,7 @@ function Course() {
     <div>
       <div className="mb-12">
         <h1 className="text-4xl font-medium  align-middle text-center my-6">
-          {course.courseCode}: {course.title}
+          {course.code}: {course.info.title}
         </h1>
         {canUserMakeEdits && (
           <div className="flex justify-center">
@@ -46,19 +46,19 @@ function Course() {
           </div>
         )}
         <div className="flex">
-          <CourseInfoBox courseDescription={course.summary} />
+          <CourseInfoBox courseDescription={course.info.description} />
           <AsCoursesBox
-            prerequisites={course.prerequisites}
+            prerequisites={course.info.prerequisites}
             recommendedPreparation={
-              course.recommendedPreparation || "No recommended preparation"
+              course.info.recPrep || "No recommended preparation"
             }
-            distributionRequirements={course.distribution}
-            exclusions={course.exclusions}
-            breadthRequirements={course.breadth}
+            distributionRequirements={course.info.distribution}
+            exclusions={course.info.exclusions}
+            breadthRequirements={course.info.breadthReqs}
           />
         </div>
         <div className="flex">
-          <RedditBox redditData={redditCommentData.children} />
+          <RedditBox redditData={course.redditComments} />
           <CourseFilesBox canSubmitFiles={canUserMakeEdits} />
         </div>
         <CourseCommentsBox />
