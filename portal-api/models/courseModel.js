@@ -26,7 +26,7 @@ const CourseSchema = new Schema({
   },
   fullCourseTitle: {
     type: String,
-    required: true,
+    // required: true,
     minlength: 1
   },
   info: CourseInfoSchema,
@@ -35,6 +35,6 @@ const CourseSchema = new Schema({
   courseReviews: [CourseReviewSchema]
 });
 
-CourseSchema.index({ fullCourseTitle: 'text' });
+CourseSchema.index({ code: 'text', 'info.title': 'text' });
 
 module.exports = mongoose.model("course", CourseSchema);

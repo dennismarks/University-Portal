@@ -16,7 +16,7 @@ async function createUofTCourseObject(code, courseResource) {
       faculty: "Arts and Science",
       department: course_info.program
     };
-    course.fullCourseTitle = `${code} - ${course_info.title}`;
+    courseResource.fullCourseTitle = `${code} - ${course_info.title}`;
   } catch {
     return "Cannot find course in UofT FAS database";
   }

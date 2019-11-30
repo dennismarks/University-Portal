@@ -68,19 +68,23 @@ function list(req, res) {
 
 function listSearch(req, res) {
   const searchQuery = req.query.q;
-  const searchStart = req.query.start;
+  const searchStart = parseInt(req.query.start);
   const PAGE_ENTRIES = 10; // number of courses to display per page
-  if (!searchQuery || !searchStart) {
+  if (!searchQuery) {
     res.status(400).send("Invalid search");
     return;
   }
-
-  Course.find({ $text: { $search: searchQuery } })
+  console.log(searchQuery);
+  const regEx = new RegExp( searchQuery, "i" )
+  console.log(regEx)
+  Course.find({ fullCourseTitle: regEx  })
     .skip(searchStart)
     .limit(PAGE_ENTRIES)
     .then(courses => {
+      console.log(courses);
       if (!courses) {
         res.status(404).send("No courses found");
+        return;
       }
       res.send({ courses });
     })
