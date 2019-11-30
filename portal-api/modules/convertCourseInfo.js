@@ -13,11 +13,15 @@ async function createUofTCourseObject(code, courseResource) {
       title: course_info.title,
       hours: course_info.hours,
       description: course_info.summary,
+      prerequisites: course_info.prerequisites,
+      exclusions: course_info.exclusions,
+      recPrep: course_info.recommended,
+      breadthReqs: course_info.breadth,
       faculty: "Arts and Science",
       department: course_info.program
     };
     courseResource.fullCourseTitle = `${code} - ${course_info.title}`;
-  } catch {
+  } catch (error) {
     return "Cannot find course in UofT FAS database";
   }
 }
@@ -49,7 +53,7 @@ async function createRedditComments(code, courseResource) {
     });
     courseResource.redditComments = redditCommentsObjects;
     console.log(`Reddit comments updated for ${code}`);
-  } catch {
+  } catch (error) {
     return "Cannot connect to reddit properly"; // cant find course in reddit server
   }
 }

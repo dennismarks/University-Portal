@@ -8,7 +8,7 @@ function RedditBox(props) {
   const removeThread = removingThreadId => {
     setThreads(
       threads.filter(filterThread => {
-        return filterThread.data.id !== removingThreadId;
+        return filterThread._id !== removingThreadId;
       })
     );
   };
@@ -20,11 +20,11 @@ function RedditBox(props) {
         <div>
           {threads.map(threadInfo => (
             <RedditPostBox
-              key={threadInfo.data.id}
-              id={threadInfo.data.id}
-              threadTitle={threadInfo.data.title}
-              threadText={threadInfo.data.selftext}
-              threadLink={"https://reddit.com" + threadInfo.data.permalink}
+              key={threadInfo._id}
+              id={threadInfo._id}
+              threadTitle={threadInfo.title}
+              threadText={threadInfo.content}
+              threadLink={threadInfo.link}
               removeFunc={removeThread}
             />
           ))}
