@@ -16,8 +16,8 @@ async function createUofTCourseObject(code, courseResource) {
       faculty: "Arts and Science",
       department: course_info.program
     };
-    course.fullCourseTitle = `${code} - ${course_info.title}`;
-  } catch {
+    courseResource.fullCourseTitle = `${code} - ${course_info.title}`;
+  } catch (error) {
     return "Cannot find course in UofT FAS database";
   }
 }
@@ -49,7 +49,7 @@ async function createRedditComments(code, courseResource) {
     });
     courseResource.redditComments = redditCommentsObjects;
     console.log(`Reddit comments updated for ${code}`);
-  } catch {
+  } catch (error) {
     return "Cannot connect to reddit properly"; // cant find course in reddit server
   }
 }
