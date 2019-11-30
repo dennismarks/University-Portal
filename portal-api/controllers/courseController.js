@@ -74,14 +74,11 @@ function listSearch(req, res) {
     res.status(400).send("Invalid search");
     return;
   }
-  console.log(searchQuery);
-  const regEx = new RegExp( searchQuery, "i" )
-  console.log(regEx)
+  const regEx = new RegExp( searchQuery, "i" );
   Course.find({ fullCourseTitle: regEx  })
     .skip(searchStart)
     .limit(PAGE_ENTRIES)
     .then(courses => {
-      console.log(courses);
       if (!courses) {
         res.status(404).send("No courses found");
         return;
