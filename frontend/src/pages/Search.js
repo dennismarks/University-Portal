@@ -40,19 +40,34 @@ function Search() {
           </h2>
           <div className="mb-8 flex flex-wrap">
             {/* Results will come from search response from server */}
-            {searchCourses.map(course => (
-              <CourseMiniCard
-                key={course._id}
-                courseCode={course.code}
-                courseLink={`/course/${course.code}`}
-                courseName={course.info.title}
-                description={course.info.description}
-                tags={[
-                  { name: course.info.faculty, value: course.info.faculty },
-                  { name: course.info.department, value: course.info.department }
-                ]}
-              />
-            ))}
+            {searchCourses ? (
+              searchCourses.map(course => (
+                <CourseMiniCard
+                  key={course._id}
+                  courseCode={course.code}
+                  courseLink={`/course/${course.code}`}
+                  courseName={course.info.title}
+                  description={course.info.description}
+                  tags={[
+                    {
+                      name: course.averageRating
+                        ? `Rating: ${course.averageRating}`
+                        : "Not Rated",
+                      value: course.averageRating
+                        ? `Rating: ${course.averageRating}`
+                        : "Not Rated"
+                    },
+                    { name: course.info.faculty, value: course.info.faculty },
+                    {
+                      name: course.info.department,
+                      value: course.info.department
+                    }
+                  ]}
+                />
+              ))
+            ) : (
+              <h1> No Courses Found </h1>
+            )}
           </div>
         </div>
       </section>

@@ -90,6 +90,22 @@ function listSearch(req, res) {
     });
 }
 
+function listTop(req, res) {
+  Course.find()
+    .limit(3)
+    .sort({"averageRating": -1})
+    .then(courses => {
+      if (!courses) {
+        res.status(404).send("No courses found");
+        return;
+      }
+      res.send({ courses });
+    })
+    .catch(error => {
+      res.status(404).send(error); // search offset to high
+    });
+}
+
 /* a a single course */
 function show(req, res) {
   Course.findOne({ school: req.params.school, code: req.params.code }).then(
@@ -111,5 +127,6 @@ module.exports = {
   create,
   list,
   listSearch,
+  listTop,
   show
 };

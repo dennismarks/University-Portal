@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import CourseMiniCard from "../components/CourseMiniCard";
 import CourseSearchBar from "../components/CourseSearchBar";
 import CourseSearchChip from "../components/CourseSearchChip";
 
 function Home() {
+  const [topCourses, setTopCourses] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:3001/api/v1/courses/top`)
+      .then(res => res.json())
+      .then(response => {
+        setTopCourses(response.courses);
+      })
+      .catch(err => console.log(err));
+  });
   return (
     <div>
       <section className="bg-gray-200 py-16">
@@ -35,26 +45,35 @@ function Home() {
             Top Rated Courses
           </h2>
           <div className="mb-8 flex overflow-x-auto">
-            <CourseMiniCard
-              courseCode="CSC309H1"
-              courseLink="/course/CSC309H1"
-              courseName="Programming on the Web"
-              description="An introduction to software development on the web. Concepts underlying the development of programs that operate on the web; survey of technological alternatives; greater depth on some technologies. Operational concepts of the internet and the web, static client content, dynamic client content, dynamically served content, n-tiered architectures, web development processes, and security on the web. Assignments involve increasingly more complex web-based programs. Guest lecturers from leading e-commerce firms will describe the architecture and operation of their web sites."
-              tags={[
-                { name: "Arts & Sci.", value: "Arts & Science" },
-                { name: "Computer Sci.", value: "Computer Science" }
-              ]}
-            />
-            <CourseMiniCard
-              courseCode="CSC301H1"
-              courseLink="/course/CSC301H1"
-              courseName="Introduction to Software Engineering"
-              description="An introduction to software development on the web. Concepts underlying the development of programs that operate on the web; survey of technological alternatives; greater depth on some technologies. Operational concepts of the internet and the web, static client content, dynamic client content, dynamically served content, n-tiered architectures, web development processes, and security on the web. Assignments involve increasingly more complex web-based programs. Guest lecturers from leading e-commerce firms will describe the architecture and operation of their web sites."
-              tags={[
-                { name: "Arts & Sci.", value: "Arts & Science" },
-                { name: "Computer Sci.", value: "Computer Science" }
-              ]}
-            />
+            {topCourses ? (
+              topCourses.map(course => (
+                <CourseMiniCard
+                  key={course._id}
+                  courseCode={course.code}
+                  courseLink={`/course/${course.code}`}
+                  courseName={course.info.title}
+                  description={course.info.description}
+                  avgRating={course.averageRating}
+                  tags={[
+                    {
+                      name: course.averageRating
+                        ? `Rating: ${course.averageRating}`
+                        : "Not Rated",
+                      value: course.averageRating
+                        ? `Rating: ${course.averageRating}`
+                        : "Not Rated"
+                    },
+                    { name: course.info.faculty, value: course.info.faculty },
+                    {
+                      name: course.info.department,
+                      value: course.info.department
+                    }
+                  ]}
+                />
+              ))
+            ) : (
+              <h1> No Courses Found </h1>
+            )}
           </div>
         </div>
         <div className="container mx-auto px-4 mb-8">

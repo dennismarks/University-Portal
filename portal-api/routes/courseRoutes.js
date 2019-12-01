@@ -12,6 +12,12 @@ router.get("/", courseController.list);
  */
 router.get("/:school/:code", courseController.show);
 
+
+/*
+ *
+ */
+router.get("/top", courseController.listTop)
+
 /*
  * POST
  */

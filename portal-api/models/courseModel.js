@@ -20,7 +20,7 @@ const CourseSchema = new Schema({
     require: true
   },
   averageRating: {
-    type: mongoose.SchemaTypes.Decimal128,
+    type: Number,
     min: 0,
     max: 5
   },
