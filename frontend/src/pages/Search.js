@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import CourseMiniCard from "../components/CourseMiniCard";
 import CourseSearchBar from "../components/CourseSearchBar";
@@ -7,7 +7,20 @@ import useQueryParams from "../utils/useQueryParams";
 function Search() {
   const queryParams = useQueryParams();
   const searchQuery = queryParams.get("q");
+  const [searchCourses, setSearchCourses] = useState([]);
+  // console.log(searchQuery);
 
+  // add pages to flip through ...
+  useEffect(() => {
+    fetch(
+      `http://localhost:3001/api/v1/courses/search?q=${searchQuery}&start=0`
+    )
+      .then(res => res.json())
+      .then(response => {
+        setSearchCourses(response.courses);
+      })
+      .catch(err => console.log(err));
+  });
   return (
     <div>
       <section className="bg-gray-200 py-8">
@@ -27,26 +40,19 @@ function Search() {
           </h2>
           <div className="mb-8 flex flex-wrap">
             {/* Results will come from search response from server */}
-            <CourseMiniCard
-              courseCode="CSC309"
-              courseLink="/course/csc309"
-              courseName="Programming on the Web"
-              description="An introduction to software development on the web. Concepts underlying the development of programs that operate on the web; survey of technological alternatives; greater depth on some technologies. Operational concepts of the internet and the web, static client content, dynamic client content, dynamically served content, n-tiered architectures, web development processes, and security on the web. Assignments involve increasingly more complex web-based programs. Guest lecturers from leading e-commerce firms will describe the architecture and operation of their web sites."
-              tags={[
-                { name: "Arts & Sci.", value: "Arts & Science" },
-                { name: "Computer Sci.", value: "Computer Science" }
-              ]}
-            />
-            <CourseMiniCard
-              courseCode="CSC301"
-              courseLink="/course/csc301"
-              courseName="Introduction to Software Engineering"
-              description="An introduction to software development on the web. Concepts underlying the development of programs that operate on the web; survey of technological alternatives; greater depth on some technologies. Operational concepts of the internet and the web, static client content, dynamic client content, dynamically served content, n-tiered architectures, web development processes, and security on the web. Assignments involve increasingly more complex web-based programs. Guest lecturers from leading e-commerce firms will describe the architecture and operation of their web sites."
-              tags={[
-                { name: "Arts & Sci.", value: "Arts & Science" },
-                { name: "Computer Sci.", value: "Computer Science" }
-              ]}
-            />
+            {searchCourses.map(course => (
+              <CourseMiniCard
+                key={course._id}
+                courseCode={course.code}
+                courseLink={`/course/${course.code}`}
+                courseName={course.info.title}
+                description={course.info.description}
+                tags={[
+                  { name: course.info.faculty, value: course.info.faculty },
+                  { name: course.info.department, value: course.info.department }
+                ]}
+              />
+            ))}
           </div>
         </div>
       </section>
