@@ -74,8 +74,8 @@ function listSearch(req, res) {
     res.status(400).send("Invalid search");
     return;
   }
-  const regEx = new RegExp( searchQuery, "i" );
-  Course.find({ fullCourseTitle: regEx  })
+  const regEx = new RegExp(searchQuery, "i");
+  Course.find({ fullCourseTitle: regEx })
     .skip(searchStart)
     .limit(PAGE_ENTRIES)
     .then(courses => {
