@@ -34,12 +34,6 @@ const userRoutes = require("./routes/user");
 
 app.use(bodyParser.json());
 
-// console.log(path.join(__dirname, '../') + "frontend/build");
-app.use(express.static(path.join(__dirname, '../') + "frontend/build"));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, '../') + "frontend/build/index.html")
-});
-
 /* Server Resource Routes */
 app.use("/api/v1/courses", courseRoutes);
 app.use("/api/v1/courses/course-resource", courseResourceRoutes);
@@ -47,6 +41,13 @@ app.use("/api/v1/courses/course-review", courseReviewRoutes);
 app.use("/api/v1/courses/reddit-comments", redditCommentRoutes);
 app.use("/api/v1/user", userRoutes);
 /* Server Resource Routes End */
+
+/* Frontend Resource Routes */
+app.use(express.static(path.join(__dirname, "../") + "frontend/build"));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
+});
+/* Frontend Resource Routes End */
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
