@@ -42,8 +42,7 @@ function CourseFilesBox(props) {
       ) : null}
       <h3 className="text-2xl font-medium my-4"> Course Resources</h3>
       <div className="h-64 pr-2 overflow-auto">
-        {console.log(props.courseResourcesList)}
-        {courseResources
+        {courseResources.length !== 0
           ? courseResources.map(courseResource => (
               <CourseRYearBox
                 key={courseResource._id}

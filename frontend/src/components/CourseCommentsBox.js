@@ -7,60 +7,22 @@ function CourseCommentsBox(props) {
   const {
     auth: { isLoggedIn }
   } = useContext(AuthContext);
-
-  // api call here to get comment data here
-  // let commentData = [
-  //   {
-  //     user: "Arnav Verma",
-  //     rating: "5",
-  //     userId: "0",
-  //     comment: "Wooooooooooooow loved this course, best one ever!!!!!!"
-  //   },
-  //   {
-  //     user: "Timmy Tom",
-  //     rating: "3",
-  //     userId: "1",
-  //     comment:
-  //       " Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum consequatur magni accusantium repellat quidem dolores fugiat doloremque expedita rerum tempora!"
-  //   },
-  //   {
-  //     user: "Arnav Verma",
-  //     rating: "5",
-  //     userId: "2",
-  //     comment: "Wooooooooooooow loved this course, best one ever!!!!!!"
-  //   },
-  //   {
-  //     user: "Timmy Tom",
-  //     rating: "3",
-  //     userId: "3",
-  //     comment:
-  //       " Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum consequatur magni accusantium repellat quidem dolores fugiat doloremque expedita rerum tempora!"
-  //   },
-  //   {
-  //     user: "Arnav Verma",
-  //     rating: "5",
-  //     userId: "4",
-  //     comment: "Wooooooooooooow loved this course, best one ever!!!!!!"
-  //   }
-  // ];
   const [comments, setComments] = useState(props.commentData);
-  const [averageRating, setAverageRating] = useState(props.averageRating)
+  const [averageRating, setAverageRating] = useState(props.averageRating);
 
   const removeComment = removingCommentId => {
-    fetch(`http://localhost:3001/api/v1/courses/course-review/UofT/${props.courseCode}/${removingCommentId}`, {
-      method: 'DELETE'
-    })
+    fetch(
+      `http://localhost:3001/api/v1/courses/course-review/UofT/${props.courseCode}/${removingCommentId}`,
+      {
+        method: "DELETE"
+      }
+    )
       .then(res => res.json())
       .then(response => {
-        setComments(response.courseReviews)
-        setAverageRating(response.averageRating)
+        setComments(response.courseReviews);
+        setAverageRating(response.averageRating);
       })
       .catch(err => console.log(err));
-    // setComments(
-    //   comments.filter(data => {
-    //     return data.userId !== removingCommentId;
-    //   })
-    // );
   };
 
   const addComment = () => {
@@ -69,19 +31,22 @@ function CourseCommentsBox(props) {
       return;
     }
     const reviewBody = JSON.stringify({ rating: count, comment: commentText });
-    fetch(`http://localhost:3001/api/v1/courses/course-review/UofT/${props.courseCode}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: reviewBody
-    })
+    fetch(
+      `http://localhost:3001/api/v1/courses/course-review/UofT/${props.courseCode}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: reviewBody
+      }
+    )
       .then(res => res.json())
       .then(response => {
-        setComments(response.courseReviews)
-        setAverageRating(response.averageRating)
+        setComments(response.courseReviews);
+        setAverageRating(response.averageRating);
         document.querySelector("#courseCommentAdded").value = "";
-        console.log(response)
+        console.log(response);
       })
       .catch(err => console.log(err));
   };
@@ -96,16 +61,20 @@ function CourseCommentsBox(props) {
       </h4>
       <div className="overflow-auto h-64 pr-2">
         <div>
-          {comments ? comments.map(userComment => (
-            <UserCommentBox
-              key={userComment._id}
-              user={userComment.user}
-              rating={userComment.rating}
-              userId={userComment._id}
-              comment={userComment.comment}
-              removeFunc={removeComment}
-            />
-          )): <h5 className="text-1xl font-medium mt-6 mb-2"> No Comments</h5> }
+          {comments ? (
+            comments.map(userComment => (
+              <UserCommentBox
+                key={userComment._id}
+                user={userComment.user}
+                rating={userComment.rating}
+                userId={userComment._id}
+                comment={userComment.comment}
+                removeFunc={removeComment}
+              />
+            ))
+          ) : (
+            <h5 className="text-1xl font-medium mt-6 mb-2"> No Comments</h5>
+          )}
         </div>
       </div>
       {isLoggedIn ? (

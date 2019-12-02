@@ -60,8 +60,8 @@ function Course() {
         )}
         <div className="flex">
           <CourseInfoBox courseDescription={course.info.description} />
+          {console.log(course.info.recPrep)}
           <AsCoursesBox
-            prerequisites={course.info.prerequisites}
             recommendedPreparation={
               course.info.recPrep || "No recommended preparation"
             }
