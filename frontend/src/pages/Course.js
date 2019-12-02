@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import AuthContext from "../context/AuthContext";
@@ -15,7 +15,20 @@ import useMaxAPI from "../utils/useMaxAPI";
 function Course() {
   const { courseCode } = useParams();
 
-  const course = useMaxAPI(courseCode);
+  // const course = useMaxAPI(courseCode);
+  const [course, setCourse] = useState(null);
+  useEffect(() => {
+    fetch(`http://localhost:3001/api/v1/courses/UofT/${courseCode}`)
+      .then(res => {
+        return res.json();
+      })
+      .then(courseObj => {
+        setCourse(courseObj);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
 
   const {
     auth: { role }
@@ -59,9 +72,18 @@ function Course() {
         </div>
         <div className="flex">
           <RedditBox redditData={course.redditComments} />
-          <CourseFilesBox canSubmitFiles={canUserMakeEdits} courseResourcesList={course.courseResources} courseCode={course.code} />
+          {console.log(course.courseResources)}
+          <CourseFilesBox
+            canSubmitFiles={canUserMakeEdits}
+            courseResourcesList={course.courseResources}
+            courseCode={course.code}
+          />
         </div>
-        <CourseCommentsBox commentData={course.courseReviews} averageRating={course.averageRating} courseCode={course.code} />
+        <CourseCommentsBox
+          commentData={course.courseReviews}
+          averageRating={course.averageRating}
+          courseCode={course.code}
+        />
       </div>
     </div>
   );

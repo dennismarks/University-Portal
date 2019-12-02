@@ -24,7 +24,7 @@ function CourseRYearBox(props) {
         {/* <li>Instructor(s): {props.professors.map( (professor) => {
           return professor + "; "
         } )}</li> */}
-        <li>
+        {/* <li>
           <a
             href={props.courseWebsite}
             target="_blank"
@@ -33,15 +33,15 @@ function CourseRYearBox(props) {
           >
             Course Website
           </a>
-        </li>
+        </li> */}
         <li>
           <a
-            href={props.courseSyllabus}
+            href={props.link}
             target="_blank"
             rel="noopener noreferrer"
             className="mb-2 text-blue-600 hover:text-blue-800"
           >
-            Course Syllabus
+            {props.title} - {props.link}
           </a>
         </li>
       </ul>

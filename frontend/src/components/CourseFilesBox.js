@@ -2,46 +2,7 @@ import React, { useState } from "react";
 import CourseRYearBox from "./CourseRYearBox";
 import AddFilesModal from "./AddFilesModal";
 
-function CourseFilesBox({ canSubmitFiles = false }, props) {
-  // const [courseResourcesList, setCourseResourcesList] = useState();
-
-  // const courseResourcesList = [
-  //   {
-  //     semester: "Fall 2014",
-  //     professors: ["Eyal de Lara", "Arnav Verma"],
-  //     courseWebsite: "http://www.cs.toronto.edu/~delara/courses/csc309/",
-  //     courseSyllabus:
-  //       "http://www.cs.toronto.edu/~delara/courses/csc309/handouts/syllabus.pdf"
-  //   },
-  //   {
-  //     semester: "Fall 2012",
-  //     professors: ["Eyal de Lara", "Arnav Verma"],
-  //     courseWebsite: "http://www.cs.toronto.edu/~delara/courses/csc309/",
-  //     courseSyllabus:
-  //       "http://www.cs.toronto.edu/~delara/courses/csc309/handouts/syllabus.pdf"
-  //   },
-  //   {
-  //     semester: "Fall 2008",
-  //     professors: ["Eyal de Lara", "Arnav Verma"],
-  //     courseWebsite: "http://www.cs.toronto.edu/~delara/courses/csc309/",
-  //     courseSyllabus:
-  //       "http://www.cs.toronto.edu/~delara/courses/csc309/handouts/syllabus.pdf"
-  //   },
-  //   {
-  //     semester: "Fall 2004",
-  //     professors: ["Eyal de Lara", "Arnav Verma"],
-  //     courseWebsite: "http://www.cs.toronto.edu/~delara/courses/csc309/",
-  //     courseSyllabus:
-  //       "http://www.cs.toronto.edu/~delara/courses/csc309/handouts/syllabus.pdf"
-  //   },
-  //   {
-  //     semester: "Fall 2001",
-  //     professors: ["Eyal de Lara", "Arnav Verma"],
-  //     courseWebsite: "http://www.cs.toronto.edu/~delara/courses/csc309/",
-  //     courseSyllabus:
-  //       "http://www.cs.toronto.edu/~delara/courses/csc309/handouts/syllabus.pdf"
-  //   }
-  // ];
+function CourseFilesBox(props) {
 
   const [courseResources, setCourseResources] = useState(
     props.courseResourcesList
@@ -73,20 +34,20 @@ function CourseFilesBox({ canSubmitFiles = false }, props) {
       ) : null}
       <h3 className="text-2xl font-medium my-4"> Course Resources</h3>
       <div className="h-64 pr-2 overflow-auto">
+        {console.log(props.courseResourcesList)}
         {courseResources
           ? courseResources.map(courseResource => (
               <CourseRYearBox
                 key={courseResource._id}
                 semester={courseResource.semester}
-                professors={courseResource.professors}
-                courseWebsite={courseResource.link}
-                courseSyllabus={courseResource.courseSyllabus}
+                link={courseResource.link}
+                title={courseResource.title}
                 removeSectionFunc={removeCourseResources}
               />
             ))
           : "No course resources yet. Add a resource below to put some here!"}
       </div>
-      {canSubmitFiles && (
+      {props.canSubmitFiles && (
         <div className="flex justify-center">
           <button
             onClick={cancelAddDisplay}
