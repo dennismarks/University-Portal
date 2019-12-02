@@ -45,38 +45,44 @@ function destroy(req, res) {
     res.status(404).send("Invalid Id");
     return;
   }
-  Course.findOne({ school: school, code: course }).then(course => {
-    if (!course) {
-      res.status(404).send("Course does not exist");
-      return;
-    }
-    if (!course.courseReviews.id({ _id: id })) {
-      res.status(404).send("Id not in course reviews");
-      return;
-    }
-    course.courseReviews.pull(id);
-    if (course.courseReviews){
-      const averageRating = // recalculate average rating
-        course.courseReviews.reduce(
-          (accumulator, reviewObj) => accumulator + reviewObj.rating,
-          0
-        ) / course.courseReviews.length;
-      course.averageRating =
-        String(averageRating).length === 1
-          ? averageRating
-          : averageRating.toFixed(2);
-    } else {
-      course.averageRating = null;
-    }
-    course.save().then(
-      result => {
-        res.send(result);
-      },
-      err => {
-        res.status(500).send(err); // server error -- could not save
+  Course.findOne({ school: school, code: course })
+    .then(course => {
+      if (!course) {
+        res.status(404).send("Course does not exist");
+        return;
       }
-    );
-  });
+      if (!course.courseReviews.id({ _id: id })) {
+        res.status(404).send("Id not in course reviews");
+        return;
+      }
+      course.courseReviews.pull(id);
+      if (course.courseReviews.length !== 0) {
+        const averageRating = // recalculate average rating
+          course.courseReviews.reduce(
+            (accumulator, reviewObj) => accumulator + reviewObj.rating,
+            0
+          ) / course.courseReviews.length;
+        course.averageRating =
+          String(averageRating).length === 1
+            ? averageRating
+            : averageRating.toFixed(2);
+      } else {
+        course.averageRating = null;
+      }
+
+      return course;
+    })
+    .then(course => {
+      course.save().then(
+        result => {
+          res.send(result);
+        },
+        err => {
+          // console.log(err)
+          res.status(500).send(err); // server error -- could not save
+        }
+      );
+    });
 }
 
 module.exports = {
