@@ -4,11 +4,14 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const CourseReviewSchema = new Schema({
   user: {
-    type: ObjectId
+    type: String
     // required: true
   },
+  userId: {
+    type: ObjectId
+  },
   rating: {
-    type: Number,
+    // type: Number,
     required: true,
     min: 0,
     max: 5

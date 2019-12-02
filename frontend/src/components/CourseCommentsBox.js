@@ -9,48 +9,58 @@ function CourseCommentsBox(props) {
   } = useContext(AuthContext);
 
   // api call here to get comment data here
-  let commentData = [
-    {
-      user: "Arnav Verma",
-      rating: "5",
-      userId: "0",
-      comment: "Wooooooooooooow loved this course, best one ever!!!!!!"
-    },
-    {
-      user: "Timmy Tom",
-      rating: "3",
-      userId: "1",
-      comment:
-        " Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum consequatur magni accusantium repellat quidem dolores fugiat doloremque expedita rerum tempora!"
-    },
-    {
-      user: "Arnav Verma",
-      rating: "5",
-      userId: "2",
-      comment: "Wooooooooooooow loved this course, best one ever!!!!!!"
-    },
-    {
-      user: "Timmy Tom",
-      rating: "3",
-      userId: "3",
-      comment:
-        " Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum consequatur magni accusantium repellat quidem dolores fugiat doloremque expedita rerum tempora!"
-    },
-    {
-      user: "Arnav Verma",
-      rating: "5",
-      userId: "4",
-      comment: "Wooooooooooooow loved this course, best one ever!!!!!!"
-    }
-  ];
-  const [comments, setComments] = useState(commentData);
+  // let commentData = [
+  //   {
+  //     user: "Arnav Verma",
+  //     rating: "5",
+  //     userId: "0",
+  //     comment: "Wooooooooooooow loved this course, best one ever!!!!!!"
+  //   },
+  //   {
+  //     user: "Timmy Tom",
+  //     rating: "3",
+  //     userId: "1",
+  //     comment:
+  //       " Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum consequatur magni accusantium repellat quidem dolores fugiat doloremque expedita rerum tempora!"
+  //   },
+  //   {
+  //     user: "Arnav Verma",
+  //     rating: "5",
+  //     userId: "2",
+  //     comment: "Wooooooooooooow loved this course, best one ever!!!!!!"
+  //   },
+  //   {
+  //     user: "Timmy Tom",
+  //     rating: "3",
+  //     userId: "3",
+  //     comment:
+  //       " Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum consequatur magni accusantium repellat quidem dolores fugiat doloremque expedita rerum tempora!"
+  //   },
+  //   {
+  //     user: "Arnav Verma",
+  //     rating: "5",
+  //     userId: "4",
+  //     comment: "Wooooooooooooow loved this course, best one ever!!!!!!"
+  //   }
+  // ];
+  const [comments, setComments] = useState(props.commentData);
+  const [averageRating, setAverageRating] = useState(props.averageRating)
 
   const removeComment = removingCommentId => {
-    setComments(
-      comments.filter(data => {
-        return data.userId !== removingCommentId;
+    fetch(`http://localhost:3001/api/v1/courses/course-review/UofT/${props.courseCode}/${removingCommentId}`, {
+      method: 'DELETE'
+    })
+      .then(res => res.json())
+      .then(response => {
+        setComments(response.courseReviews)
+        setAverageRating(response.averageRating)
       })
-    );
+      .catch(err => console.log(err));
+    // setComments(
+    //   comments.filter(data => {
+    //     return data.userId !== removingCommentId;
+    //   })
+    // );
   };
 
   const addComment = () => {
@@ -58,40 +68,51 @@ function CourseCommentsBox(props) {
     if (commentText.length < 1) {
       return;
     }
-    setComments([
-      {
-        userId: userId,
-        user: "Arna Verm",
-        rating: count,
-        comment: commentText
+    const reviewBody = JSON.stringify({ rating: count, comment: commentText });
+    fetch(`http://localhost:3001/api/v1/courses/course-review/UofT/${props.courseCode}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
       },
-      ...comments
-    ]);
+      body: reviewBody
+    })
+      .then(res => res.json())
+      .then(response => {
+        setComments(response.courseReviews)
+        setAverageRating(response.averageRating)
+        document.querySelector("#courseCommentAdded").value = "";
+        console.log(response)
+      })
+      .catch(err => console.log(err));
   };
 
   return (
     <div className="w-auto ml-10 mr-10 px-10 pb-10 my-5 bg-white shadow-md ">
       <h3 className="text-2xl font-medium mt-6 mb-2"> User Comments </h3>
-      <h4 className="mb-4 text-1xl font-medium">Average Rating: 4.5 / 5 </h4>
+      <h4 className="mb-4 text-1xl font-medium">
+        {averageRating
+          ? `Average Rating: ${averageRating} / 5`
+          : "No feedback yet. Add a comment and rating below to give some!"}{" "}
+      </h4>
       <div className="overflow-auto h-64 pr-2">
         <div>
           {comments.map(userComment => (
             <UserCommentBox
-              key={userComment.userId}
+              key={userComment._id}
               user={userComment.user}
               rating={userComment.rating}
-              userId={userComment.userId}
+              userId={userComment._id}
               comment={userComment.comment}
               removeFunc={removeComment}
             />
           ))}
         </div>
       </div>
-      { isLoggedIn ? (
+      {isLoggedIn ? (
         <div className="flex justify-center">
           <div
             onClick={() => {
-              count <= 0 ? setCount(count) : setCount(count - 1);
+              count <= 1 ? setCount(count) : setCount(count - 1);
             }}
             className="h-12 w-12 font-medium text-4xl rounded cursor-pointer active:bg-gray-200  bg-white shadow-md hover:bg-gray-100 pb-4 pt-0 px-5 mt-6"
           >

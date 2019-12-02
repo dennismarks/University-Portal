@@ -61,7 +61,7 @@ function Course() {
           <RedditBox redditData={course.redditComments} />
           <CourseFilesBox canSubmitFiles={canUserMakeEdits} />
         </div>
-        <CourseCommentsBox />
+        <CourseCommentsBox commentData={course.courseReviews} averageRating={course.averageRating} courseCode={course.code} />
       </div>
     </div>
   );
