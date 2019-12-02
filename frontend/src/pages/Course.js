@@ -59,7 +59,7 @@ function Course() {
         </div>
         <div className="flex">
           <RedditBox redditData={course.redditComments} />
-          <CourseFilesBox canSubmitFiles={canUserMakeEdits} />
+          <CourseFilesBox canSubmitFiles={canUserMakeEdits} courseResourcesList={course.courseResources} courseCode={course.code} />
         </div>
         <CourseCommentsBox commentData={course.courseReviews} averageRating={course.averageRating} courseCode={course.code} />
       </div>

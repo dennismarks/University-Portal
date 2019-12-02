@@ -21,9 +21,9 @@ function CourseRYearBox(props) {
         : null }
       </h4>
       <ul className="list-inside ml-4">
-        <li>Instructor(s): {props.professors.map( (professor) => {
+        {/* <li>Instructor(s): {props.professors.map( (professor) => {
           return professor + "; "
-        } )}</li>
+        } )}</li> */}
         <li>
           <a
             href={props.courseWebsite}

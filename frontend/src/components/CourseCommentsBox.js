@@ -5,7 +5,7 @@ import AuthContext from "../context/AuthContext";
 function CourseCommentsBox(props) {
   const [count, setCount] = useState(5);
   const {
-    auth: { isLoggedIn, userId }
+    auth: { isLoggedIn }
   } = useContext(AuthContext);
 
   // api call here to get comment data here
