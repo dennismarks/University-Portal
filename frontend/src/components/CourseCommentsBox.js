@@ -96,7 +96,7 @@ function CourseCommentsBox(props) {
       </h4>
       <div className="overflow-auto h-64 pr-2">
         <div>
-          {comments.map(userComment => (
+          {comments ? comments.map(userComment => (
             <UserCommentBox
               key={userComment._id}
               user={userComment.user}
@@ -105,7 +105,7 @@ function CourseCommentsBox(props) {
               comment={userComment.comment}
               removeFunc={removeComment}
             />
-          ))}
+          )): <h5 className="text-1xl font-medium mt-6 mb-2"> No Comments</h5> }
         </div>
       </div>
       {isLoggedIn ? (

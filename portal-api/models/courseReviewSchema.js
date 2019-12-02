@@ -11,7 +11,7 @@ const CourseReviewSchema = new Schema({
     type: ObjectId
   },
   rating: {
-    // type: Number,
+    type: Number,
     required: true,
     min: 0,
     max: 5

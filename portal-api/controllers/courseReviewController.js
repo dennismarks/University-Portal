@@ -55,6 +55,19 @@ function destroy(req, res) {
       return;
     }
     course.courseReviews.pull(id);
+    if (course.courseReviews){
+      const averageRating = // recalculate average rating
+        course.courseReviews.reduce(
+          (accumulator, reviewObj) => accumulator + reviewObj.rating,
+          0
+        ) / course.courseReviews.length;
+      course.averageRating =
+        String(averageRating).length === 1
+          ? averageRating
+          : averageRating.toFixed(2);
+    } else {
+      course.averageRating = null;
+    }
     course.save().then(
       result => {
         res.send(result);
