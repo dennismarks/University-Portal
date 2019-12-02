@@ -71,8 +71,7 @@ function Course() {
           />
         </div>
         <div className="flex">
-          <RedditBox redditData={course.redditComments} />
-          {console.log(course.courseResources)}
+          <RedditBox redditData={course.redditComments} courseCode={course.code} />
           <CourseFilesBox
             canSubmitFiles={canUserMakeEdits}
             courseResourcesList={course.courseResources}

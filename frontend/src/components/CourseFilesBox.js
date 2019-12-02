@@ -8,12 +8,20 @@ function CourseFilesBox(props) {
     props.courseResourcesList
   );
 
-  const removeCourseResources = semester => {
-    setCourseResources(
-      courseResources.filter(data => {
-        return data.semester !== semester;
+  const removeCourseResources = removingCourseResId => {
+    fetch(`http://localhost:3001/api/v1/courses/course-resource/UofT/${props.courseCode}/${removingCourseResId}`, {
+      method: 'DELETE'
+    })
+      .then(res => res.json())
+      .then(response => {
+        setCourseResources(response.courseResources);
       })
-    );
+      .catch(err => console.log(err));
+    // setCourseResources(
+    //   courseResources.filter(data => {
+    //     return data.semester !== semester;
+    //   })
+    // );
   };
 
   const [courseDisplay, setCourseDisplay] = useState(false);
@@ -39,6 +47,7 @@ function CourseFilesBox(props) {
           ? courseResources.map(courseResource => (
               <CourseRYearBox
                 key={courseResource._id}
+                resId={courseResource._id}
                 semester={courseResource.semester}
                 link={courseResource.link}
                 title={courseResource.title}

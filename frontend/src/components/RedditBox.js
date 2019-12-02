@@ -5,13 +5,26 @@ import RedditPostBox from "./RedditPostBox";
 function RedditBox(props) {
   const [threads, setThreads] = useState(props.redditData);
 
-  const removeThread = removingThreadId => {
-    setThreads(
-      threads.filter(filterThread => {
-        return filterThread._id !== removingThreadId;
-      })
-    );
+  const updateThreadsFunc = () => {
+    fetch(
+      `http://localhost:3001/api/v1/courses/reddit-comments/UofT/${props.courseCode}/`,
+      {
+        method: "PATCH"
+      }
+    )
+      .then(res => res.json())
+      .then(result => {
+        setThreads(result.redditComments);
+      });
   };
+
+  // const removeThread = removingThreadId => {
+  //   setThreads(
+  //     threads.filter(filterThread => {
+  //       return filterThread._id !== removingThreadId;
+  //     })
+  //   );
+  // };
 
   return (
     <div className="w-6/12 mt-5 ml-10 mr-5 px-10 pb-5 bg-white shadow-md">
@@ -25,7 +38,7 @@ function RedditBox(props) {
               threadTitle={threadInfo.title}
               threadText={threadInfo.content}
               threadLink={threadInfo.link}
-              removeFunc={removeThread}
+              // removeFunc={removeThread}
             />
           ))}
         </div>
@@ -39,6 +52,14 @@ function RedditBox(props) {
         >
           Reddit Search
         </a>
+        <button
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 ml-6 mt-6"
+          onClick={updateThreadsFunc}
+        >
+          Refresh Threads
+        </button>
       </div>
     </div>
   );
