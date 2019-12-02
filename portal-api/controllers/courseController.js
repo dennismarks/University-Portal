@@ -70,30 +70,45 @@ function listSearch(req, res) {
   const searchQuery = req.query.q;
   const searchStart = parseInt(req.query.start);
   const PAGE_ENTRIES = 10; // number of courses to display per page
+  let coursesPromise = null;
   if (!searchQuery) {
     res.status(400).send("Invalid search");
     return;
+  } else if (/^Department:/.test(searchQuery)) {
+    const regEx = searchQuery.replace(/^Department:/, "");
+    coursesPromise = Course.find({ "info.department": regEx });
+  } else if (/^Breadth:/.test(searchQuery)) {
+    const regEx = searchQuery.replace(/^Breadth:/, "");
+    coursesPromise = Course.find({ "info.breadthReqs": regEx });
+  } else if (/^Rating:/.test(searchQuery)) {
+    const regEx = searchQuery.replace(/^Rating:/, "");
+    const rating = parseFloat(regEx);
+    coursesPromise = Course.find({ averageRating: { $lte: rating} });
+  } else {
+    const regEx = new RegExp(searchQuery, "i");
+    coursesPromise = Course.find({ fullCourseTitle: regEx });
   }
-  const regEx = new RegExp(searchQuery, "i");
-  Course.find({ fullCourseTitle: regEx })
-    .skip(searchStart)
-    .limit(PAGE_ENTRIES)
-    .then(courses => {
-      if (!courses) {
-        res.status(404).send("No courses found");
-        return;
-      }
-      res.send({ courses });
-    })
-    .catch(error => {
-      res.status(404).send(error); // search offset to high
-    });
+  if (coursesPromise) {
+    coursesPromise
+      .skip(searchStart)
+      .limit(PAGE_ENTRIES)
+      .then(courses => {
+        if (!courses) {
+          res.status(404).send("No courses found");
+          return;
+        }
+        res.send({ courses });
+      })
+      .catch(error => {
+        res.status(404).send(error); // search offset to high
+      });
+  }
 }
 
 function listTop(req, res) {
   Course.find()
     .limit(3)
-    .sort({"averageRating": -1})
+    .sort({ averageRating: -1 })
     .then(courses => {
       if (!courses) {
         res.status(404).send("No courses found");

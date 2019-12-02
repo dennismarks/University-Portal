@@ -10,7 +10,7 @@ import CourseCommentsBox from "../components/CourseCommentsBox";
 import { ROLES } from "../constants/auth";
 import useMaxAPI from "../utils/useMaxAPI";
 // raw reddit api call acting as a json file
-const redditCommentData = require("../utils/reddit.json").data;
+// const redditCommentData = require("../utils/reddit.json").data;
 
 function Course() {
   const { courseCode } = useParams();

@@ -81,12 +81,12 @@ function Home() {
             By Department
           </h2>
           <div className="flex flex-row overflow-x-auto">
-            <CourseSearchChip>Computer Science</CourseSearchChip>
-            <CourseSearchChip>Statistics</CourseSearchChip>
-            <CourseSearchChip>Humanities</CourseSearchChip>
-            <CourseSearchChip>Health Sciences</CourseSearchChip>
-            <CourseSearchChip>Medical Sciences</CourseSearchChip>
-            <CourseSearchChip>Civil Engineering</CourseSearchChip>
+            <CourseSearchChip value={`Department:Computer Science`}>Computer Science</CourseSearchChip>
+            <CourseSearchChip value={`Department:Statistics`}>Statistics</CourseSearchChip>
+            <CourseSearchChip value={`Department:Humanities`}>Humanities</CourseSearchChip>
+            <CourseSearchChip value={`Department:Health Sciences`}>Health Sciences</CourseSearchChip>
+            <CourseSearchChip value={`Department:Medical Sciences`}>Medical Sciences</CourseSearchChip>
+            <CourseSearchChip value={`Department:Civil Engineering`}>Civil Engineering</CourseSearchChip>
           </div>
         </div>
         <div className="container mx-auto px-4 mb-8">
@@ -98,7 +98,7 @@ function Home() {
               className="flex-auto"
               color="teal"
               variant="light"
-              value="Creative and Cultural Representations"
+              value={`Breadth:Creative and Cultural Representations (1)`}
             >
               1 - Creative and Cultural Representations
             </CourseSearchChip>
@@ -106,7 +106,7 @@ function Home() {
               className="flex-auto"
               color="indigo"
               variant="light"
-              value="Thought, Belief, and Behaviour"
+              value={`Breadth:Thought, Belief and Behaviour (2)`}
             >
               2 - Thought, Belief, and Behaviour
             </CourseSearchChip>
@@ -114,7 +114,7 @@ function Home() {
               className="flex-auto"
               color="pink"
               variant="light"
-              value="Society and Its Institutions"
+              value={`Breadth:Society and its Institutions (3)`}
             >
               3 - Society and Its Institutions
             </CourseSearchChip>
@@ -122,7 +122,7 @@ function Home() {
               className="flex-auto"
               color="yellow"
               variant="light"
-              value="Living Things and Their Environment"
+              value={`Breadth:Living Things and Their Environment (4)`}
             >
               4 - Living Things and Their Environment
             </CourseSearchChip>
@@ -130,7 +130,7 @@ function Home() {
               className="flex-auto"
               color="orange"
               variant="light"
-              value="The Physical and Mathematical Universes"
+              value={`Breadth:The Physical and Mathematical Universes (5)`}
             >
               5 - The Physical and Mathematical Universes
             </CourseSearchChip>
