@@ -12,9 +12,7 @@ function Search() {
 
   // add pages to flip through ...
   useEffect(() => {
-    fetch(
-      `http://localhost:3001/api/v1/courses/search?q=${searchQuery}&start=0`
-    )
+    fetch(`/api/v1/courses/search?q=${searchQuery}&start=0`)
       .then(res => res.json())
       .then(response => {
         setSearchCourses(response.courses);

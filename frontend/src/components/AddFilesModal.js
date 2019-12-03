@@ -8,16 +8,13 @@ function AddFilesModal(props) {
     const title = document.querySelector("#titleInput").value;
     const reviewBody = JSON.stringify({ status, semester, title, link });
     const courseCode = window.location.href.split("/").pop();
-    fetch(
-      `http://localhost:3001/api/v1/courses/course-resource/UofT/${courseCode}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: reviewBody
-      }
-    )
+    fetch(`/api/v1/courses/course-resource/UofT/${courseCode}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: reviewBody
+    })
       .then(res => res.json())
       .then(response => {
         props.setCourseResources(response.courseResources);

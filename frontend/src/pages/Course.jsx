@@ -20,7 +20,7 @@ function Course() {
   // const course = useMaxAPI(courseCode);
   const [course, setCourse] = useState(null);
   useEffect(() => {
-    fetch(`http://localhost:3001/api/v1/courses/UofT/${courseCode}`)
+    fetch(`/api/v1/courses/UofT/${courseCode}`)
       .then(res => {
         return res.json();
       })

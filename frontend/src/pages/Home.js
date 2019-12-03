@@ -8,7 +8,7 @@ function Home() {
   const [topCourses, setTopCourses] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/api/v1/courses/top`)
+    fetch(`/api/v1/courses/top`)
       .then(res => res.json())
       .then(response => {
         setTopCourses(response.courses);

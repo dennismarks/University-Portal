@@ -9,7 +9,7 @@ function CourseFilesBox(props) {
 
   const removeCourseResources = removingCourseResId => {
     fetch(
-      `http://localhost:3001/api/v1/courses/course-resource/UofT/${props.courseCode}/${removingCourseResId}`,
+      `/api/v1/courses/course-resource/UofT/${props.courseCode}/${removingCourseResId}`,
       {
         method: "DELETE"
       }

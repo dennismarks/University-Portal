@@ -12,7 +12,7 @@ function CourseCommentsBox(props) {
 
   const removeComment = removingCommentId => {
     fetch(
-      `http://localhost:3001/api/v1/courses/course-review/UofT/${props.courseCode}/${removingCommentId}`,
+      `/api/v1/courses/course-review/UofT/${props.courseCode}/${removingCommentId}`,
       {
         method: "DELETE"
       }
@@ -31,16 +31,13 @@ function CourseCommentsBox(props) {
       return;
     }
     const reviewBody = JSON.stringify({ rating: count, comment: commentText });
-    fetch(
-      `http://localhost:3001/api/v1/courses/course-review/UofT/${props.courseCode}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: reviewBody
-      }
-    )
+    fetch(`/api/v1/courses/course-review/UofT/${props.courseCode}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: reviewBody
+    })
       .then(res => res.json())
       .then(response => {
         setComments(response.courseReviews);

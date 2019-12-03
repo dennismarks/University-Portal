@@ -15,7 +15,7 @@ async function processLineByLine() {
     // Each line in input.txt will be successively available here as `line`.
 
     axios
-      .post("http://localhost:3001/api/v1/courses/", {
+      .post("/api/v1/courses/", {
         code: line,
         school: "UofT"
       })

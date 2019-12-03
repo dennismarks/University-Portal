@@ -116,25 +116,24 @@ function CourseSearchBar({ initialValue = "", shouldAutoFocus = false }) {
   const ref = useRef();
   const [hasFocus, setHasFocus] = useState(shouldAutoFocus);
   const [query, setQuery] = useState(initialValue);
-  const debouncedQuery = useDebounce(query, 300);
+  const debouncedQuery = useDebounce(query, 400);
   const [results, setResults] = useState([]);
 
   useOnClickOutside(ref, () => setHasFocus(false));
 
   useEffect(() => {
     if (debouncedQuery) {
-      // Replace with real network request
-      setTimeout(() => {
-        const staticResults = [
-          { url: "/course/csc309", title: "CSC309 - Programming on the Web" },
-          {
-            url: "/course/csc301",
-            title: "CSC301 - Introduction to Software Engineering"
-          },
-          { url: "/course/csc300", title: "CSC300 - Computers and Society" }
-        ];
-        setResults(staticResults);
-      }, 750);
+      fetch(`/api/v1/courses/search?q=${debouncedQuery}&start=0`)
+        .then(res => res.json())
+        .then(response => {
+          setResults(
+            response.courses.map(c => ({
+              url: `/course/${c.code}`,
+              title: c.fullCourseTitle
+            }))
+          );
+        })
+        .catch(err => console.log(err));
     } else {
       setResults([]);
     }
