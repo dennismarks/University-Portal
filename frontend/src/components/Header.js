@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import React, { useContext, useState, useRef } from "react";
 
 import useOnClickOutside from "../utils/useOnClickOutside";
@@ -26,6 +26,8 @@ function Header() {
     ["Logout", "/logout"]
   ].filter(Boolean);
 
+  let location = useLocation();
+
   return (
     <nav className="flex items-center justify-between flex-wrap bg-blue-500 p-4">
       <Link
@@ -35,7 +37,9 @@ function Header() {
         Portal
       </Link>
       <div className="w-full lg:w-1/2">
-        <CourseSearchBar shouldAutoFocus={true} />
+        {location.pathname !== "/" && (
+          <CourseSearchBar shouldAutoFocus={true} />
+        )}
       </div>
       {isLoggedIn ? (
         <div className="relative">

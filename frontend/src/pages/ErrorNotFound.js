@@ -1,7 +1,5 @@
 import React from "react";
 
-import CourseSearchBar from "../components/CourseSearchBar";
-
 function ErrorNotFound() {
   return (
     <div>
