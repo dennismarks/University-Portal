@@ -33,10 +33,11 @@ function Course() {
   }, []);
 
   const {
-    auth: { role }
+    auth: { user }
   } = useContext(AuthContext);
 
-  const canUserMakeEdits = role === ROLES.STUDENT || role === ROLES.ADMIN;
+  const canUserMakeEdits =
+    user && (user.role === ROLES.STUDENT || user.role === ROLES.ADMIN);
 
   if (!course) {
     return <strong>LOADING</strong>;

@@ -1,6 +1,6 @@
 import React from "react";
 
-import CourseMiniCard from "../src/components/CourseMiniCard";
+import CourseMiniCard from ".";
 
 export default {
   title: "CourseMiniCard"
