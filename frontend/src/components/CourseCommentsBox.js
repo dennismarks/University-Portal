@@ -7,42 +7,6 @@ function CourseCommentsBox(props) {
   const {
     auth: { isLoggedIn }
   } = useContext(AuthContext);
-
-  // api call here to get comment data here
-  // let commentData = [
-  //   {
-  //     user: "Arnav Verma",
-  //     rating: "5",
-  //     userId: "0",
-  //     comment: "Wooooooooooooow loved this course, best one ever!!!!!!"
-  //   },
-  //   {
-  //     user: "Timmy Tom",
-  //     rating: "3",
-  //     userId: "1",
-  //     comment:
-  //       " Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum consequatur magni accusantium repellat quidem dolores fugiat doloremque expedita rerum tempora!"
-  //   },
-  //   {
-  //     user: "Arnav Verma",
-  //     rating: "5",
-  //     userId: "2",
-  //     comment: "Wooooooooooooow loved this course, best one ever!!!!!!"
-  //   },
-  //   {
-  //     user: "Timmy Tom",
-  //     rating: "3",
-  //     userId: "3",
-  //     comment:
-  //       " Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum consequatur magni accusantium repellat quidem dolores fugiat doloremque expedita rerum tempora!"
-  //   },
-  //   {
-  //     user: "Arnav Verma",
-  //     rating: "5",
-  //     userId: "4",
-  //     comment: "Wooooooooooooow loved this course, best one ever!!!!!!"
-  //   }
-  // ];
   const [comments, setComments] = useState(props.commentData);
   const [averageRating, setAverageRating] = useState(props.averageRating);
 
@@ -59,11 +23,6 @@ function CourseCommentsBox(props) {
         setAverageRating(response.averageRating);
       })
       .catch(err => console.log(err));
-    // setComments(
-    //   comments.filter(data => {
-    //     return data.userId !== removingCommentId;
-    //   })
-    // );
   };
 
   const addComment = () => {

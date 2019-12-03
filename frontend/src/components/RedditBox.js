@@ -31,7 +31,7 @@ function RedditBox(props) {
       <h2> Reddit Threads</h2>
       <div className="flex mb-4">
         <a
-          href={"https://reddit.com/r/UofT/search?q=csc309"}
+          href={`https://reddit.com/r/UofT/search?q=${props.courseCode.slice(0,6)}`}
           target="_blank"
           rel="noopener noreferrer"
           className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 ml-3 mt-2"

@@ -1,18 +1,15 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useCallback } from "react";
 import PropTypes from "prop-types";
+import { fetchUser } from "../services/user";
 
 export const Context = createContext({});
 
 export const Provider = props => {
   // Initial values are obtained from the props
-  const {
-    users: initialUsers,
-    selectedUser: initialSelectedUsers,
-    children
-  } = props;
+  const { selectedUser: initialSelectedUsers, children } = props;
 
   // Use State to keep the values
-  let [users, setUsers] = useState(initialUsers);
+  const [users, setUsers] = useState({});
   const [selectedUser, setSelectedUser] = useState(initialSelectedUsers);
 
   const removeStudent = id => {
@@ -23,8 +20,19 @@ export const Provider = props => {
     );
   };
 
+  function fetchUserById(id) {
+    fetchUser(id)
+      .then(user => {
+        setUsers({ ...users, [user._id]: user });
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
   // Make the context object:
   const usersContext = {
+    fetchUserById,
     users,
     setUsers,
     selectedUser,

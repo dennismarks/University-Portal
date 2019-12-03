@@ -45,7 +45,7 @@ function CourseFilesBox(props) {
       <h2>Course Resources</h2>
       <div className="pr-2 overflow-auto courseResourcesFiles">
         {console.log(props.courseResourcesList)}
-        {courseResources
+        {courseResources.length !== 0
           ? courseResources.map(courseResource => (
               <CourseRYearBox
                 key={courseResource._id}
