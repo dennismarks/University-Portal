@@ -27,7 +27,8 @@ function Header() {
   ].filter(Boolean);
 
   let location = useLocation();
-
+  let condition =
+    location.pathname !== "/" && !location.pathname.includes("/search");
   return (
     <nav className="flex items-center justify-between flex-wrap bg-blue-500 p-4">
       <Link
@@ -37,9 +38,7 @@ function Header() {
         Portal
       </Link>
       <div className="w-full lg:w-1/2">
-        {location.pathname !== "/" && (
-          <CourseSearchBar shouldAutoFocus={true} />
-        )}
+        {condition && <CourseSearchBar shouldAutoFocus={true} />}
       </div>
       {isLoggedIn ? (
         <div className="relative">
