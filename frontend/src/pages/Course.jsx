@@ -8,6 +8,7 @@ import RedditBox from "../components/RedditBox";
 import CourseFilesBox from "../components/CourseFilesBox";
 import CourseCommentsBox from "../components/CourseCommentsBox";
 import { ROLES } from "../constants/auth";
+import PageLoadingIndicator from "../components/PageLoadingIndicator";
 
 import "../stylesheets/course.css";
 // raw reddit api call acting as a json file
@@ -33,48 +34,48 @@ function Course() {
 
   const addCurrentCourse = () => {
     fetch(`/api/v1/user/add-current/course/${course._id}`, {
-      method: 'POST'
+      method: "POST"
     })
-    .then(res => {
-      return res.json();
-    })
-    .then(currentCourses => {
-      console.log(currentCourses);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  }
+      .then(res => {
+        return res.json();
+      })
+      .then(currentCourses => {
+        console.log(currentCourses);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
 
   const addTakenCourse = () => {
-    fetch(`/api/v1/user/add-taken/course/${course._id}`,{
-      method: 'POST'
+    fetch(`/api/v1/user/add-taken/course/${course._id}`, {
+      method: "POST"
     })
-    .then(res => {
-      return res.json();
-    })
-    .then(takenCourses => {
-      console.log(takenCourses);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  }
+      .then(res => {
+        return res.json();
+      })
+      .then(takenCourses => {
+        console.log(takenCourses);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
 
   const addPlannedCourse = () => {
     fetch(`/api/v1/user/add-planned/course/${course._id}`, {
-      method: 'POST'
+      method: "POST"
     })
-    .then(res => {
-      return res.json();
-    })
-    .then(plannedCourses => {
-      console.log(plannedCourses);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  }
+      .then(res => {
+        return res.json();
+      })
+      .then(plannedCourses => {
+        console.log(plannedCourses);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
 
   const {
     auth: { user }
@@ -84,8 +85,9 @@ function Course() {
     user && (user.role === ROLES.STUDENT || user.role === ROLES.ADMIN);
 
   if (!course) {
-    return <strong>LOADING</strong>;
+    return <PageLoadingIndicator />;
   }
+
   return (
     <div id="course" className="courseMain">
       <div className="name">
@@ -94,13 +96,22 @@ function Course() {
       </div>
       {canUserMakeEdits && (
         <div className="add">
-          <button onClick={addCurrentCourse} className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-2">
+          <button
+            onClick={addCurrentCourse}
+            className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-2"
+          >
             Add To Current Courses
           </button>
-          <button onClick={addTakenCourse} className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-2">
+          <button
+            onClick={addTakenCourse}
+            className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-2"
+          >
             Add To Taken Courses
           </button>
-          <button onClick={addPlannedCourse} className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-2">
+          <button
+            onClick={addPlannedCourse}
+            className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-2"
+          >
             Add To Planned Courses
           </button>
         </div>
