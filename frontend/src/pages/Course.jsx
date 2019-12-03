@@ -32,7 +32,7 @@ function Course() {
   }, []);
 
   const addCurrentCourse = () => {
-    fetch(`/api/v1/courses/UofT/user/add-current/course/${course._id}`, {
+    fetch(`/api/v1/user/add-current/course/${course._id}`, {
       method: 'POST'
     })
     .then(res => {
@@ -47,7 +47,9 @@ function Course() {
   }
 
   const addTakenCourse = () => {
-    fetch(`/api/v1/courses/UofT/user/add-taken/course/${course._id}`)
+    fetch(`/api/v1/user/add-taken/course/${course._id}`,{
+      method: 'POST'
+    })
     .then(res => {
       return res.json();
     })
@@ -60,7 +62,9 @@ function Course() {
   }
 
   const addPlannedCourse = () => {
-    fetch(`/api/v1/courses/UofT/user/add-planned/course/${course._id}`)
+    fetch(`/api/v1/user/add-planned/course/${course._id}`, {
+      method: 'POST'
+    })
     .then(res => {
       return res.json();
     })
