@@ -1,1 +1,1 @@
-web: cd portal-api && node index.js
+web: cd portal-api && npm run make && npm start
