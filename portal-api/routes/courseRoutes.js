@@ -12,11 +12,10 @@ router.get("/", courseController.list);
  */
 router.get("/:school/:code", courseController.show);
 
-
 /*
  *
  */
-router.get("/top", courseController.listTop)
+router.get("/top", courseController.listTop);
 
 /*
  * POST
@@ -26,7 +25,7 @@ router.post("/", courseController.create);
 /*
  * GET
  */
-router.get("/search",  courseController.listSearch)
+router.get("/search", courseController.listSearch);
 
 /*
  * DELETE

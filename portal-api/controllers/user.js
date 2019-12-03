@@ -119,6 +119,96 @@ function me(req, res) {
   }
 }
 
+function addCurrent(req, res) {
+  const { user } = req.session;
+  const courseId = req.params.id;
+  if (!user) {
+    res.status(401).send("Not logged in");
+    return;
+  }
+  User.findById(user._id).then(currUser => {
+    if (!currUser) {
+      res.status(401).send("User not found in database anymore");
+      return;
+    }
+    if(currUser.currentCourses.find( courseIdObj => courseIdObj == courseId )){
+      res.status(409).send("Course already added").redirect("/login");
+      return;
+    }
+
+    currUser.currentCourses.push(courseId);
+    currUser.save().then(
+      result => {
+        res.send(result);
+        // console.log(result)
+      },
+      err => {
+        res.status(400).send(err); // 400 for bad request
+      }
+    );
+  });
+}
+
+function addTaken(req, res) {
+  const { user } = req.session;
+  const courseId = req.params.id;
+  if (!user) {
+    res.status(401).send("Not logged in");
+    return;
+  }
+  User.findById(user._id).then(currUser => {
+    if (!currUser) {
+      res.status(401).send("User not found in database anymore");
+      return;
+    }
+    if(currUser.takenCourses.find( courseIdObj => courseIdObj == courseId )){
+      res.status(409).send("Course already added").redirect("/login");
+      return;
+    }
+
+    currUser.takenCourses.push(courseId);
+    currUser.save().then(
+      result => {
+        res.send(result);
+        // console.log(result)
+      },
+      err => {
+        res.status(400).send(err); // 400 for bad request
+      }
+    );
+  });
+}
+
+function addPlanned(req, res) {
+  const { user } = req.session;
+  const courseId = req.params.id;
+  if (!user) {
+    res.status(401).send("Not logged in");
+    return;
+  }
+  User.findById(user._id).then(currUser => {
+    if (!currUser) {
+      res.status(401).send("User not found in database anymore");
+      return;
+    }
+    if(currUser.plannedCourses.find( courseIdObj => courseIdObj == courseId )){
+      res.status(409).send("Course already added").redirect("/login");
+      return;
+    }
+
+    currUser.plannedCourses.push(courseId);
+    currUser.save().then(
+      result => {
+        res.send(result);
+        // console.log(result)
+      },
+      err => {
+        res.status(400).send(err); // 400 for bad request
+      }
+    );
+  });
+}
+
 module.exports = {
   create,
   list,
@@ -127,5 +217,8 @@ module.exports = {
   destroy,
   login,
   logout,
-  me
+  me,
+  addCurrent,
+  addTaken,
+  addPlanned
 };
