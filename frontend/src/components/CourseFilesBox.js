@@ -34,31 +34,28 @@ function CourseFilesBox(props) {
 
   return (
     <div id="course" className="course-container courseResources">
-      {courseDisplay ? (
-        <AddFilesModal
-          display={courseDisplay}
-          cancelFunc={cancelAddDisplay}
-          setCourseResources={setCourseResources}
-          courseCode={props.courseCode}
-        />
-      ) : null}
       <h2>Course Resources</h2>
       <div className="pr-2 overflow-auto courseResourcesFiles">
         {console.log(props.courseResourcesList)}
-        {courseResources.length !== 0
-          ? courseResources.map(courseResource => (
-              <CourseRYearBox
-                key={courseResource._id}
-                resId={courseResource._id}
-                semester={courseResource.semester}
-                link={courseResource.link}
-                title={courseResource.title}
-                removeSectionFunc={removeCourseResources}
-              />
-            ))
-          : "No course resources yet. Add a resource below to put some here!"}
+        {courseResources.length !== 0 ? (
+          courseResources.map(courseResource => (
+            <CourseRYearBox
+              key={courseResource._id}
+              resId={courseResource._id}
+              semester={courseResource.semester}
+              link={courseResource.link}
+              title={courseResource.title}
+              removeSectionFunc={removeCourseResources}
+            />
+          ))
+        ) : (
+          <div className="ml-3">
+            No course resources yet. Add a resource below to put some here!
+          </div>
+        )}
       </div>
-      {props.canSubmitFiles && (
+      {/* {props.canSubmitFiles && ( */}
+      {
         <div className="flex justify-center">
           <button
             onClick={cancelAddDisplay}
@@ -67,7 +64,15 @@ function CourseFilesBox(props) {
             Submit Resources For Approval
           </button>
         </div>
-      )}
+      }
+      {courseDisplay ? (
+        <AddFilesModal
+          display={courseDisplay}
+          cancelFunc={cancelAddDisplay}
+          setCourseResources={setCourseResources}
+          courseCode={props.courseCode}
+        />
+      ) : null}
     </div>
   );
 }

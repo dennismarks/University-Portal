@@ -1,5 +1,5 @@
 .courseMain {
-  margin-bottom: 3em;
+  margin-bottom: 200px;
 }
 
 #course h1 {
@@ -86,4 +86,8 @@
   font-size: 1.2em;
   font-weight: bold;
   color: #333;
+}
+
+#course .submitResourceForm {
+  margin: 21px;
 }
