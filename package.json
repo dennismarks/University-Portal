@@ -5,7 +5,7 @@
   "repository": "git@github.com:csc309-fall-2019/team-51.git",
   "author": "MaXeraph <max.pham@mail.utoronto.ca>",
   "scripts": {
-    "build": "cd portal-api && npm run make && npm start",
+    "build": "cd portal-api && npm install && npm run make && npm start",
     "start": "echo Starting application..."
   },
   "engines": {
