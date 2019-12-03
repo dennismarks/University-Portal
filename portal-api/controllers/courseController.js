@@ -56,15 +56,19 @@ async function create(req, res) {
 /* Get a list of all the course (for admin only)
  */
 
-function list(req, res) {
-  // TODO admin acess only
-  Course.find()
-    .then(courses => {
-      res.send({ courses });
-    })
-    .catch(
-      error => res.status(500).send(error) // server error
-    );
+async function list(req, res) {
+  const skip = parseInt(req.query.skip) || 0;
+  const limit = parseInt(req.query.limit) || 10;
+
+  try {
+    const courses = await Course.find()
+      .skip(skip)
+      .limit(limit);
+    const numCourses = await Course.count();
+    res.set("X-Total-Count", numCourses).send({ courses });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
 }
 
 function listSearch(req, res) {

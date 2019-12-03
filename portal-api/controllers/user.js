@@ -43,12 +43,17 @@ async function create(req, res) {
 
 // (read) all objects -- GET /
 async function list(req, res) {
-  try {
-    const users = await User.find();
+  const skip = parseInt(req.query.skip) || 0;
+  const limit = parseInt(req.query.limit) || 10;
 
-    res.status(200).send(users);
-  } catch (e) {
-    res.status(500).send(e);
+  try {
+    const users = await User.find()
+      .skip(skip)
+      .limit(limit);
+    const numUsers = await User.count();
+    res.set("X-Total-Count", numUsers).send({ users });
+  } catch (error) {
+    res.status(500).send(error.message);
   }
 }
 
@@ -129,8 +134,11 @@ function addCurrent(req, res) {
       res.status(401).send("User not found in database anymore");
       return;
     }
-    if(currUser.currentCourses.find( courseIdObj => courseIdObj == courseId )){
-      res.status(409).send("Course already added").redirect("/login");
+    if (currUser.currentCourses.find(courseIdObj => courseIdObj == courseId)) {
+      res
+        .status(409)
+        .send("Course already added")
+        .redirect("/login");
       return;
     }
 
@@ -159,8 +167,11 @@ function addTaken(req, res) {
       res.status(401).send("User not found in database anymore");
       return;
     }
-    if(currUser.takenCourses.find( courseIdObj => courseIdObj == courseId )){
-      res.status(409).send("Course already added").redirect("/login");
+    if (currUser.takenCourses.find(courseIdObj => courseIdObj == courseId)) {
+      res
+        .status(409)
+        .send("Course already added")
+        .redirect("/login");
       return;
     }
 
@@ -189,8 +200,11 @@ function addPlanned(req, res) {
       res.status(401).send("User not found in database anymore");
       return;
     }
-    if(currUser.plannedCourses.find( courseIdObj => courseIdObj == courseId )){
-      res.status(409).send("Course already added").redirect("/login");
+    if (currUser.plannedCourses.find(courseIdObj => courseIdObj == courseId)) {
+      res
+        .status(409)
+        .send("Course already added")
+        .redirect("/login");
       return;
     }
 

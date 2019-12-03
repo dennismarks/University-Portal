@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import AuthContext from "../context/AuthContext";
 import AdminDashboard from "../components/AdminDashboard.jsx";
@@ -9,9 +9,31 @@ import UserDetails from "../components/UserDetails";
 import ResourceApproval from "../components/ResourceApproval";
 
 const Admin = props => {
+  const [numCourses, setNumCourses] = useState(null);
+  const [numUsers, setNumUsers] = useState(null);
   const {
     auth: { user }
   } = useContext(AuthContext);
+
+  useEffect(() => {
+    fetch(`/api/v1/courses?limit=1`)
+      .then(res => {
+        const numCourses = res.headers.get("X-Total-Count");
+        setNumCourses(numCourses);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+
+    fetch(`/api/v1/user?limit=1`)
+      .then(res => {
+        const numUsers = res.headers.get("X-Total-Count");
+        setNumUsers(numUsers);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
 
   if (!user) {
     return null;
@@ -27,7 +49,7 @@ const Admin = props => {
         }}
       />
       <div className="row-1">
-        <AdminDashboard />
+        <AdminDashboard numUsers={numUsers} numCourses={numCourses} />
         <AddCourseForm />
       </div>
       <div className="row-2">
