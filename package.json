@@ -1,0 +1,13 @@
+{
+  "name": "portal",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:csc309-fall-2019/team-51.git",
+  "author": "MaXeraph <max.pham@mail.utoronto.ca>",
+  "scripts": {
+    "start": "cd portal-api && npm run make && npm start"
+  },
+  "engines": {
+    "node": "^12.0.0"
+  }
+}
