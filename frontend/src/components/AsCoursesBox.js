@@ -29,8 +29,7 @@ function AsCoursesBox(props) {
         <br />
         <h5 className="bg-orange-100 py-4 px-2">
           {" "}
-          Breadth/ Distribution Requirements: {props.breadthRequirements} /{" "}
-          {props.distributionRequirements}{" "}
+          Breadth Requirements: {props.breadthRequirements}
         </h5>{" "}
         <br />
       </div>
