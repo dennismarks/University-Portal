@@ -28,6 +28,11 @@ router.post("/", courseController.create);
 router.get("/search", courseController.listSearch);
 
 /*
+ * POST a list of all courses from the given ids
+ */
+router.post("/ids", courseController.listIds);
+
+/*
  * DELETE
  */
 // router.delete("/:id", courseController.destroy);

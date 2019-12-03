@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import React from "react";
-import { uid } from "react-uid";
 
 function CourseMiniCard({
   courseCode,
@@ -28,7 +27,7 @@ function CourseMiniCard({
             <Link
               className="bg-blue-100 py-1 px-2 mr-2 rounded-full text-blue-500 font-medium text-xs hover:underline"
               to={query}
-              key={uid(tag)}
+              key={tag.name}
             >
               {tag.name}
             </Link>
