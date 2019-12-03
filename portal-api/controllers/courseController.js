@@ -1,5 +1,4 @@
 const Course = require("../models/courseModel");
-const User = require("../models/user");
 const {
   createUofTCourseObject,
   createRedditComments
@@ -7,9 +6,10 @@ const {
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
+const mongoose = require("mongoose");
 
 /**
- * User Controller
+ * Course Controller
  *
  * @description :: Server-side logic for managing courses.
  */
@@ -84,7 +84,7 @@ function listSearch(req, res) {
   } else if (/^Rating:/.test(searchQuery)) {
     const regEx = searchQuery.replace(/^Rating:/, "");
     const rating = parseFloat(regEx);
-    coursesPromise = Course.find({ averageRating: { $lte: rating} });
+    coursesPromise = Course.find({ averageRating: { $lte: rating } });
   } else {
     const regEx = new RegExp(searchQuery, "i");
     coursesPromise = Course.find({ fullCourseTitle: regEx });
@@ -139,11 +139,30 @@ function show(req, res) {
   );
 }
 
-
+function listIds(req, res) {
+  const courseIds = req.body.courseIds;
+  if (!courseIds) {
+    res.status(400).send("Send a list of valid user id's");
+    return;
+  }
+  const courseIdObjs = courseIds.map(courseId => {
+    return new mongoose.Types.ObjectId(courseId);
+  });
+  Course.find({
+    _id: { $in: courseIdObjs }
+  })
+    .then(courses => {
+      res.send(courses);
+    })
+    .catch(err => {
+      res.status(500).send(err);
+    });
+}
 
 module.exports = {
   create,
   list,
+  listIds,
   listSearch,
   listTop,
   show
