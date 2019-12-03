@@ -1,0 +1,1 @@
+web: cd portal-api && node index.js

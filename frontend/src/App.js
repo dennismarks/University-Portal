@@ -12,6 +12,8 @@ import User from "./pages/User";
 import ForgotPW from "./pages/ForgotPassword";
 import Admin from "./pages/Admin";
 import ModRequest from "./pages/ModifyRequest";
+import ErrorNotFound from "./pages/ErrorNotFound";
+import ErrorAccessDenied from "./pages/ErrorAccessDenied";
 import Header from "./components/Header";
 
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -44,6 +46,8 @@ function App() {
                 <Route path="/course/:courseCode" component={Course} />
                 <Route path="/user/:id" component={User} />
                 <Route path="/logout" component={Logout} />
+                <Route path="/404" component={ErrorNotFound} />
+                <Route path="/401" component={ErrorAccessDenied} />
                 <ProtectedRoute
                   requiredRoles={[ROLES.STUDENT, ROLES.ADMIN]}
                   redirectTo="/"
@@ -56,7 +60,7 @@ function App() {
                   path="/admin"
                   component={Admin}
                 />
-                <Redirect to="/" />
+                <Redirect to="/404" />
               </Switch>
             </BrowserRouter>
           </UsersContextProvider>

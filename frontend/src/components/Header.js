@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import React, { useContext, useState, useRef } from "react";
 
 import useOnClickOutside from "../utils/useOnClickOutside";
 import AuthContext from "../context/AuthContext";
 import { ROLES } from "../constants/auth";
 import { UsersContext } from "../context/UsersContext";
+import CourseSearchBar from "../components/CourseSearchBar";
 
 function Header() {
   const ref = useRef();
@@ -25,18 +26,19 @@ function Header() {
     ["Logout", "/logout"]
   ].filter(Boolean);
 
+  let location = useLocation();
+  let condition =
+    location.pathname !== "/" && !location.pathname.includes("/search");
   return (
     <nav className="flex items-center justify-between flex-wrap bg-blue-500 p-4">
-      <span className="block font-semibold text-xl text-white px-4 tracking-tight">
+      <Link
+        to="/"
+        className="block font-semibold text-xl text-white px-4 tracking-tight"
+      >
         Portal
-      </span>
-      <div className="flex flex-grow items-center w-auto mx-4">
-        <Link
-          to="/"
-          className="block text-sm text-white hover:text-blue-200 mr-4"
-        >
-          Explore Courses
-        </Link>
+      </Link>
+      <div className="w-full lg:w-1/2">
+        {condition && <CourseSearchBar shouldAutoFocus={true} />}
       </div>
       {isLoggedIn ? (
         <div className="relative">
