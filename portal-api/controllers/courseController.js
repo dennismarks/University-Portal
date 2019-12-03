@@ -70,7 +70,7 @@ function list(req, res) {
 function listSearch(req, res) {
   const searchQuery = req.query.q;
   const searchStart = parseInt(req.query.start);
-  const PAGE_ENTRIES = 10; // number of courses to display per page
+  const PAGE_ENTRIES = 12; // number of courses to display per page
   let coursesPromise = null;
   if (!searchQuery) {
     res.status(400).send("Invalid search");
