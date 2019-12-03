@@ -56,8 +56,6 @@ async function list(req, res) {
 async function show(req, res) {
   const { id } = req.params;
 
-  console.log(id);
-
   if (!ObjectID.isValid(id)) {
     res.status(404).send();
   }

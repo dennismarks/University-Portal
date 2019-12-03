@@ -4,13 +4,9 @@ import UserInfo from "../components/UserInfo";
 import CoursesCard from "../components/CoursesCard";
 
 const User = props => {
-  // this user would have been obtained from an external source using
-  // the passed id from the url parameter
-  // but instead this user is located inside the Context
   const { fetchUserById, users } = useContext(UsersContext);
   const { id } = props.match.params;
   const user = users[id];
-  console.log(user);
 
   useEffect(() => {
     fetchUserById(id);
