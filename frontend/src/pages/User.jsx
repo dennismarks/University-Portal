@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { UsersContext } from "../context/UsersContext";
 import UserInfo from "../components/UserInfo";
 import CoursesCard from "../components/CoursesCard";
@@ -7,27 +7,30 @@ const User = props => {
   // this user would have been obtained from an external source using
   // the passed id from the url parameter
   // but instead this user is located inside the Context
-  const usersContext = useContext(UsersContext);
-  const id = parseInt(props.match.params.id, 10);
-  const user = usersContext.users.filter(user => user.userInfo.id === id)[0];
+  const { fetchUserById, users } = useContext(UsersContext);
+  const { id } = props.match.params;
+  const user = users[id];
+
+  useEffect(() => {
+    fetchUserById(id);
+  }, []);
+
+  if (!user) {
+    return null;
+  }
 
   return (
-    <div>
-      <div className="main">
-        <UserInfo userInfo={user.userInfo}></UserInfo>
-        <CoursesCard
-          courses={user.courses.currentCourses}
-          name="Current Courses"
-        ></CoursesCard>
-        <CoursesCard
-          courses={user.courses.takenCourses}
-          name="Taken Courses"
-        ></CoursesCard>
-        <CoursesCard
-          courses={user.courses.toTakeCourses}
-          name="Future course"
-        ></CoursesCard>
-      </div>
+    <div className="main">
+      <UserInfo
+        userInfo={{
+          name: user.name,
+          university: "University of Toronto",
+          program: "Computer Science"
+        }}
+      />
+      <CoursesCard courses={user.currentCourses} name="Current Courses" />
+      <CoursesCard courses={user.takenCourses} name="Taken Courses" />
+      <CoursesCard courses={user.plannedCourses} name="Future course" />
     </div>
   );
 };

@@ -18,106 +18,9 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
 import { UsersContextProvider } from "./context/UsersContext";
 import { CoursesContextProvider } from "./context/CoursesContext";
+import { ROLES } from "./constants/auth";
 
 function App() {
-  // users data for Users Context
-  // requires a server call
-  const users = [
-    {
-      userInfo: {
-        img: "/img/avatar.png",
-        name: "Adam Prinkin",
-        id: 0
-      },
-      courses: {
-        currentCourses: [],
-        takenCourses: [
-          "CSC301 - Introduction to Software Engineering",
-          "CSC309 - Programming on the Web",
-          "CSC373 - Algorithm Design, Analysis & Complexity",
-          "CSC428 - Human-Computer Interaction",
-          "CSC236 - Introduction to the Theory of Computation",
-          "CSC258 - Computer Organization",
-          "CSC369 - Operating Systems"
-        ],
-        toTakeCourses: []
-      }
-    },
-    {
-      userInfo: {
-        img: "/img/avatar0.png",
-        name: "Alex Liskov",
-        university: "University of Toronto",
-        program: "Computer Science, 2021",
-        id: 1
-      },
-      courses: {
-        currentCourses: [
-          "CSC301 - Introduction to Software Engineering",
-          "CSC309 - Programming on the Web",
-          "CSC373 - Algorithm Design, Analysis & Complexity",
-          "CSC428 - Human-Computer Interaction",
-          "CSC236 - Introduction to the Theory of Computation"
-        ],
-        takenCourses: [
-          "CSC236 - Introduction to the Theory of Computation",
-          "CSC258 - Computer Organization"
-        ],
-        toTakeCourses: ["CSC369 - Operating Systems"]
-      }
-    },
-    {
-      userInfo: {
-        img: "/img/avatar1.png",
-        name: "Wayne Spon",
-        university: "University of Toronto",
-        program: "Computer Science, 2023",
-        id: 2
-      },
-      courses: {
-        currentCourses: [
-          "CSC108H1: Introduction to Computer Programming",
-          "CSC165H1: Mathematical Expression and Reasoning",
-          "MAT137Y1: Calculus"
-        ],
-        takenCourses: [],
-        toTakeCourses: [
-          "CSC148H1: Introduction to Computer Science",
-          "CSC207H1: Software Design",
-          "CSC236 - Introduction to the Theory of Computation",
-          "CSC258 - Computer Organization",
-          "CSC369 - Operating Systems"
-        ]
-      }
-    },
-    {
-      userInfo: {
-        img: "/img/avatar2.png",
-        name: "Katie Xuo",
-        university: "University of Toronto",
-        program: "Statistics, 2023",
-        id: 3
-      },
-      courses: {
-        currentCourses: [
-          "CSC148H1: Introduction to Computer Science",
-          "MAT136H1: Calculus 1(B)"
-        ],
-        takenCourses: [
-          "MAT135H1: Calculus 1(A)",
-          "CSC108H1: Introduction to Computer Programming"
-        ],
-        toTakeCourses: [
-          "CSC165H1: Mathematical Expression and Reasoning",
-          "CSC207H1: Software Design",
-          "CSC236 - Introduction to the Theory of Computation",
-          "CSC258 - Computer Organization",
-          "CSC369 - Operating Systems"
-        ]
-      }
-    }
-  ];
-
   // users data for Courses Context
   // requires a server call
   const courses = [
@@ -129,7 +32,7 @@ function App() {
     <div className="App">
       <AuthProvider>
         <CoursesContextProvider courses={courses}>
-          <UsersContextProvider users={users}>
+          <UsersContextProvider>
             <BrowserRouter>
               <Header />
               <Switch>
@@ -141,9 +44,14 @@ function App() {
                 <Route path="/course/:courseCode" component={Course} />
                 <Route path="/user/:id" component={User} />
                 <Route path="/logout" component={Logout} />
-                <Route path="/request" component={ModRequest} />
                 <ProtectedRoute
-                  requiredRole="admin"
+                  requiredRoles={[ROLES.STUDENT, ROLES.ADMIN]}
+                  redirectTo="/"
+                  path="/request"
+                  component={ModRequest}
+                />
+                <ProtectedRoute
+                  requiredRoles={[ROLES.ADMIN]}
                   redirectTo="/"
                   path="/admin"
                   component={Admin}

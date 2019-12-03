@@ -1,61 +1,65 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
-import { ROLES } from "../constants/auth";
+import { CircularProgress } from "@material-ui/core";
+
+import * as userService from "../services/user";
 import AuthContext from "../context/AuthContext";
+
+const loginSchema = Yup.object({
+  username: Yup.string().required(),
+  password: Yup.string().required()
+});
+
+function Error({ children }) {
+  return <p className="text-red-500 text-xs mt-2">{children}</p>;
+}
 
 function Login() {
   const {
     auth: { isLoggedIn },
-    setAuth
+    login
   } = useContext(AuthContext);
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
   const history = useHistory();
+  const formik = useFormik({
+    initialValues: {
+      username: "",
+      password: ""
+    },
+    validationSchema: loginSchema,
+    onSubmit: ({ username, password }) => {
+      userService
+        .login({ username, password })
+        .then(user => {
+          login(user);
+        })
+        .catch(err => {
+          if (typeof err === "object") {
+            formik.setErrors(err);
+          } else {
+            alert("An unexpected error occured");
+          }
+        })
+        .finally(() => {
+          formik.setSubmitting(false);
+        });
+    }
+  });
 
   useEffect(() => {
     if (isLoggedIn) {
       history.push("/");
     }
-  });
+  }, [isLoggedIn]);
 
-  function updateID(e) {
-    setId(e.target.value);
-  }
-
-  function updatePassword(e) {
-    setPassword(e.target.value);
-  }
-
-  function checkCredentials(e) {
-    e.preventDefault();
-
-    //admin
-    if (id === "admin" && password === "admin") {
-      setAuth({ isLoggedIn: true, userId: 0, role: ROLES.ADMIN });
-      history.push("/");
-    }
-
-    //student
-    else if (id === "user" && password === "user") {
-      setAuth({ isLoggedIn: true, userId: 1, role: ROLES.STUDENT });
-      history.push("/");
-    } else if (id === "user2" && password === "user2") {
-      setAuth({ isLoggedIn: true, userId: 2, role: ROLES.STUDENT });
-      history.push("/");
-    } else if (id === "user3" && password === "user3") {
-      setAuth({ isLoggedIn: true, userId: 3, role: ROLES.STUDENT });
-      history.push("/");
-    } else {
-      alert("Wrong Credentials");
-    }
-  }
   return (
     <div>
       <div className="w-full mx-auto py-10 max-w-md">
         <form
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mx-auto"
-          onSubmit={checkCredentials}
+          onSubmit={formik.handleSubmit}
         >
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -63,13 +67,16 @@ function Login() {
             </label>
             <input
               className="shadow appearance-none border roded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
-              un
               type="text"
               id="username"
+              name="username"
               placeholder="username"
-              value={id}
-              onChange={updateID}
+              onChange={formik.handleChange}
+              value={formik.values.username}
             />
+            {formik.touched.username && formik.errors.username && (
+              <Error>{formik.errors.username}</Error>
+            )}
           </div>
           <div className="mb-6">
             <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -79,14 +86,21 @@ function Login() {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 focus:outline-none focus:shadow-outline"
               type="password"
               id="password"
+              name="password"
               placeholder="*****************"
-              value={password}
-              onChange={updatePassword}
+              onChange={formik.handleChange}
+              value={formik.values.password}
             />
+            {formik.touched.password && formik.errors.password && (
+              <Error>{formik.errors.password}</Error>
+            )}
           </div>
           <div className="flex items-center justify-between">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-              Sign In
+            <button
+              disabled={formik.isSubmitting}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              {formik.isSubmitting ? <CircularProgress size={20} /> : "Sign In"}
             </button>
             <Link
               className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"

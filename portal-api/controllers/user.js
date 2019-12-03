@@ -84,20 +84,17 @@ function login(req, res) {
 
   User.findByUsernameAndPassword(username, password)
     .then(user => {
-      if (!user) {
-        res.status(401).send();
-      } else {
-        // Add the user's id to the session cookie.
-        // We can check later if this exists to ensure we are logged in.
-        req.session.user = {
-          id: user._id,
-          role: user.role
-        };
-        res.status(200).send();
-      }
+      // Add the user's id to the session cookie.
+      // We can check later if this exists to ensure we are logged in.
+      req.session.user = user;
+      res.status(200).send(user);
     })
     .catch(error => {
-      res.status(400).send();
+      if (error.payload) {
+        res.status(401).send(error.payload);
+      } else {
+        res.status(500).send(error.message);
+      }
     });
 }
 
@@ -111,6 +108,15 @@ function logout(req, res) {
   });
 }
 
+function me(req, res) {
+  const { user } = req.session;
+  if (user) {
+    res.status(200).send(user);
+  } else {
+    res.status(401).send();
+  }
+}
+
 module.exports = {
   create,
   list,
@@ -118,5 +124,6 @@ module.exports = {
   update,
   destroy,
   login,
-  logout
+  logout,
+  me
 };
