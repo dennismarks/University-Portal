@@ -8,7 +8,6 @@ import RedditBox from "../components/RedditBox";
 import CourseFilesBox from "../components/CourseFilesBox";
 import CourseCommentsBox from "../components/CourseCommentsBox";
 import { ROLES } from "../constants/auth";
-import useMaxAPI from "../utils/useMaxAPI";
 
 import "../stylesheets/course.css";
 // raw reddit api call acting as a json file

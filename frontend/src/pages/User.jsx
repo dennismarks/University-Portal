@@ -10,6 +10,7 @@ const User = props => {
   const { fetchUserById, users } = useContext(UsersContext);
   const { id } = props.match.params;
   const user = users[id];
+  console.log(user);
 
   useEffect(() => {
     fetchUserById(id);
@@ -23,7 +24,7 @@ const User = props => {
     <div className="main">
       <UserInfo
         userInfo={{
-          name: user.name,
+          name: user.username,
           university: "University of Toronto",
           program: "Computer Science"
         }}
