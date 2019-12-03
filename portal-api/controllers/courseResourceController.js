@@ -87,6 +87,23 @@ function listPending(req, res) {
   );
 }
 
+// (read) all pending course resources needed for approval -- GET /
+function listApproved(req, res) {
+  // TODO check if user is an admin here
+  const { school, course } = req.params;
+  Course.findOne({ school: school, code: course }).then(
+    courseObj => {
+      const pendingResources = courseObj.courseResources.filter(resource => {
+        return resource.status === "Approved";
+      });
+      res.send({ pendingResources });
+    },
+    error => {
+      res.status(500).send(error); // server error
+    }
+  );
+}
+
 
 // TODO: add update for admin only
 // // (update) one single object PATH /:id
@@ -125,5 +142,6 @@ function destroy(req, res) {
 module.exports = {
   create,
   listPending,
+  listApproved,
   destroy
 };

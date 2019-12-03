@@ -8,6 +8,11 @@ const courseResourceController = require("../controllers/courseResourceControlle
 router.get("/:school/:course/pending", courseResourceController.listPending);
 
 /*
+ * GET the listing on approved course resources for this course
+ */
+router.get("/:school/:course/approved", courseResourceController.listApproved);
+
+/*
  * POST
  */
 router.post("/:school/:course", courseResourceController.create);
