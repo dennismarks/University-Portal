@@ -44,4 +44,19 @@ router.patch("/:id", userController.update);
  */
 router.delete("/:id", userController.destroy);
 
+/*
+ * POST -- add to users list of the courses they are currenty taking
+ */
+router.post("/add-current/course/:id", userController.addCurrent);
+
+/*
+ * POST -- add to users list of the courses they have taken
+ */
+router.post("/add-taken/course/:id", userController.addTaken);
+
+/*
+ * POST -- add to users list of the courses they are planning on taking
+ */
+router.post("/add-planned/course/:id", userController.addPlanned);
+
 module.exports = router;

@@ -119,6 +119,26 @@ function me(req, res) {
   }
 }
 
+function addCurrent(req, res) {
+  const { user } = req.session;
+  console.log(req.session)
+  console.log("A")
+  if (!user) {
+    res.status(401).send("Not logged in");
+    return;
+  }
+  User.findById(user._id).then(currUser => {
+    if (!currUser) {
+      res.status(404).send("User not found in database anymore");
+    }
+    console.log(currUser);
+  });
+}
+
+function addTaken(req, res) {}
+
+function addPlanned(req, res) {}
+
 module.exports = {
   create,
   list,
@@ -127,5 +147,8 @@ module.exports = {
   destroy,
   login,
   logout,
-  me
+  me,
+  addCurrent,
+  addTaken,
+  addPlanned
 };

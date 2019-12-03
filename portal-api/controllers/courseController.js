@@ -1,4 +1,5 @@
 const Course = require("../models/courseModel");
+const User = require("../models/user");
 const {
   createUofTCourseObject,
   createRedditComments
@@ -137,6 +138,8 @@ function show(req, res) {
     }
   );
 }
+
+
 
 module.exports = {
   create,

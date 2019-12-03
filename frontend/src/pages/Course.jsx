@@ -32,6 +32,47 @@ function Course() {
       });
   }, []);
 
+  const addCurrentCourse = () => {
+    fetch(`/api/v1/courses/UofT/user/add-current/course/${course._id}`, {
+      method: 'POST'
+    })
+    .then(res => {
+      return res.json();
+    })
+    .then(currentCourses => {
+      console.log(currentCourses);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }
+
+  const addTakenCourse = () => {
+    fetch(`/api/v1/courses/UofT/user/add-taken/course/${course._id}`)
+    .then(res => {
+      return res.json();
+    })
+    .then(takenCourses => {
+      console.log(takenCourses);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }
+
+  const addPlannedCourse = () => {
+    fetch(`/api/v1/courses/UofT/user/add-planned/course/${course._id}`)
+    .then(res => {
+      return res.json();
+    })
+    .then(plannedCourses => {
+      console.log(plannedCourses);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }
+
   const {
     auth: { user }
   } = useContext(AuthContext);
@@ -50,13 +91,13 @@ function Course() {
       </div>
       {canUserMakeEdits && (
         <div className="add">
-          <button className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-2">
+          <button onClick={addCurrentCourse} className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-2">
             Add To Current Courses
           </button>
-          <button className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-2">
+          <button onClick={addTakenCourse} className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-2">
             Add To Taken Courses
           </button>
-          <button className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-2">
+          <button onClick={addPlannedCourse} className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-2">
             Add To Planned Courses
           </button>
         </div>
