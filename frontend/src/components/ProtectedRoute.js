@@ -3,16 +3,17 @@ import React, { useContext } from "react";
 import { Redirect, Route } from "react-router-dom";
 
 import AuthContext from "../context/AuthContext";
+import { ALL_ROLES, ROLES } from "../constants/auth";
 
 function ProtectedRoute({
-  requiredRole = "admin",
+  requiredRoles = [ROLES.STUDENT],
   redirectTo = "/login",
   ...props
 }) {
   const {
     auth: { role }
   } = useContext(AuthContext);
-  return role === requiredRole ? (
+  return requiredRoles.includes(role) ? (
     <Route {...props} />
   ) : (
     <Redirect to={redirectTo} />
@@ -21,7 +22,7 @@ function ProtectedRoute({
 
 ProtectedRoute.propTypes = {
   redirectTo: PropTypes.string,
-  requiredRole: PropTypes.oneOf(["student", "admin"])
+  requiredRole: PropTypes.oneOf(ALL_ROLES)
 };
 
 export default ProtectedRoute;

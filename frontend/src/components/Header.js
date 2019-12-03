@@ -10,10 +10,8 @@ function Header() {
   const ref = useRef();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const {
-    auth: { isLoggedIn, role, userId }
+    auth: { isLoggedIn, user }
   } = useContext(AuthContext);
-  const usersContext = useContext(UsersContext);
-  const user = usersContext.users[userId];
 
   useOnClickOutside(ref, () => setIsMenuOpen(false));
 
@@ -22,8 +20,8 @@ function Header() {
   }
 
   const menuLinks = [
-    ["Profile", `/user/${userId}`],
-    role === ROLES.ADMIN && ["Admin", "/admin"],
+    user && user._id && ["Profile", `/user/${user._id}`],
+    user && user.role === ROLES.ADMIN && ["Admin", "/admin"],
     ["Logout", "/logout"]
   ].filter(Boolean);
 
@@ -47,9 +45,9 @@ function Header() {
             onClick={handleAvatarClick}
           >
             <img
-              alt={user.userInfo.name || ""}
+              alt={user.name || ""}
               className="h-full w-fill object-cover"
-              src={user.userInfo.img || "/img/avatar-default.png"}
+              src={user.img || "/img/avatar-default.png"}
             />
           </button>
           {isMenuOpen && (

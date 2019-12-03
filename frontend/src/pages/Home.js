@@ -14,7 +14,8 @@ function Home() {
         setTopCourses(response.courses);
       })
       .catch(err => console.log(err));
-  });
+  }, []);
+
   return (
     <div>
       <section className="bg-gray-200 py-16">
@@ -81,12 +82,24 @@ function Home() {
             By Department
           </h2>
           <div className="flex flex-row overflow-x-auto">
-            <CourseSearchChip value={`Department:Computer Science`}>Computer Science</CourseSearchChip>
-            <CourseSearchChip value={`Department:Statistics`}>Statistics</CourseSearchChip>
-            <CourseSearchChip value={`Department:Humanities`}>Humanities</CourseSearchChip>
-            <CourseSearchChip value={`Department:Health Sciences`}>Health Sciences</CourseSearchChip>
-            <CourseSearchChip value={`Department:Medical Sciences`}>Medical Sciences</CourseSearchChip>
-            <CourseSearchChip value={`Department:Civil Engineering`}>Civil Engineering</CourseSearchChip>
+            <CourseSearchChip value={`Department:Computer Science`}>
+              Computer Science
+            </CourseSearchChip>
+            <CourseSearchChip value={`Department:Statistics`}>
+              Statistics
+            </CourseSearchChip>
+            <CourseSearchChip value={`Department:Humanities`}>
+              Humanities
+            </CourseSearchChip>
+            <CourseSearchChip value={`Department:Health Sciences`}>
+              Health Sciences
+            </CourseSearchChip>
+            <CourseSearchChip value={`Department:Medical Sciences`}>
+              Medical Sciences
+            </CourseSearchChip>
+            <CourseSearchChip value={`Department:Civil Engineering`}>
+              Civil Engineering
+            </CourseSearchChip>
           </div>
         </div>
         <div className="container mx-auto px-4 mb-8">

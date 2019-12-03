@@ -31,10 +31,11 @@ function Course() {
   }, []);
 
   const {
-    auth: { role }
+    auth: { user }
   } = useContext(AuthContext);
 
-  const canUserMakeEdits = role === ROLES.STUDENT || role === ROLES.ADMIN;
+  const canUserMakeEdits =
+    user && (user.role === ROLES.STUDENT || user.role === ROLES.ADMIN);
 
   if (!course) {
     return <strong>LOADING</strong>;
@@ -71,7 +72,10 @@ function Course() {
           />
         </div>
         <div className="flex">
-          <RedditBox redditData={course.redditComments} courseCode={course.code} />
+          <RedditBox
+            redditData={course.redditComments}
+            courseCode={course.code}
+          />
           <CourseFilesBox
             canSubmitFiles={canUserMakeEdits}
             courseResourcesList={course.courseResources}

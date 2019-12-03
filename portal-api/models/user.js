@@ -94,16 +94,23 @@ UserSchema.statics.findByUsernameAndPassword = async function(
 
   const user = await User.findOne({ username });
   if (!user) {
-    return null;
+    const error = new Error(`User with username ${username} does not exist`);
+    error.payload = {
+      username: `User with username ${username} does not exist`
+    };
+    throw error;
   }
 
   const isMatch = await bcrypt.compare(password, user.password);
-
-  if (isMatch) {
-    return user;
-  } else {
-    return null;
+  if (!isMatch) {
+    const error = new Error(`Invalid password for user`);
+    error.payload = {
+      password: `Invalid password for user`
+    };
+    throw error;
   }
+
+  return user;
 };
 
 module.exports = mongoose.model("user", UserSchema);

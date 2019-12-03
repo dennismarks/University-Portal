@@ -9,6 +9,21 @@ const { isAdminUser } = require("../auth");
  */
 router.get("/", userController.list);
 
+/**
+ * Me route
+ */
+router.get("/me", userController.me);
+
+/**
+ * Login route
+ */
+router.post("/login", userController.login);
+
+/**
+ * Logout route
+ */
+router.get("/logout", userController.logout);
+
 /*
  * GET
  */
@@ -28,15 +43,5 @@ router.patch("/:id", userController.update);
  * DELETE
  */
 router.delete("/:id", userController.destroy);
-
-/**
- * Login route
- */
-router.post("/login", userController.login);
-
-/**
- * Logout route
- */
-router.get("/logout", userController.logout);
 
 module.exports = router;

@@ -12,7 +12,7 @@ function setupAuth(app) {
       resave: false,
       saveUninitialized: false,
       cookie: {
-        expires: 60000,
+        maxAge: 30 * 60 * 1000,
         httpOnly: true
       }
     })
