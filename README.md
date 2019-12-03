@@ -25,6 +25,9 @@
 - [Contributing](#contributing)
 - [Resources](#resources)
 
+## DEPLOYED LINK
+https://portal-course.herokuapp.com/
+
 ## Getting Started
 
 To run the application, clone the repo and run the following commands:
