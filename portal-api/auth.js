@@ -9,10 +9,11 @@ function setupAuth(app) {
   app.use(
     session({
       secret: process.env.SESSION_SECRET,
-      resave: false,
+      resave: true,
       saveUninitialized: false,
       cookie: {
         maxAge: 30 * 60 * 1000,
+        expires: 30 * 60 * 1000,
         httpOnly: true
       }
     })

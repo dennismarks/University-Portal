@@ -65,7 +65,7 @@ function CourseCommentsBox(props) {
             comments.map(userComment => (
               <UserCommentBox
                 key={userComment._id}
-                user={userComment.user}
+                user={userComment.username}
                 rating={userComment.rating}
                 userId={userComment._id}
                 comment={userComment.comment}

@@ -10,6 +10,10 @@ const CourseReviewSchema = new Schema({
   userId: {
     type: ObjectId
   },
+  username: {
+    type: String,
+    minlength: 1
+  },
   rating: {
     type: Number,
     required: true,

@@ -1,5 +1,8 @@
 const Course = require("../models/courseModel");
 const { ObjectID } = require("mongodb");
+
+const mongoose = require("mongoose");
+const ObjectId = mongoose.Types.ObjectId;
 /**
  * Course review Controller
  *
@@ -9,13 +12,25 @@ const { ObjectID } = require("mongodb");
 // (create) on signle object -- POST /
 function create(req, res) {
   const { course, school } = req.params;
+  if (!req.session.user){
+    res.status(401).send("Cannot create review, not logged in");
+    return;
+  }
+  
   const { rating, comment } = req.body;
+  const userId = req.session.user._id;
+  const username = req.session.user.username;
   // TODO checkk if logged in and dont let user comment on same course twice
   if (!rating || !comment) {
     res.status(400).send("Need rating and comment in body");
   } else {
     Course.findOne({ school: school, code: course }).then(course => {
-      course.courseReviews.push({ rating, comment });
+      if ( course.courseReviews.find(review => review.username === username) ){
+        res.status(409).send("You have already commented on this course");
+        return;
+      }
+
+      course.courseReviews.push({ rating, comment, userId, username });
       const averageRating = // recalculate average rating
         course.courseReviews.reduce(
           (accumulator, reviewObj) => accumulator + reviewObj.rating,
@@ -27,6 +42,7 @@ function create(req, res) {
           : averageRating.toFixed(2);
       course.save().then(
         result => {
+          req.session.user = req.session.user
           res.send(result);
         },
         err => {

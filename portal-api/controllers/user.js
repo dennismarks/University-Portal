@@ -7,6 +7,7 @@ const { ObjectID } = require("mongodb");
  */
 
 // (create) on single object -- POST /
+// TODO  fix create promise error
 async function create(req, res) {
   const { username, password, email } = req.body;
 
