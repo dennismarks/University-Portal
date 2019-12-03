@@ -11,9 +11,9 @@ function ProtectedRoute({
   ...props
 }) {
   const {
-    auth: { role }
+    auth: { user }
   } = useContext(AuthContext);
-  return requiredRoles.includes(role) ? (
+  return user && requiredRoles.includes(user.role) ? (
     <Route {...props} />
   ) : (
     <Redirect to={redirectTo} />
