@@ -10,14 +10,14 @@ import * as userService from "../services/user";
 
 const signupSchema = Yup.object({
   username: Yup.string()
-    .min(6, "Must be 6 characters or more")
+    .min(4, "Must be 4 characters or more")
     .matches(/^[a-zA-Z0-9\-]*$/, "Must contain only letters, numbers, or dash")
     .required(),
   email: Yup.string()
     .email()
     .required(),
   password: Yup.string()
-    .min(6, "Must be 6 characters or more")
+    .min(4, "Must be 4 characters or more")
     .required(),
   passwordConfirmation: Yup.string()
     .oneOf([Yup.ref("password")], "Passwords must match")

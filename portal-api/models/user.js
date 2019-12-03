@@ -10,7 +10,7 @@ const UserSchema = new Schema({
     type: String,
     trim: true,
     unique: true,
-    minlength: 6,
+    minlength: 4,
     required: "Username is required",
     match: [
       /^[a-zA-Z0-9\-]*$/,
@@ -34,11 +34,13 @@ const UserSchema = new Schema({
   },
   name: {
     type: String,
-    maxlength: 128
+    maxlength: 128,
+    default: ""
   },
   bio: {
     type: String,
-    maxlength: 1024
+    maxlength: 1024,
+    default: ""
   },
   role: {
     type: String,
@@ -65,6 +67,10 @@ UserSchema.pre("save", async function(next) {
     user.password = hash;
   } catch (e) {
     console.error(e);
+  }
+
+  if (!user.name) {
+    user.name = user.username;
   }
 
   next();

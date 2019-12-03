@@ -1,10 +1,11 @@
-const User = require("../models/user");
-const { ObjectID } = require("mongodb");
 /**
  * User Controller
  *
  * @description :: Server-side logic for managing users.
  */
+
+const User = require("../models/user");
+const { ObjectID } = require("mongodb");
 
 // (create) on single object -- POST /
 // TODO  fix create promise error
