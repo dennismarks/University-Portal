@@ -85,20 +85,23 @@ function Home() {
             <CourseSearchChip value={`Department:Computer Science`}>
               Computer Science
             </CourseSearchChip>
-            <CourseSearchChip value={`Department:Statistics`}>
-              Statistics
+            <CourseSearchChip value={`Department:Statistical Science`}>
+              Statistical Science
             </CourseSearchChip>
-            <CourseSearchChip value={`Department:Humanities`}>
-              Humanities
+            <CourseSearchChip value={`Department:Classics`}>
+              Classics
             </CourseSearchChip>
-            <CourseSearchChip value={`Department:Health Sciences`}>
-              Health Sciences
+            <CourseSearchChip value={`Department:Rotman Commerce`}>
+              Rotman Commerce
             </CourseSearchChip>
-            <CourseSearchChip value={`Department:Medical Sciences`}>
-              Medical Sciences
+            <CourseSearchChip value={`Department:Economics`}>
+              Economics
             </CourseSearchChip>
-            <CourseSearchChip value={`Department:Civil Engineering`}>
-              Civil Engineering
+            <CourseSearchChip value={`Department:Mathematics`}>
+              Mathematics
+            </CourseSearchChip>
+            <CourseSearchChip value={`Department:Chemistry`}>
+              Chemistry
             </CourseSearchChip>
           </div>
         </div>
