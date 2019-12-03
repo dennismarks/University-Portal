@@ -1,15 +1,14 @@
 {
-    "name": "portal",
-    "version": "1.0.0",
-    "main": "index.js",
-    "repository": "git@github.com:csc309-fall-2019/team-51.git",
-    "author": "MaXeraph <max.pham@mail.utoronto.ca>",
-    "scripts": {
-      "build": "cd frontend/ && npm run build && cd ..",
-      "start": "echo Starting application..."
-    },
-    "engines": {
-      "node": "^12.0.0"
-    }
+  "name": "portal",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:csc309-fall-2019/team-51.git",
+  "author": "MaXeraph <max.pham@mail.utoronto.ca>",
+  "scripts": {
+    "start": "cd portal-api && npm start",
+    "heroku-postbuild": "cd frontend/ && npm install && npm install && npm run build"
+  },
+  "engines": {
+    "node": "^12.0.0"
   }
-  
+}
