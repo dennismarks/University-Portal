@@ -38,7 +38,9 @@ const AddCourseForm = () => {
           Choose department
         </option>
         {ALL_DEPARTMENTS.map(course => (
-          <option value={course}>{course}</option>
+          <option key={course} value={course}>
+            {course}
+          </option>
         ))}
       </select>
       <br />

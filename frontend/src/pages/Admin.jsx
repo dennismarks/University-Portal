@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import AuthContext from "../context/AuthContext";
-import AdminDashboard from "../components/AdminDashboard.jsx";
 import AddCourseForm from "../components/AddCourseForm";
+import AdminStats from "../components/AdminStats";
+import AuthContext from "../context/AuthContext";
+import ResourceApproval from "../components/ResourceApproval";
+import UserDetails from "../components/UserDetails";
 import UserInfo from "../components/UserInfo";
 import UsersList from "../components/UsersList";
-import UserDetails from "../components/UserDetails";
-import ResourceApproval from "../components/ResourceApproval";
 
 const Admin = props => {
   const [numCourses, setNumCourses] = useState(null);
@@ -40,26 +40,19 @@ const Admin = props => {
   }
 
   return (
-    <div className="main">
-      <UserInfo
-        userInfo={{
-          name: user.username,
-          university: "University of Toronto",
-          program: "Computer Science"
-        }}
-      />
+    <>
+      <AdminStats numUsers={numUsers} numCourses={numCourses} />
       <div className="row-1">
-        <AdminDashboard numUsers={numUsers} numCourses={numCourses} />
         <AddCourseForm />
       </div>
       <div className="row-2">
         <ResourceApproval />
         <div className="users-container">
-          {/* <UsersList />
-          <UserDetails /> */}
+          {/* <UsersList /> */}
+          <UserDetails />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
