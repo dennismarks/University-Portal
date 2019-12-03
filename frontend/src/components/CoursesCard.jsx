@@ -3,10 +3,10 @@ import { uid } from "react-uid";
 import "../stylesheets/coursesCard.css";
 
 function CoursesCard(props) {
+  const { courses, name } = props;
   const [more, setMore] = useState(false);
   const [ courseArr, setCourseArr ] = useState([]);
 
-  const { courses, name } = props;
   useEffect(() => {
     const courseIdsObj = JSON.stringify({ courseIds: courses });
     fetch(`/api/v1/courses/ids`, {
@@ -20,30 +20,29 @@ function CoursesCard(props) {
         return res.json();
       })
       .then(coursesObj => {
-        console.log(coursesObj)
         setCourseArr(coursesObj);
-        console.log(courseArr)
+        // console.log(courseArr) // returns []
       })
       .catch(error => {
         console.error(error);
       });
   }, []);
-
-  if (courses.length > 3) {
+  console.log( courseArr, "sdfsdf")
+  if (courseArr.length > 3) {
     return (
       <div className="courses">
         <h1>{name}</h1>
-        {console.log("inner", courseArr)}
+        
         {more ? (
           <ul>
-            {courses.map(course => {
-              return <li key={uid(course)}>{course}</li>;
+            {courseArr.map(course => {
+              return <li key={course._id}>{course.code} - {course.info.title}</li>;
             })}
           </ul>
         ) : (
           <ul>
-            {courses.slice(0, 3).map(course => {
-              return <li key={uid(course)}>{course}</li>;
+            {courseArr.slice(0, 3).map(course => {
+              return <li key={course._id}>{course.code} - {course.info.title}</li>;
             })}
           </ul>
         )}
@@ -67,13 +66,13 @@ function CoursesCard(props) {
         )}
       </div>
     );
-  } else if (courses.length > 0 && courses.length <= 3) {
+  } else if (courseArr.length > 0 && courseArr.length <= 3) {
     return (
       <div className="courses">
         <h1>{name}</h1>
         <ul>
-          {courses.slice(0, courses.length).map(course => {
-            return <li key={uid(course)}>{course}</li>;
+          {courseArr.map(course => {
+          return <li key={course._id}> {course.code} - {course.info.title}</li>;
           })}
         </ul>
       </div>
