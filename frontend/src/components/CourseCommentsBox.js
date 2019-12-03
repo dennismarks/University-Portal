@@ -52,14 +52,14 @@ function CourseCommentsBox(props) {
   };
 
   return (
-    <div className="w-auto ml-10 mr-10 px-10 pb-10 my-5 bg-white shadow-md ">
-      <h3 className="text-2xl font-medium mt-6 mb-2"> User Comments </h3>
-      <h4 className="mb-4 text-1xl font-medium">
+    <div id="course" className="course-container comments">
+      <h2>User Comments </h2>
+      <h4 className="mb-2 ml-3 text-1xl font-medium">
         {averageRating
           ? `Average Rating: ${averageRating} / 5`
           : "No feedback yet. Add a comment and rating below to give some!"}{" "}
       </h4>
-      <div className="overflow-auto h-64 pr-2">
+      <div className="overflow-auto userComments">
         <div>
           {comments ? (
             comments.map(userComment => (
@@ -83,13 +83,13 @@ function CourseCommentsBox(props) {
             onClick={() => {
               count <= 1 ? setCount(count) : setCount(count - 1);
             }}
-            className="h-12 w-12 font-medium text-4xl rounded cursor-pointer active:bg-gray-200  bg-white shadow-md hover:bg-gray-100 pb-4 pt-0 px-5 mt-6"
+            className="h-12 w-12 font-medium text-4xl rounded cursor-pointer active:bg-gray-200  bg-white shadow-md hover:bg-gray-100 px-4 py-0 mt-3"
           >
             -
           </div>
           <div
             id="userRating"
-            className="h-12 w-12 font-medium rounded cursor-default bg-blue-500 text-white py-3 px-5 mt-6 mx-4"
+            className="h-12 w-12 font-medium rounded cursor-default bg-blue-500 text-white py-3 px-5 mt-3 mx-4"
           >
             {count}
           </div>
@@ -97,19 +97,19 @@ function CourseCommentsBox(props) {
             onClick={() => {
               count >= 5 ? setCount(count) : setCount(count + 1);
             }}
-            className="h-12 w-12 font-medium text-2xl rounded cursor-pointer bg-white shadow-md hover:bg-gray-100 py-2 px-4 mt-6 mr-6"
+            className="h-12 w-12 font-medium text-2xl rounded cursor-pointer bg-white shadow-md hover:bg-gray-100 py-2 px-4 mt-3 mr-6"
           >
             +
           </div>
           <input
-            className="shadow w-6/12 h-12 mr-4 mt-6 border rounded py-0 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow w-6/12 h-12 mr-4 mt-3 border rounded py-0 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="courseCommentAdded"
             type="text"
             placeholder="Enter your comments on the course..."
           />
           <button
             onClick={addComment}
-            className="btn btn-blue h-12 rounded bg-blue-500 hover:bg-blue-700 text-white py-3 px-4 mt-6"
+            className="btn btn-blue h-12 rounded bg-blue-500 hover:bg-blue-700 text-white py-3 px-4 mt-3"
           >
             Add Comment
           </button>

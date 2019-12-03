@@ -3,15 +3,17 @@ import CourseRYearBox from "./CourseRYearBox";
 import AddFilesModal from "./AddFilesModal";
 
 function CourseFilesBox(props) {
-
   const [courseResources, setCourseResources] = useState(
     props.courseResourcesList
   );
 
   const removeCourseResources = removingCourseResId => {
-    fetch(`http://localhost:3001/api/v1/courses/course-resource/UofT/${props.courseCode}/${removingCourseResId}`, {
-      method: 'DELETE'
-    })
+    fetch(
+      `http://localhost:3001/api/v1/courses/course-resource/UofT/${props.courseCode}/${removingCourseResId}`,
+      {
+        method: "DELETE"
+      }
+    )
       .then(res => res.json())
       .then(response => {
         setCourseResources(response.courseResources);
@@ -31,7 +33,7 @@ function CourseFilesBox(props) {
   };
 
   return (
-    <div className="w-6/12 mt-5 mr-10 ml-5 px-10 pb-5 bg-white shadow-md">
+    <div id="course" className="course-container courseResources">
       {courseDisplay ? (
         <AddFilesModal
           display={courseDisplay}
@@ -40,8 +42,9 @@ function CourseFilesBox(props) {
           courseCode={props.courseCode}
         />
       ) : null}
-      <h3 className="text-2xl font-medium my-4"> Course Resources</h3>
-      <div className="h-64 pr-2 overflow-auto">
+      <h2>Course Resources</h2>
+      <div className="pr-2 overflow-auto courseResourcesFiles">
+        {console.log(props.courseResourcesList)}
         {courseResources.length !== 0
           ? courseResources.map(courseResource => (
               <CourseRYearBox

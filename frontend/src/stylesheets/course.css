@@ -1,0 +1,89 @@
+.courseMain {
+  margin-bottom: 3em;
+}
+
+#course h1 {
+  padding-bottom: 0px;
+  font-size: 3em;
+  font-weight: bold;
+}
+
+#course h2 {
+  font-size: 2em;
+  font-weight: bold;
+  color: #333;
+}
+
+#course .name {
+  width: calc(80%);
+  max-width: 1460px;
+  text-align: center;
+  margin: 3em auto 2em auto;
+  /* margin: 3em 0 1em calc(100% / 5); */
+}
+
+#course .add {
+  width: calc(80%);
+  max-width: 1460px;
+  text-align: center;
+  margin: 0 auto;
+  /* margin-left: calc(100% / 5); */
+}
+
+#course .add button {
+  margin-left: 0;
+  margin-right: 16px;
+  margin-bottom: 2em;
+  border-radius: 10px;
+}
+
+.course-container {
+  margin: 0 auto;
+  border-radius: 18px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.02), 0 6px 20px 0 rgba(0, 0, 0, 0.04);
+  padding: 6px;
+}
+
+.course-container h2 {
+  margin: 12px 0 0 12px;
+}
+
+.course-container p {
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.doubleDiv {
+  margin: 0 auto;
+  display: grid;
+  width: calc(80%);
+  max-width: 1460px;
+  grid-template-columns: 1fr 1fr;
+  /* grid-column-gap: 16px; */
+}
+
+#course .reddit,
+#course .comments,
+#course .courseResources {
+  margin-top: 1em;
+  width: calc(80%);
+  max-width: 1460px;
+}
+
+#course .reddit .redditComments,
+#course .comments .userComments,
+#course .courseResources .courseResourcesFiles {
+  max-height: 500px;
+}
+
+.redditBox,
+.commentBox {
+  border-radius: 12px;
+  margin: 12px;
+}
+
+.redditBox h3 {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+}
