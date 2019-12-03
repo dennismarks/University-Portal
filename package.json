@@ -4,10 +4,6 @@
   "main": "index.js",
   "repository": "git@github.com:csc309-fall-2019/team-51.git",
   "author": "MaXeraph <max.pham@mail.utoronto.ca>",
-  "scripts": {
-    "start": "cd portal-api && npm start",
-    "heroku-postbuild": "cd frontend/ && npm install && npm run build"
-  },
   "engines": {
     "node": "^12.0.0"
   }
