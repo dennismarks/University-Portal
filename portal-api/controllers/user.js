@@ -23,7 +23,19 @@ async function create(req, res) {
 
     res.status(201).send(user);
   } catch (e) {
-    res.status(500).send(e);
+    if (e.name === "MongoError" && e.code === 11000) {
+      res.status(409).send(
+        Object.keys(e.keyValue).reduce(
+          (acc, key) => ({
+            ...acc,
+            [key]: `User with ${key} ${e.keyValue[key]} already exists`
+          }),
+          {}
+        )
+      );
+    } else {
+      res.status(500).send(e);
+    }
   }
 }
 
