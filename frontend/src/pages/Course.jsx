@@ -67,7 +67,6 @@ function Course() {
           recommendedPreparation={
             course.info.recPrep || "No recommended preparation"
           }
-          distributionRequirements={course.info.distribution}
           exclusions={course.info.exclusions}
           breadthRequirements={course.info.breadthReqs}
         />

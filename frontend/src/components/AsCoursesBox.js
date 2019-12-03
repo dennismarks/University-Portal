@@ -26,7 +26,7 @@ function AsCoursesBox(props) {
         </p>
         <p className="bg-orange-100 py-4 px-2 m-2">
           <strong>Breadth/ Distribution Requirements: </strong>
-          {props.breadthRequirements} / {props.distributionRequirements}
+          {props.breadthRequirements}
         </p>
       </div>
     </div>
