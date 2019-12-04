@@ -11,6 +11,7 @@ import UsersList from "../components/UsersList";
 const Admin = props => {
   const [numCourses, setNumCourses] = useState(null);
   const [numUsers, setNumUsers] = useState(null);
+  const [requests, setRequests] = useState(null);
   const {
     auth: { user }
   } = useContext(AuthContext);
@@ -33,6 +34,17 @@ const Admin = props => {
       .catch(error => {
         console.error(error);
       });
+
+    fetch(`/api/v1/course-resource/UofT?status=Pending`)
+      .then(res => {
+        return res.json();
+      })
+      .then(res => {
+        setRequests(res);
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }, []);
 
   if (!user) {
@@ -46,7 +58,7 @@ const Admin = props => {
         <AddCourseForm />
       </div>
       <div className="row-2">
-        <ResourceApproval />
+        <ResourceApproval requests={requests} />
         <div className="users-container">
           {/* <UsersList /> */}
           <UserDetails />

@@ -1,11 +1,33 @@
-const Course = require("../models/courseModel");
-const { ObjectID } = require("mongodb");
-
 /**
  * Course Resource Controller
  *
  * @description :: Server-side logic for managing course resources.
  */
+
+const Course = require("../models/courseModel");
+const { ObjectID } = require("mongodb");
+
+async function list(req, res) {
+  const { school } = req.params;
+  const statuses = (req.query.status || "").split(",");
+
+  try {
+    const courses = await Course.find({
+      school,
+      "courseResources.0": { $exists: true }
+    });
+    const courseResources = courses.reduce((acc, c) => {
+      const resources = c.courseResources.filter(
+        r => !statuses.length || statuses.includes(r.status)
+      );
+
+      return resources.length ? [...acc, ...resources] : acc;
+    }, []);
+    res.send(courseResources);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+}
 
 // (create) on signle object -- POST /
 function create(req, res) {
@@ -165,6 +187,7 @@ function destroy(req, res) {
 
 module.exports = {
   create,
+  list,
   listPending,
   listApproved,
   updatePending,

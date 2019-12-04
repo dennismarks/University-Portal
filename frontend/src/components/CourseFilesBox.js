@@ -9,7 +9,7 @@ function CourseFilesBox(props) {
 
   const removeCourseResources = removingCourseResId => {
     fetch(
-      `/api/v1/courses/course-resource/UofT/${props.courseCode}/${removingCourseResId}`,
+      `/api/v1/course-resource/UofT/${props.courseCode}/${removingCourseResId}`,
       {
         method: "DELETE"
       }
@@ -36,7 +36,6 @@ function CourseFilesBox(props) {
     <div id="course" className="course-container courseResources">
       <h2>Course Resources</h2>
       <div className="pr-2 overflow-auto courseResourcesFiles">
-        {console.log(props.courseResourcesList)}
         {courseResources.length !== 0 ? (
           courseResources.map(courseResource => (
             <CourseRYearBox

@@ -3,12 +3,12 @@ import React from "react";
 function AddFilesModal(props) {
   const submitResFunc = () => {
     const semester = document.querySelector("#courseTermInput").value;
-    const status = "Approved";
+    const status = "Pending";
     const link = document.querySelector("#linkInput").value;
     const title = document.querySelector("#titleInput").value;
     const reviewBody = JSON.stringify({ status, semester, title, link });
     const courseCode = window.location.href.split("/").pop();
-    fetch(`/api/v1/courses/course-resource/UofT/${courseCode}`, {
+    fetch(`/api/v1/course-resource/UofT/${courseCode}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

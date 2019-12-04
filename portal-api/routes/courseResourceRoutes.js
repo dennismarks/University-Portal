@@ -2,6 +2,11 @@ const express = require("express");
 const router = express.Router();
 const courseResourceController = require("../controllers/courseResourceController");
 
+/**
+ * GET all the pending course resources
+ */
+router.get("/:school", courseResourceController.list);
+
 /*
  * GET the listing on pending course resources for this course
  */

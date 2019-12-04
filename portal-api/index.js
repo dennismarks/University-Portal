@@ -36,7 +36,7 @@ app.use(bodyParser.json());
 
 /* Server Resource Routes */
 app.use("/api/v1/courses", courseRoutes);
-app.use("/api/v1/courses/course-resource", courseResourceRoutes);
+app.use("/api/v1/course-resource", courseResourceRoutes);
 app.use("/api/v1/courses/course-review", courseReviewRoutes);
 app.use("/api/v1/courses/reddit-comments", redditCommentRoutes);
 app.use("/api/v1/user", userRoutes);
