@@ -5,8 +5,9 @@
 <strong>Portal</strong> is a website that compiles every piece of information about a course. From course descriptions to syllabi and professors to forum/reddit conversations about them. We utilize and gather information from go-to sites that students often refer to when they start their research, such as the <a href="https://fas.calendar.utoronto.ca/">course calendar</a>, <a href="https://www.reddit.com/r/uoft">Reddit</a>, and course websites, and syndicate this information in a way that is <strong>digestible</strong> and <strong>easy to access</strong>.
 </p>
 
+- [DEPLOYED LINK](#deployed-link)
 - [Getting Started](#getting-started)
-- [Build Instructions](#build-instructions)
+- [Contributing](#contributing)
 - [TA Instructions](#ta-instructions)
   - [Anonymous User Interactions](#anonymous-user-interactions)
     - [Search](#search)
@@ -30,24 +31,11 @@ https://portal-course.herokuapp.com/
 
 ## Getting Started
 
-To run the application, clone the repo and run the following commands:
+Navigate to the [Deployed link](#deployed-link) to view the running app.
 
-```
-npm install
-npm start
-```
+## Contributing
 
-Navigate to [localhost:3000](http://localhost:3000) to view the running app.
-
-## Build Instructions
-
-To build a production release, run:
-
-```
-npm run build
-```
-
-The output of the build process will be located in the `build/` folder.
+See our [Contributing Guide](docs/CONTRIBUTING.md) for more information on how to help.
 
 ## TA Instructions
 
@@ -71,9 +59,10 @@ Clicking on one of these quick links will take you to the search page with the s
 
 #### Course Details
 
-Anonymous users also have the ability to view course details. If you navigate to a course page like [/course/csc309](http://localhost:3000/course/csc309), you will see various information about a course:
+Anonymous users also have the ability to view course details. If you navigate to a course page like [/course/CSC309H1](https://portal-course.herokuapp.com/course/CSC309H1), you will see various information about a course:
 
 - Description
+- Recommended Preparation
 - Prerequisites/Exclusions
 - Related Reddit threads
 - Course Resources (links to course websites and syllabi)
@@ -93,7 +82,7 @@ If your credentials are invalid, you will see an alert. On the login page, you c
 
 #### Save Courses
 
-Once you are logged in as a student, navigate to a course page like [/course/csc309](http://localhost:3000/course/csc309). On this page, you'll now see buttons to save the course to your profile:
+Once you are logged in as a student, navigate to a course page like [/course/CSC309H1](https://portal-course.herokuapp.com/course/CSC309H1). On this page, you'll now see buttons to save the course to your profile:
 
 ![](docs/images/3_save_course.png)
 
@@ -146,7 +135,6 @@ On the admin page, you can see how many courses and users there are in the app. 
  <p>
 
 ```
-Adam Prinkin
 Username: admin
 Pass: admin
 ```
@@ -158,7 +146,6 @@ Pass: admin
  <p>
   
 ```
-Alex Liskov
 Username: user
 Pass: user
 ```
@@ -171,22 +158,8 @@ Pass: user
  <p>
 
 ```
-Wayne Spon
 Username: user2
 Pass: user2
-```
-
-  </p>
-</details>
-
-<details>
- <summary>Student 3</summary>
- <p>
-
-```
-Katie Xuo
-Username: user3
-Pass: user3
 ```
 
   </p>
@@ -198,9 +171,6 @@ Students at UofT today have to do a lot of research themselves on multiple sites
 
 As students ourselves, we believe that a site like Portal would massively change the game of choosing courses. Through our website, students will be **more informed** about their course selection and make sure that their **time and money are spent well** during their post-secondary journey.
 
-## Contributing
-
-See our [Contributing Guide](docs/CONTRIBUTING.md) for more information on how to help.
 
 ## Resources
 
