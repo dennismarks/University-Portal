@@ -36,6 +36,7 @@ Navigate to the [Deployed link](#deployed-link) to view the running app.
 ## Contributing
 
 See our [Contributing Guide](docs/CONTRIBUTING.md) for more information on how to help as well as API routes and information.
+[EXPRESS ROUTES](https://github.com/csc309-fall-2019/team51/blob/master/docs/CONTRIBUTING.md#express-routes)
 
 ## TA Instructions
 
