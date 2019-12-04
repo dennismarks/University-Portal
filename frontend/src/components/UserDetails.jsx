@@ -17,10 +17,10 @@ const UserDetails = props => {
             Name: <strong>{selectedUser.name}</strong>
           </p>
           <p>
-            Program: <strong>{selectedUser.program}</strong>
+            Email: <strong>{selectedUser.email}</strong>
           </p>
           <p>
-            Id: <strong>{selectedUser.id}</strong>
+            Id: <strong>{selectedUser._id}</strong>
           </p>
           <p>
             User's page:
@@ -34,9 +34,6 @@ const UserDetails = props => {
               </Link>
             </strong>
           </p>
-          <button onClick={() => removeStudent(selectedUser._id)}>
-            Remove
-          </button>
         </>
       ) : (
         <p>User Error</p>
