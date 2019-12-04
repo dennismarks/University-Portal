@@ -40,7 +40,12 @@ const Admin = props => {
         return res.json();
       })
       .then(res => {
-        setRequests(res);
+        const requests = Object.keys(res).reduce((acc, courseCode) => {
+          const rs = res[courseCode];
+          const temp = rs.map(r => ({ ...r, courseCode }));
+          return [...acc, ...temp];
+        }, []);
+        setRequests(requests);
       })
       .catch(error => {
         console.error(error);
@@ -51,14 +56,36 @@ const Admin = props => {
     return null;
   }
 
+  function approveRequest(request) {
+    fetch(`/api/v1/course-resource/UofT/${request.courseCode}/${request._id}`, {
+      method: "PATCH"
+    })
+      .then(res => {
+        if (res.ok) {
+          // setRequests(res);
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
+  function rejectRequest(request) {
+    console.log(request);
+  }
+
   return (
     <>
       <AdminStats numUsers={numUsers} numCourses={numCourses} />
+      <ResourceApproval
+        requests={requests}
+        onApprove={approveRequest}
+        onReject={rejectRequest}
+      />
       <div className="row-1">
         <AddCourseForm />
       </div>
       <div className="row-2">
-        <ResourceApproval requests={requests} />
         <div className="users-container">
           {/* <UsersList /> */}
           <UserDetails />
