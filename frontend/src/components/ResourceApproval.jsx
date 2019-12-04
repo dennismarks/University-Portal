@@ -10,7 +10,7 @@ import TableRow from "@material-ui/core/TableRow";
 
 class ResourceApproval extends React.Component {
   render() {
-    if (!this.props.requests || !this.props.requests.length) {
+    if (!this.props.requests) {
       return null;
     }
 

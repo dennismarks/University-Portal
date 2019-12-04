@@ -112,6 +112,12 @@ function listPending(req, res) {
 
 function updatePending(req, res) {
   const { school, course, resId } = req.params;
+  const { status } = req.body;
+
+  if (!status) {
+    res.status(400).send();
+  }
+
   console.log(req.params);
   Course.findOne({ school: school, code: course }).then(
     courseObj => {
@@ -119,7 +125,7 @@ function updatePending(req, res) {
         res.status(404).send("No such resource found");
       }
 
-      courseObj.courseResources.id(resId).status = "Approved";
+      courseObj.courseResources.id(resId).status = status;
       console.log(courseObj.courseResources.id(resId));
       courseObj.save().then(
         result => {

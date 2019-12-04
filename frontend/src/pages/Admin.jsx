@@ -58,7 +58,11 @@ const Admin = props => {
 
   function approveRequest(request) {
     fetch(`/api/v1/course-resource/UofT/${request.courseCode}/${request._id}`, {
-      method: "PATCH"
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ status: "Approved" })
     })
       .then(res => {
         if (res.ok) {
@@ -71,7 +75,21 @@ const Admin = props => {
   }
 
   function rejectRequest(request) {
-    console.log(request);
+    fetch(`/api/v1/course-resource/UofT/${request.courseCode}/${request._id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ status: "Rejected" })
+    })
+      .then(res => {
+        if (res.ok) {
+          // setRequests(res);
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 
   return (
