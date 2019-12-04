@@ -38,23 +38,31 @@ class ResourceApproval extends React.Component {
                   <TableCell align="left">{request.semester}</TableCell>
                   <TableCell align="left">{request.link}</TableCell>
                   <TableCell align="left">
-                    <span className="text-yellow-600">{request.status}</span>
+                    {request.status === "Pending" ? (
+                      <span className="text-yellow-600">{request.status}</span>
+                    ) : request.status === "Approved" ? (
+                      <span className="text-green-600">{request.status}</span>
+                    ) : (
+                      <span className="text-red-600">{request.status}</span>
+                    )}
                   </TableCell>
                   <TableCell align="right">
-                    <div className="inline-flex">
-                      <button
-                        className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l"
-                        onClick={() => this.props.onApprove(request)}
-                      >
-                        Approve
-                      </button>
-                      <button
-                        className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r"
-                        onClick={() => this.props.onReject(request)}
-                      >
-                        Reject
-                      </button>
-                    </div>
+                    {request.status === "Pending" && (
+                      <div className="inline-flex">
+                        <button
+                          className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l"
+                          onClick={() => this.props.onApprove(request)}
+                        >
+                          Approve
+                        </button>
+                        <button
+                          className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r"
+                          onClick={() => this.props.onReject(request)}
+                        >
+                          Reject
+                        </button>
+                      </div>
+                    )}
                   </TableCell>
                 </TableRow>
               ))}

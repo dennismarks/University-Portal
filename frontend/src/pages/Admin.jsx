@@ -37,7 +37,7 @@ const Admin = props => {
         console.error(error);
       });
 
-    fetch(`/api/v1/course-resource/UofT?status=Pending`)
+    fetch(`/api/v1/course-resource/UofT?status=Pending,Approved,Rejected`)
       .then(res => {
         return res.json();
       })
@@ -79,7 +79,10 @@ const Admin = props => {
     })
       .then(res => {
         if (res.ok) {
-          // setRequests(res);
+          setRequests(oldRequests => [
+            ...oldRequests.filter(r => r._id !== request._id),
+            { ...request, status: "Approved" }
+          ]);
         }
       })
       .catch(error => {
@@ -97,7 +100,10 @@ const Admin = props => {
     })
       .then(res => {
         if (res.ok) {
-          // setRequests(res);
+          setRequests(oldRequests => [
+            ...oldRequests.filter(r => r._id !== request._id),
+            { ...request, status: "Rejected" }
+          ]);
         }
       })
       .catch(error => {
