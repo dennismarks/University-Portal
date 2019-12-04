@@ -16,6 +16,28 @@ const AddCourseForm = () => {
     curChosenDepartment
   } = coursesContext;
 
+  function addCourseToDB() {
+    const jsonBody = JSON.stringify({
+      code: curCourseName,
+      school: "UofT"
+    });
+    console.log(jsonBody);
+    fetch(`http://localhost:3001/api/v1/courses`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: jsonBody
+    })
+      .then(res => res.json())
+      .then(result => {
+        alert("Course Added")
+      })
+      .catch(err => {
+        alert("Invalid Course Code for UofT")
+      });
+  }
+
   return (
     <div className="add-course-form">
       <h1>Add New Course</h1>
@@ -44,7 +66,7 @@ const AddCourseForm = () => {
         ))}
       </select>
       <br />
-      <button onClick={addCourse}>Add Course</button>
+      <button onClick={addCourseToDB}>Add Course</button>
     </div>
   );
 };
