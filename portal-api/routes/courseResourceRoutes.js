@@ -18,6 +18,11 @@ router.get("/:school/:course/approved", courseResourceController.listApproved);
 router.post("/:school/:course", courseResourceController.create);
 
 /*
+ * PATCH - update status of the course resources to approved
+ */
+router.patch("/:school/:course/:resId", courseResourceController.updatePending)
+
+/*
  * PATCH
  */
 // router.patch("/:school/:course", courseResourceController.update);

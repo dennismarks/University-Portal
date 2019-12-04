@@ -97,20 +97,23 @@ function Course() {
       {canUserMakeEdits && (
         <div className="add">
           <button
+            disabled={user.currentCourses.includes(course._id)}
             onClick={addCurrentCourse}
-            className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-2"
+            className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 disabled:opacity-75 text-white py-2 px-4 mx-2"
           >
             Add To Current Courses
           </button>
           <button
+            disabled={user.takenCourses.includes(course._id)}
             onClick={addTakenCourse}
-            className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-2"
+            className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 disabled:opacity-75 text-white py-2 px-4 mx-2"
           >
             Add To Taken Courses
           </button>
           <button
+            disabled={user.plannedCourses.includes(course._id)}
             onClick={addPlannedCourse}
-            className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-2"
+            className="btn btn-blue rounded bg-blue-500 hover:bg-blue-700 disabled:opacity-75 text-white py-2 px-4 mx-2"
           >
             Add To Planned Courses
           </button>

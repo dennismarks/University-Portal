@@ -87,9 +87,34 @@ function listPending(req, res) {
   );
 }
 
+function updatePending(req, res) {
+  const { school, course, resId } = req.params;
+  console.log(req.params);
+  Course.findOne({ school: school, code: course }).then(
+    courseObj => {      
+      if (!courseObj || !courseObj.courseResources.id({ _id: resId })) {
+        res.status(404).send("No such resource found");
+      }
+
+      courseObj.courseResources.id(resId).status = "Approved";
+      console.log(courseObj.courseResources.id(resId));
+      courseObj.save().then(
+        result => {
+          res.send(result);
+        },
+        err => {
+          res.status(500).send(err);
+        }
+      );
+    },
+    error => {
+      res.status(500).send(error); // server error
+    }
+  );
+}
+
 // (read) all pending course resources needed for approval -- GET /
 function listApproved(req, res) {
-  // TODO check if user is an admin here
   const { school, course } = req.params;
   Course.findOne({ school: school, code: course }).then(
     courseObj => {
@@ -103,7 +128,6 @@ function listApproved(req, res) {
     }
   );
 }
-
 
 // TODO: add update for admin only
 // // (update) one single object PATH /:id
@@ -143,5 +167,6 @@ module.exports = {
   create,
   listPending,
   listApproved,
+  updatePending,
   destroy
 };
