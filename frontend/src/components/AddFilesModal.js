@@ -17,10 +17,11 @@ function AddFilesModal(props) {
     })
       .then(res => res.json())
       .then(response => {
-        props.setCourseResources(response.courseResources);
+        // props.setCourseResources(response.courseResources);
+        alert("Response submitted for Approval");
         props.cancelFunc();
       })
-      .catch(err => console.log(err));
+      .catch(err => alert(err));
   };
   return (
     <div id="course" className="course-container submitResourceForm">
