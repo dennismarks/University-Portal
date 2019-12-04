@@ -3,31 +3,31 @@ import { uid } from "react-uid";
 import "../stylesheets/coursesCard.css";
 
 function CoursesCard(props) {
-  const { courses, name } = props;
+  const { name, courseArr } = props;
   const [more, setMore] = useState(false);
-  const [ courseArr, setCourseArr ] = useState([]);
+  // const [ courseArr, setCourseArr ] = useState([]);
 
-  useEffect(() => {
-    const courseIdsObj = JSON.stringify({ courseIds: courses });
-    fetch(`/api/v1/courses/ids`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: courseIdsObj
-    })
-      .then(res => {
-        return res.json();
-      })
-      .then(coursesObj => {
-        setCourseArr(coursesObj);
-        // console.log(courseArr) // returns []
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, []);
-  console.log( courseArr, "sdfsdf")
+  // useEffect(() => {
+  //   const courseIdsObj = JSON.stringify({ courseIds: courses });
+  //   fetch(`/api/v1/courses/ids`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: courseIdsObj
+  //   })
+  //     .then(res => {
+  //       return res.json();
+  //     })
+  //     .then(coursesObj => {
+  //       setCourseArr(coursesObj);
+  //       // console.log(courseArr) // returns []
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // }, []);
+  // console.log( courseArr, "sdfsdf")
   if (courseArr.length > 3) {
     return (
       <div className="courses">
