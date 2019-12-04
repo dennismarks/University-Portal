@@ -12,6 +12,8 @@ const Admin = props => {
   const [numCourses, setNumCourses] = useState(null);
   const [numUsers, setNumUsers] = useState(null);
   const [requests, setRequests] = useState(null);
+  const [allUsers, setAllUsers] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(null);
   const {
     auth: { user }
   } = useContext(AuthContext);
@@ -45,12 +47,22 @@ const Admin = props => {
       .catch(error => {
         console.error(error);
       });
+
+    fetch(`/api/v1/user/`)
+      .then(res => {
+        return res.json();
+      })
+      .then(res => {
+        setAllUsers(res.users);
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }, []);
 
   if (!user) {
     return null;
   }
-
   return (
     <>
       <AdminStats numUsers={numUsers} numCourses={numCourses} />
@@ -60,8 +72,9 @@ const Admin = props => {
       <div className="row-2">
         <ResourceApproval requests={requests} />
         <div className="users-container">
-          {/* <UsersList /> */}
-          <UserDetails />
+          <UsersList users={allUsers} selectedUser={selectedUser} setSelectedUser={setSelectedUser} />
+          {selectedUser ? (<UserDetails key={selectedUser._id} selectedUser={selectedUser} />) : null}
+          {/* { allUsers ? allUsers.map( user => (<UserDetails key={user._id} selectedUser={user} />) ) : "Loading"} */}
         </div>
       </div>
     </>
