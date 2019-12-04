@@ -23,10 +23,10 @@
     - [Admin Page](#admin-page)
 - [Login Credentials](#login-credentials)
 - [Motivation](#motivation)
-- [Contributing](#contributing)
 - [Resources](#resources)
 
 ## DEPLOYED LINK
+
 https://portal-course.herokuapp.com/
 
 ## Getting Started
@@ -35,7 +35,8 @@ Navigate to the [Deployed link](#deployed-link) to view the running app.
 
 ## Contributing
 
-See our [Contributing Guide](docs/CONTRIBUTING.md) for more information on how to help.
+See our [Contributing Guide](docs/CONTRIBUTING.md) for more information on how to help as well as API routes and information.
+[EXPRESS ROUTES](https://github.com/csc309-fall-2019/team51/blob/master/docs/CONTRIBUTING.md#express-routes)
 
 ## TA Instructions
 
@@ -170,7 +171,6 @@ Pass: user2
 Students at UofT today have to do a lot of research themselves on multiple sites and sources to really understand what a course is about before enrolment. Often the course info provided by the departments are insufficient or, at times, misrepresents what the course is really about. There is no central portal to aid with course selection!
 
 As students ourselves, we believe that a site like Portal would massively change the game of choosing courses. Through our website, students will be **more informed** about their course selection and make sure that their **time and money are spent well** during their post-secondary journey.
-
 
 ## Resources
 
