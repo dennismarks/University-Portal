@@ -1,17 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
-import { UsersContext } from "../context/UsersContext";
-import UserInfo from "../components/UserInfo";
+
 import CoursesCard from "../components/CoursesCard";
+import { fetchUser } from "../services/user";
+import UserInfo from "../components/UserInfo";
 
 const User = props => {
-  const { fetchUserById, users } = useContext(UsersContext);
+  const [user, setUser] = useState(null)
+  const [currentCourses, setCurrentCourses] = useState(null);
+  const [takenCourses, setTakenCourses] = useState(null);
+  const [plannedCourses, setPlannedCourses] = useState(null);
+  
   const { id } = props.match.params;
-  const user = users[id];
-  const [currentCourses, setCurrentCourses] = useState([]);
-  const [takenCourses, setTakenCourses] = useState([]);
-  const [plannedCourses, setPlannedCourses] = useState([]);
 
-  const setAnyCourses = (funcSet, coursesArr) => {
+  function setAnyCourses(funcSet, coursesArr) {
     const courseIdsObj = JSON.stringify({ courseIds: coursesArr });
     fetch(`/api/v1/courses/ids`, {
       method: "POST",
@@ -25,25 +26,34 @@ const User = props => {
       })
       .then(coursesObj => {
         funcSet(coursesObj);
-        // console.log(courseArr) // returns []
       })
       .catch(error => {
         console.error(error);
       });
-  };
+  }
+
   useEffect(() => {
-    fetchUserById(id);
+    fetchUser(id)
+      .then(user => {
+        setUser(user)
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }, []);
+
+  useEffect(() => {
     if (user) {
       setAnyCourses(setCurrentCourses, user.currentCourses);
       setAnyCourses(setTakenCourses, user.takenCourses);
       setAnyCourses(setPlannedCourses, user.plannedCourses);
     }
-  }, []);
-
+  }, [user]);
+  
   if (!user) {
     return null;
   }
-  console.log(currentCourses.length == 0 )
+  
   return (
     <div className="main">
       <UserInfo
@@ -53,9 +63,15 @@ const User = props => {
           program: "Computer Science"
         }}
       />
-      {currentCourses.length != 0 ?( <CoursesCard coursesArr={currentCourses} name="Current Courses" /> ): null}
-      {takenCourses.length != 0  ? (<CoursesCard coursesArr={takenCourses} name="Taken Courses" /> ): null}
-      {plannedCourses.length != 0  ? (<CoursesCard coursesArr={plannedCourses} name="Future course" /> ): null}
+      {currentCourses && currentCourses.length && (
+        <CoursesCard courses={currentCourses} name="Current Courses" />
+      )}
+      {takenCourses && takenCourses.length !== 0 && (
+        <CoursesCard courses={takenCourses} name="Taken Courses" />
+      )}
+      {plannedCourses && plannedCourses.length !== 0 && (
+        <CoursesCard courses={plannedCourses} name="Future course" />
+      )}
     </div>
   );
 };

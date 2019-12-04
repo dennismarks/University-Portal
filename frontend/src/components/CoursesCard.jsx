@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { uid } from "react-uid";
 import "../stylesheets/coursesCard.css";
 
-function CoursesCard(props) {
-  const { name, courseArr } = props;
+function CoursesCard({ courses = [], name }) {
+  // const { name, courseArr } = props;
   const [more, setMore] = useState(false);
+  const toggleMore = () => more ? setMore(false) : setMore(true)
   // const [ courseArr, setCourseArr ] = useState([]);
 
   // useEffect(() => {
@@ -27,59 +28,34 @@ function CoursesCard(props) {
   //       console.error(error);
   //     });
   // }, []);
-  // console.log( courseArr, "sdfsdf")
-  if (courseArr.length > 3) {
-    return (
-      <div className="courses">
-        <h1>{name}</h1>
-        
-        {more ? (
-          <ul>
-            {courseArr.map(course => {
-              return <li key={course._id}>{course.code} - {course.info.title}</li>;
-            })}
-          </ul>
-        ) : (
-          <ul>
-            {courseArr.slice(0, 3).map(course => {
-              return <li key={course._id}>{course.code} - {course.info.title}</li>;
-            })}
-          </ul>
-        )}
-        {/* change the button label and modify the state */}
-        {more === false ? (
-          <button
-            onClick={() => {
-              setMore(true);
-            }}
-          >
-            Show more
-          </button>
-        ) : (
-          <button
-            onClick={() => {
-              setMore(false);
-            }}
-          >
-            Show less
-          </button>
-        )}
-      </div>
-    );
-  } else if (courseArr.length > 0 && courseArr.length <= 3) {
-    return (
-      <div className="courses">
-        <h1>{name}</h1>
-        <ul>
-          {courseArr.map(course => {
-          return <li key={course._id}> {course.code} - {course.info.title}</li>;
-          })}
-        </ul>
-      </div>
-    );
-  } else {
-    return <div></div>;
+  // console.log(courseArr, "sdfsdf")
+  // console.log(courseArr)
+  // console.log(courseArr, "courses cr rrr")
+
+  if (!courses || !courses.length) {
+    return null
   }
+
+  const tooManyCourses = courses.length > 3
+  const coursesToDisplay = more ? courses : courses.slice(0, 3)
+
+  return (
+    <div className="courses">
+      <h1>{name}</h1>
+      
+      <ul>
+        {coursesToDisplay.map(
+          c => <li key={c._id}>{c.code} - {c.info.title}</li>
+        )}
+      </ul>
+
+      {tooManyCourses && (
+        <button onClick={() => toggleMore()}>
+          {more ? "Show less" : "Show more"}
+        </button>
+      )}
+    </div>
+  );
 }
 
 export default CoursesCard;
