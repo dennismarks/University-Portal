@@ -36,9 +36,9 @@ npm run dev
     - `/search` - GET: Return list of course objects that matches search Regex
     - `/ids` - POST: Create a list of all courses from the given id
   - `/api/v1/course-resource`: Course Resource management
-    - `/:school` - GET all pending(unresolved) course requests at a given school
-    - `/:school/:course/pending` - GET all pending(unresolved) course requests for a given course
-    - `/:school/:course/approved` - GET all approved(resolved) course requests for a given course
+    - `/:school` - GET: all pending(unresolved) course requests at a given school
+    - `/:school/:course/pending` - GET: all pending(unresolved) course requests for a given course
+    - `/:school/:course/approved` - GET: all approved(resolved) course requests for a given course
     - `/:school/:course/` - POST: Create an entry for course resource.
     - `/:school/:course/:resId` - POST: Create an entry for course resource.
     - `/:school/:course/:id` - DELETE: Delete a course resource given id
@@ -48,7 +48,7 @@ npm run dev
   - `/api/v1/courses/reddit-comments`: Reddit posts management
     - `/:school/:course` - PATCH: Refresh to get the latest posts regarding the course.
     - `/:id` - DELETE: Delete reddit comment from database
-  - `/api/v1/user`:
+  - `/api/v1/user`: User management
     - `/` - GET: Returns user profile object
     - `/me/` - GET: Returns logged in user profile.
     - `/login/` - POST: Verify credentials and log user in.
