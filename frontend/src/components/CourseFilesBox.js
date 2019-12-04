@@ -53,8 +53,7 @@ function CourseFilesBox(props) {
           </div>
         )}
       </div>
-      {/* {props.canSubmitFiles && ( */}
-      {
+      {props.canSubmitFiles && (
         <div className="flex justify-center">
           <button
             onClick={cancelAddDisplay}
@@ -63,7 +62,7 @@ function CourseFilesBox(props) {
             Submit Resources For Approval
           </button>
         </div>
-      }
+      )}
       {courseDisplay ? (
         <AddFilesModal
           display={courseDisplay}
