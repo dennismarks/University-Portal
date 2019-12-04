@@ -16,14 +16,15 @@ async function list(req, res) {
       school,
       "courseResources.0": { $exists: true }
     });
-    const courseResources = courses.reduce((acc, c) => {
+    const courseResourcesByCourseCode = courses.reduce((acc, c) => {
       const resources = c.courseResources.filter(
         r => !statuses.length || statuses.includes(r.status)
       );
 
-      return resources.length ? [...acc, ...resources] : acc;
-    }, []);
-    res.send(courseResources);
+      return resources.length ? { ...acc, [c.code]: resources } : acc;
+    }, {});
+
+    res.send(courseResourcesByCourseCode);
   } catch (error) {
     res.status(500).send(error.message);
   }
@@ -111,14 +112,20 @@ function listPending(req, res) {
 
 function updatePending(req, res) {
   const { school, course, resId } = req.params;
+  const { status } = req.body;
+
+  if (!status) {
+    res.status(400).send();
+  }
+
   console.log(req.params);
   Course.findOne({ school: school, code: course }).then(
-    courseObj => {      
+    courseObj => {
       if (!courseObj || !courseObj.courseResources.id({ _id: resId })) {
         res.status(404).send("No such resource found");
       }
 
-      courseObj.courseResources.id(resId).status = "Approved";
+      courseObj.courseResources.id(resId).status = status;
       console.log(courseObj.courseResources.id(resId));
       courseObj.save().then(
         result => {
