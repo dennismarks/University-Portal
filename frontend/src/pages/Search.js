@@ -47,7 +47,7 @@ function Search() {
             >
               Next
             </button>
-            <button
+            {searchStart !== 0 ? (<button
               onClick={() => {
                 const searchNum = searchStart >= 12 ? searchStart - 12 : 0;
                 setSearchStart(searchNum);
@@ -55,7 +55,7 @@ function Search() {
               className="inline-block float-right text-sm px-4 py-2 leading-none border bg-blue-500 rounded text-white border-white"
             >
               Back
-            </button>
+            </button>) : null}
           </h2>
           <div className="mb-8 flex flex-wrap">
             {/* Results will come from search response from server */}
@@ -78,12 +78,12 @@ function Search() {
                   { name: course.info.faculty, value: course.info.faculty },
                   {
                     name: course.info.department,
-                    value: course.info.department
+                    value: `Department:${course.info.department}`
                   }
                 ]}
               />
             ))}
-            {searchCourses.length === 0 ? `No ${searchStart > 0 ? "more" : ""} courses found` : null}
+            {searchCourses.length === 0 ? `No ${searchStart > 0 ? "more" : ""} courses found.` : null}
           </div>
         </div>
       </section>

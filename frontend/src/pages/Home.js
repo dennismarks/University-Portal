@@ -67,7 +67,7 @@ function Home() {
                     { name: course.info.faculty, value: course.info.faculty },
                     {
                       name: course.info.department,
-                      value: course.info.department
+                      value: `Department:${course.info.department}`
                     }
                   ]}
                 />
