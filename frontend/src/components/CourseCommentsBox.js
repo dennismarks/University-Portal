@@ -64,7 +64,7 @@ function CourseCommentsBox(props) {
                 key={userComment._id}
                 user={userComment.username}
                 rating={userComment.rating}
-                userId={userComment._id}
+                userId={userComment.userId}
                 comment={userComment.comment}
                 removeFunc={removeComment}
               />
