@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+
+const { isAdminUser, isUserAuthenticated } = require("../auth");
 const courseController = require("../controllers/courseController");
 
 /*
@@ -20,7 +22,7 @@ router.get("/top", courseController.listTop);
 /*
  * POST
  */
-router.post("/", courseController.create);
+router.post("/", [isUserAuthenticated, isAdminUser], courseController.create);
 
 /*
  * GET
