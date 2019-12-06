@@ -31,9 +31,9 @@ function isUserAuthenticated(req, res, next) {
   const { user } = req.session;
 
   if (!user) {
-    return res.status(401).send();
+    res.status(401).send();
   } else {
-    next();
+    return next();
   }
 }
 
@@ -48,9 +48,9 @@ function isAdminUser(req, res, next) {
   const { user } = req.session;
 
   if (!user || !user.role === "admin") {
-    return res.status(403).send();
+    res.status(403).send();
   } else {
-    next();
+    return next();
   }
 }
 
