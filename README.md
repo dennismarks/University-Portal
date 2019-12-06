@@ -32,7 +32,8 @@ https://portal-course.herokuapp.com/
 ## Getting Started
 
 Navigate to the [Deployed link](#deployed-link) to view the running app.
-Build the application with a static frontend using npm run build in the /team51 directory
+
+Build the application with a static frontend running ```npm run build``` in the /team51 directory. Then ```cd portal-api && npm start```
 
 ## Contributing
 
